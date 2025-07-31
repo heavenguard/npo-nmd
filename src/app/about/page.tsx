@@ -122,7 +122,7 @@ export default function AboutPage() {
                   <User className="h-10 w-10 text-green-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Secrétaire Général</h3>
-                <p className="text-green-600 font-semibold mb-3">À déterminer</p>
+                <p className="text-green-600 font-semibold mb-3">Maitre Ngang NGU Fonguh</p>
                 <p className="text-gray-600 text-sm">Coordination des activités et communication</p>
               </CardContent>
             </Card>
@@ -133,7 +133,7 @@ export default function AboutPage() {
                   <User className="h-10 w-10 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Trésorier</h3>
-                <p className="text-purple-600 font-semibold mb-3">À déterminer</p>
+                <p className="text-purple-600 font-semibold mb-3">Madame Stéphanie Nono</p>
                 <p className="text-gray-600 text-sm">Gestion financière et budgétaire</p>
               </CardContent>
             </Card>
