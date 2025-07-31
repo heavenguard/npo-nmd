@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Satellite, Globe } from "lucide-react"
+import Image from "next/image"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -23,11 +24,13 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-              <Satellite className="h-6 w-6 text-white" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">NMD ASSOCIATION</span>
+          <Link href="/" className="flex items-center space-x-3 relative w-[100px] h-[100px]"> {/* Set the size of the div here */}
+            <Image
+              src="/assets/logoWithoutBackground.png"
+              alt="NMD Association Logo"
+              fill
+              className="rounded-2xl object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}

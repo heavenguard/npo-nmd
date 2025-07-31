@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Satellite, Phone, Mail, MapPin, Linkedin } from "lucide-react"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -9,10 +10,16 @@ export function Footer() {
           {/* Logo & Description */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+              {/* <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
                 <Satellite className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">NMD ASSOCIATION</span>
+              </div> */}
+              <Image
+                src="/assets/logoWhiteOnBlue.png"
+                alt="NMD Association Logo"
+                width={200}
+                height={200}
+                className="rounded-2xl object-contain"
+              />
             </div>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
               Développons les compétences spatiales africaines à travers des missions pratiques et des programmes de
