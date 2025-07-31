@@ -17,7 +17,7 @@ export default function Mission237Page() {
                 <Rocket className="h-4 w-4" />
                 <span className="text-sm font-medium">MISSION PHARE</span>
               </div>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6">Mission 237</h1>
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6">Première Mission 237</h1>
               <p className="text-2xl text-blue-100 font-light mb-6">
                 Notre Première Mission Nanosatellitaire Éducative
               </p>
@@ -185,10 +185,10 @@ export default function Mission237Page() {
                     <span className="text-gray-700 font-medium">Lancement</span>
                     <span className="font-semibold text-gray-900">20%</span>
                   </div>
-                  <Progress value={20} className="h-3" />
+                  <Progress value={35} className="h-3" />
                 </div>
 
-                <div>
+                {/* <div>
                   <div className="flex justify-between mb-3">
                     <span className="text-gray-700 font-medium">Opérations</span>
                     <span className="font-semibold text-gray-900">10%</span>
@@ -202,7 +202,7 @@ export default function Mission237Page() {
                     <span className="font-semibold text-gray-900">5%</span>
                   </div>
                   <Progress value={5} className="h-3" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

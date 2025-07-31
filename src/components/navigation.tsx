@@ -13,7 +13,7 @@ export function Navigation() {
   const navItems = [
     { href: "/", label: "Accueil" },
     { href: "/about", label: "À Propos" },
-    { href: "/mission-237", label: "Mission 237" },
+    { href: "/mission-237", label: "Missions 237" },
     { href: "/become-member", label: "Devenir Membre" },
     { href: "/get-involved", label: "S'Impliquer" },
     { href: "/contact", label: "Contact" },

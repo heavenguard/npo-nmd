@@ -34,7 +34,7 @@ export default function HomePage() {
                   size="lg"
                   className="bg-white text-blue-900 hover:bg-blue-50 font-semibold px-8 py-4 h-14 text-lg"
                 >
-                  Rejoignez la Mission 237
+                  Rejoignez les Missions 237
                   <Rocket className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -81,10 +81,11 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Satellite className="h-8 w-8 text-blue-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Mission 237</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Missions 237</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Notre première mission nanosatellitaire éducative, conçue pour former les ingénieurs spatiaux
-                  africains
+                  Une série de missions
+                  spatiales africaines consolidées en constellation, ouverte et inclusive, conçue pour servir
+                  de vecteur de formation effective des Africains dans les sciences et technologies spatiales
                 </p>
               </CardContent>
             </Card>
@@ -114,7 +115,7 @@ export default function HomePage() {
                 <span className="text-sm font-semibold">MISSION PHARE</span>
               </div>
 
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Mission 237</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Missions 237</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Notre première mission nanosatellitaire éducative, spécialement conçue pour l'accessibilité francophone
                 et la formation pratique des Africains.
