@@ -27,6 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
+      <head>
+        <link rel="icon" href="/assets/logoWhiteOnBlue.png" type="image/png" />
+      </head>
       <body className={inter.className}>
         <AuthProvider>
           <Navigation />

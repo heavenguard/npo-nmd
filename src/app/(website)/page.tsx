@@ -193,11 +193,10 @@ export default function HomePage() {
             <div className="relative">
               <div className="aspect-square bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl p-8 flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
-                  alt="Mission 237 Nanosatellite"
-                  width={400}
-                  height={400}
-                  className="rounded-2xl"
+                  src="/assets/logoWhiteOnBlue.png"
+                  alt="NMD Association"
+                  fill
+                  className="rounded-2xl object-cover"
                 />
               </div>
             </div>

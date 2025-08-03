@@ -47,11 +47,10 @@ export default function Mission237Page() {
             <div className="relative">
               <div className="aspect-square bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
+                  src="/assets/spaceAfrica.jpeg"
                   alt="Mission 237 Nanosatellite"
-                  width={400}
-                  height={400}
-                  className="rounded-2xl"
+                  fill
+                  className="rounded-2xl object-cover"
                 />
               </div>
             </div>
@@ -160,6 +159,14 @@ export default function Mission237Page() {
               </div>
             </div>
 
+            <div className="relative w-full h-full">
+              <Image
+                src="/assets/logoWhiteOnBlue.png"
+                alt="NMD Association"
+                fill
+                className="rounded-2xl object-cover"
+              />
+            </div>
             {/* <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-8">Répartition Budgétaire</h3>
               <div className="space-y-6">
