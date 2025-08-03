@@ -353,7 +353,7 @@ export default function BecomeMemberPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Accès aux offres exclusives membres</span>
+                      <span>Accès aux opportunités exclusives membres</span>
                     </div>
                   </div>
                 </div>
@@ -365,7 +365,7 @@ export default function BecomeMemberPage() {
                     onCheckedChange={(checked) => setFormData({ ...formData, payYearlyMembership: checked as boolean })}
                   />
                   <Label htmlFor="terms" className="text-gray-600 text-sm leading-relaxed">
-                    Payer les frais de membership : 65500 FCFA | 100 EUR | 115 USD
+                    Payer les frais annuels de membership : 65500 FCFA | 100 EUR | 115 USD
                   </Label>
                 </div>
 

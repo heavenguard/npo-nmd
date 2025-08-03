@@ -51,7 +51,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
     
         const body = JSON.stringify({
           amount: "1",
-          currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/become-member",
+          currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/get-involved",
           product: "Membership"
         });
     
@@ -125,8 +125,8 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                             </div>
 
                             {/* Country & Profession */}
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
+                            <div className="grid md:grid-cols-2 gap-20">
+                                <div className="w-full">
                                 <Label htmlFor="country" className="text-gray-900 font-medium">Pays *</Label>
                                 <Select
                                     onValueChange={(value) => setFormData({ ...formData, country: value })}
@@ -178,7 +178,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
 
                                 <div className="text-center bg-white p-6 rounded-xl border-2 border-blue-200">
                                 <p className="text-4xl font-bold text-blue-600 mb-2">{amount} FCFA</p>
-                                <p className="text-gray-600 mb-4">~25 EUR | 29 USD</p>
+                                <p className="text-gray-600 mb-4">{type==="mission" ? "~1000 EUR | 1160 USD" : type==="student" ? "~385 EUR | 445 USD" : ""}</p>
                                 <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                                     <User className="h-4 w-4" />
                                     <span>Compte membre inclus</span>
@@ -226,7 +226,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                 )}
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-4 w-4 text-green-600" />
-                                    <span>Accès aux offres exclusives membres</span>
+                                    <span>Accès aux opportunités exclusives membres</span>
                                 </div>
                                 </div>
                             </div>

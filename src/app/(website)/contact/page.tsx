@@ -78,7 +78,7 @@ export default function ContactPage() {
                   {info.action ? (
                     <a
                       href={info.action}
-                      className="text-gray-600 hover:text-blue-600 transition-colors leading-relaxed"
+                      className="text-gray-600 hover:text-blue-600 transition-colors leading-relaxed break-words"
                     >
                       {info.details}
                     </a>

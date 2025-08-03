@@ -118,7 +118,7 @@ export default function GetInvolvedPage() {
     }, [depositId]);
 
   const handleClickOptionButton = (option: any) => {
-    if(option.id === "partner"){
+    if(option.type === "partner"){
       router.push("/contact")
     }
     else if(amount<15000 && option.type==="don"){
@@ -156,7 +156,7 @@ export default function GetInvolvedPage() {
     {
       type: "mission",
       icon: <DollarSign className="h-8 w-8 text-blue-600" />,
-      title: "Contribution Financière (1er MISSION 237)",
+      title: "Contribution Financière (1ère MISSION 237)",
       description: "Soutenez directement notre première missions spatiales éducatives.",
       options: [
         "Unité de contribution : 650,000 FCFA | 1000 EUR",
@@ -168,7 +168,7 @@ export default function GetInvolvedPage() {
     {
       type: "student",
       icon: <GraduationCap className="h-8 w-8 text-green-600" />,
-      title: "Parrainage d'Apprenants (1er MISSION 237)",
+      title: "Parrainage d'Apprenants (1ère MISSION 237)",
       description: "Financez la formation d'étudiants africains passionnés grace à la première mission 237",
       options: [
         "Parrainage complet: 250,000 FCFA | 385 EUR",
