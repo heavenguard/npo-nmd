@@ -1,0 +1,409 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "mission237": "Mission 237",
+    "becomeMember": "Devenir Membre",
+    "getInvolved": "S'Impliquer",
+    "contact": "Contact",
+    "join": "Rejoindre",
+    "language": "FR"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Nanosatellite Missions Design",
+      "title": "NMD ASSOCIATION",
+      "slogan": "Vers une constellation dédiée à la formation des Africains",
+      "description": "Nous développons les compétences spatiales africaines à travers des missions pratiques et des programmes de formation innovants.",
+      "joinMission": "Rejoignez la Mission 237",
+      "becomeMember": "Devenir Membre"
+    },
+    "mission": {
+      "title": "Notre Mission",
+      "subtitle": "Former la prochaine génération de professionnels spatiaux africains",
+      "practicalTraining": {
+        "title": "Formation Pratique",
+        "description": "Apprentissage hands-on avec des projets satellitaires réels pour développer l'expertise technique"
+      },
+      "mission237": {
+        "title": "Mission 237",
+        "description": "Notre première mission nanosatellitaire éducative, conçue pour former les ingénieurs spatiaux africains"
+      },
+      "continentalImpact": {
+        "title": "Impact Continental",
+        "description": "Créer un réseau de professionnels spatiaux à travers l'Afrique pour l'avancement technologique"
+      }
+    },
+    "mission237Highlight": {
+      "flagshipMission": "MISSION PHARE",
+      "title": "Mission 237",
+      "description": "Notre première mission nanosatellitaire éducative, spécialement conçue pour l'accessibilité francophone et la formation pratique des Africains.",
+      "launchWorkshop": "Lancement Workshop",
+      "launchWorkshopDate": "03 Août 2025",
+      "designWorkshops": "Ateliers de Conception",
+      "designWorkshopsDate": "Août - Octobre 2025",
+      "launch": "Lancement",
+      "launchDate": "Q2 2026",
+      "missionBudget": "Budget de Mission",
+      "totalBudget": "Budget total",
+      "unitContribution": "Contribution unitaire",
+      "trainingPerStudent": "Formation par étudiant",
+      "learnMore": "En Savoir Plus",
+      "contribute": "Contribuer"
+    },
+    "stats": {
+      "studentsToTrain": "Étudiants à Former",
+      "africanCountries": "Pays Africains",
+      "nanosatellite": "Nanosatellite",
+      "launchYear": "Année de Lancement"
+    },
+    "cta": {
+      "title": "Rejoignez la Révolution Spatiale Africaine",
+      "description": "Ensemble, construisons l'avenir technologique de l'Afrique dans l'espace",
+      "becomeMember": "Devenir Membre",
+      "contactUs": "Nous Contacter"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "À Propos de NMD ASSOCIATION",
+      "description": "Une organisation à but non lucratif dédiée au développement des capacités humaines dans les sciences spatiales africaines"
+    },
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Promouvoir le développement des capacités humaines dans les sciences spatiales africaines en formant une nouvelle génération de professionnels techniquement compétents à travers des missions satellitaires pratiques et des opportunités d'apprentissage hands-on."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Lancer une série de missions nanosatellitaires (Mission 237) pour former les Africains et créer un écosystème spatial continental robuste qui contribuera au développement technologique et scientifique de l'Afrique."
+    },
+    "organizationInfo": {
+      "title": "Informations Organisationnelles",
+      "founded": "Fondation",
+      "foundedDate": "Juillet 2025",
+      "legalStatus": "Statut Légal",
+      "legalStatusValue": "Organisation à but non lucratif",
+      "focus": "Focus",
+      "focusValue": "Formation spatiale africaine",
+      "firstMission": "Première Mission",
+      "firstMissionValue": "Mission 237 - 2026"
+    },
+    "leadership": {
+      "title": "Structure Organisationnelle",
+      "president": "Président",
+      "presidentName": "Dr. Ifriky TADADJEU",
+      "presidentRole": "Leadership stratégique et vision organisationnelle",
+      "secretaryGeneral": "Secrétaire Général",
+      "secretaryGeneralName": "À déterminer",
+      "secretaryGeneralRole": "Coordination des activités et communication",
+      "treasurer": "Trésorier",
+      "treasurerName": "À déterminer",
+      "treasurerRole": "Gestion financière et budgétaire"
+    },
+    "values": {
+      "title": "Nos Valeurs Fondamentales",
+      "excellence": {
+        "title": "Excellence",
+        "description": "Nous visons l'excellence dans tous nos programmes de formation"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Nous encourageons l'innovation et la créativité technologique"
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "Nous croyons en la force de la collaboration continentale"
+      },
+      "impact": {
+        "title": "Impact",
+        "description": "Nous mesurons notre succès par l'impact sur le continent"
+      }
+    }
+  },
+  "becomeMember": {
+    "hero": {
+      "title": "Devenir Membre",
+      "description": "Rejoignez une communauté de passionnés africains de l'espace et de la technologie",
+      "subtitle": "Ouvert à tous les Africains passionnés par l'espace et la technologie"
+    },
+    "benefits": {
+      "title": "Avantages de l'Adhésion",
+      "technicalTraining": {
+        "title": "Formation Technique",
+        "description": "Accès aux ateliers de conception et développement de nanosatellites"
+      },
+      "projectParticipation": {
+        "title": "Participation aux Projets",
+        "description": "Participation directe aux missions spatiales éducatives"
+      },
+      "continentalNetwork": {
+        "title": "Réseau Continental",
+        "description": "Connexion avec des professionnels spatiaux à travers l'Afrique"
+      },
+      "memberSpace": {
+        "title": "Espace Membre",
+        "description": "Accès à votre compte personnel avec carte de membre et donations mensuelles"
+      }
+    },
+    "form": {
+      "title": "Formulaire d'Adhésion",
+      "description": "Remplissez ce formulaire pour rejoindre la communauté NMD ASSOCIATION",
+      "fullName": "Nom Complet",
+      "email": "Email",
+      "country": "Pays",
+      "selectCountry": "Sélectionnez votre pays",
+      "profession": "Profession",
+      "professionPlaceholder": "Ex: Ingénieur, Étudiant, Chercheur...",
+      "motivation": "Motivation",
+      "motivationPlaceholder": "Expliquez votre intérêt pour les sciences spatiales et ce que vous espérez apporter à la communauté...",
+      "membershipFee": "Cotisation d'Adhésion",
+      "oneTimeFee": "Frais unique d'inscription",
+      "accountIncluded": "Compte membre inclus",
+      "automaticAccount": "Création automatique de votre compte membre",
+      "digitalCard": "Accès à votre carte de membre digitale",
+      "monthlyDonations": "Possibilité de donations mensuelles",
+      "exclusiveOffers": "Accès aux offres exclusives membres",
+      "agreeTerms": "J'accepte les termes et conditions et la politique de confidentialité de NMD ASSOCIATION",
+      "createAccount": "Créer Mon Compte Membre - 30,000 FCFA",
+      "required": "*"
+    },
+    "nextSteps": {
+      "title": "Après Votre Inscription",
+      "accountCreated": {
+        "title": "Compte Créé",
+        "description": "Votre compte membre est créé automatiquement avec vos identifiants de connexion"
+      },
+      "memberAccess": {
+        "title": "Accès Membre",
+        "description": "Connectez-vous pour accéder à votre carte de membre et vos offres exclusives"
+      },
+      "monthlyDonations": {
+        "title": "Donations Mensuelles",
+        "description": "Configurez vos donations mensuelles pour soutenir nos missions spatiales"
+      }
+    }
+  },
+  "getInvolved": {
+    "hero": {
+      "title": "S'Impliquer",
+      "description": "Rejoignez-nous dans notre mission de développement des capacités spatiales africaines",
+      "subtitle": "Ensemble, construisons l'avenir technologique de l'Afrique"
+    },
+    "impact": {
+      "title": "Notre Impact Prévu",
+      "studentsToTrain": "Étudiants à Former",
+      "africanCountries": "Pays Africains Ciblés",
+      "nanosatellite": "Nanosatellite Mission 237",
+      "launchYear": "Année de Lancement"
+    },
+    "howToContribute": {
+      "title": "Comment Contribuer",
+      "financialContribution": {
+        "title": "Contribution Financière",
+        "description": "Soutenez directement nos missions spatiales éducatives avec le montant de votre choix",
+        "options": [
+          "Montant libre selon vos moyens",
+          "Contribution ponctuelle ou récurrente",
+          "Support direct aux projets spatiaux"
+        ],
+        "cta": "Faire un Don"
+      },
+      "studentSponsorship": {
+        "title": "Parrainage d'Apprenants",
+        "description": "Financez la formation d'étudiants africains passionnés",
+        "options": [
+          "Parrainage complet: 30,000 FCFA",
+          "Parrainage de plusieurs étudiants",
+          "Suivi personnalisé de votre filleul"
+        ],
+        "cta": "Parrainer un Étudiant"
+      },
+      "volunteering": {
+        "title": "Bénévolat",
+        "description": "Contribuez avec vos compétences et votre temps",
+        "options": ["Formation technique", "Mentorat des étudiants", "Support logistique"],
+        "cta": "Devenir Bénévole"
+      },
+      "corporatePartnership": {
+        "title": "Partenariat Entreprise",
+        "description": "Établissez un partenariat stratégique avec notre association",
+        "options": ["Sponsoring de missions", "Fourniture d'équipements", "Stages et emplois pour diplômés"],
+        "cta": "Devenir Partenaire"
+      }
+    },
+    "donation": {
+      "title": "Faire une Donation",
+      "freeContribution": {
+        "title": "Contribution Libre",
+        "description": "Choisissez le montant de votre donation",
+        "amountLabel": "Montant (FCFA)",
+        "amountPlaceholder": "Ex: 50000",
+        "donate": "Donner"
+      },
+      "studentSponsorship": {
+        "title": "Parrainer un Étudiant",
+        "description": "Financez la formation d'un étudiant africain",
+        "perStudent": "par étudiant",
+        "completeTraining": "Formation technique complète",
+        "personalizedFollowUp": "Suivi personnalisé",
+        "sponsorshipCertificate": "Certificat de parrainage",
+        "numberOfStudents": "Nombre d'étudiants à parrainer",
+        "sponsorNow": "Parrainer Maintenant"
+      }
+    },
+    "partnershipBenefits": {
+      "title": "Avantages du Partenariat",
+      "visibility": {
+        "title": "Visibilité",
+        "description": "Logo sur le satellite et reconnaissance dans toutes nos communications"
+      },
+      "talents": {
+        "title": "Talents",
+        "description": "Accès prioritaire aux diplômés formés pour vos recrutements"
+      },
+      "socialImpact": {
+        "title": "Impact Social",
+        "description": "Contribution directe au développement technologique africain"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Nous Rejoindre ?",
+      "description": "Contactez-nous pour discuter de votre contribution à l'avenir spatial africain",
+      "contactUs": "Nous Contacter",
+      "becomeMember": "Devenir Membre"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Nous Contacter",
+      "description": "Nous sommes là pour répondre à vos questions et discuter de votre participation à l'avenir spatial africain"
+    },
+    "contactInfo": {
+      "phone": "Téléphone",
+      "email": "Email",
+      "address": "Adresse",
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "title": "Envoyez-nous un Message",
+      "description": "Nous vous répondrons dans les plus brefs délais",
+      "fullName": "Nom Complet",
+      "email": "Email",
+      "subject": "Sujet",
+      "selectSubject": "Sélectionnez un sujet",
+      "membership": "Adhésion",
+      "mission237": "Mission 237",
+      "partnership": "Partenariat",
+      "donation": "Don / Contribution",
+      "volunteering": "Bénévolat",
+      "general": "Question générale",
+      "media": "Demande média",
+      "message": "Message",
+      "messagePlaceholder": "Décrivez votre demande ou vos questions...",
+      "sendMessage": "Envoyer le Message",
+      "required": "*"
+    },
+    "officeHours": {
+      "title": "Heures de Bureau",
+      "businessDays": {
+        "title": "Jours Ouvrables",
+        "days": "Lundi - Vendredi",
+        "hours": "8h00 - 17h00 (GMT+1)"
+      },
+      "emailSupport": {
+        "title": "Support Email",
+        "response": "Réponse sous 24h",
+        "availability": "7 jours sur 7"
+      }
+    },
+    "location": {
+      "title": "Notre Localisation",
+      "city": "Douala, Cameroun",
+      "address": "Immeuble Face Agence SCB\nCarrefour Express\nCité des Palmiers"
+    }
+  },
+  "memberPortal": {
+    "header": {
+      "title": "Espace Membre",
+      "welcome": "Bienvenue",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    },
+    "memberCard": {
+      "memberNumber": "Numéro membre:",
+      "memberSince": "Membre depuis:",
+      "country": "Pays:",
+      "status": "Statut:",
+      "downloadCard": "Télécharger la Carte"
+    },
+    "monthlyDonation": {
+      "title": "Donation Mensuelle",
+      "monthlyAmount": "Montant mensuel (FCFA)",
+      "nextDonation": "Prochaine donation: 1er Mars 2025",
+      "totalDonated": "Total donné: 50,000 FCFA",
+      "update": "Mettre à Jour"
+    },
+    "exclusiveOffers": {
+      "title": "Mes Offres Exclusives",
+      "advancedTraining": {
+        "title": "Formation Nanosatellite Avancée",
+        "description": "Atelier intensif de 3 jours sur la conception de nanosatellites",
+        "date": "15-17 Mars 2025"
+      },
+      "webinar": {
+        "title": "Webinaire: Technologies Spatiales Africaines",
+        "description": "Conférence en ligne avec des experts du secteur spatial",
+        "date": "28 Février 2025"
+      },
+      "mission237Beta": {
+        "title": "Mission 237 - Phase Beta",
+        "description": "Participation à la phase de test du nanosatellite Mission 237",
+        "date": "Avril 2025"
+      },
+      "status": {
+        "available": "Disponible",
+        "registered": "Inscrit",
+        "pending": "En attente"
+      },
+      "actions": {
+        "register": "S'inscrire",
+        "registered": "Inscrit",
+        "pending": "En attente"
+      },
+      "types": {
+        "training": "Formation",
+        "webinar": "Webinaire",
+        "project": "Projet"
+      }
+    },
+    "quickActions": {
+      "title": "Actions Rapides",
+      "oneTimeDonation": "Faire une Donation Ponctuelle",
+      "sponsorStudent": "Parrainer un Étudiant",
+      "updateProfile": "Mettre à Jour mon Profil"
+    },
+    "statistics": {
+      "title": "Statistiques",
+      "trainingsCompleted": "Formations suivies",
+      "studentsSponsored": "Étudiants parrainés",
+      "totalDonations": "Total donations",
+      "memberLevel": "Niveau membre",
+      "standard": "Standard"
+    }
+  },
+  "common": {
+    "currency": {
+      "xaf": "FCFA",
+      "eur": "EUR"
+    },
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès !",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "close": "Fermer"
+  }
+}

@@ -22,7 +22,7 @@ export default function Mission237Page() {
                 Notre Première Mission Nanosatellitaire Éducative
               </p>
               <p className="text-lg text-blue-50 mb-10 leading-relaxed">
-                Mission 237 est spécialement conçue pour l'accessibilité francophone et la formation pratique des
+                La première Mission 237 est spécialement conçue pour l'accessibilité francophone et la formation pratique des
                 professionnels spatiaux africains. Cette mission pionnière établira les fondations de notre
                 constellation éducative.
               </p>
@@ -72,7 +72,7 @@ export default function Mission237Page() {
                     <Calendar className="h-6 w-6 text-blue-600" />
                   </div>
                   <span className="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
-                    PHASE 1
+                    ETAPE 1
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Lancement Workshop</h3>
@@ -91,14 +91,13 @@ export default function Mission237Page() {
                     <BookOpen className="h-6 w-6 text-green-600" />
                   </div>
                   <span className="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full">
-                    PHASE 2
+                    ETAPE 2
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Ateliers de Conception</h3>
                 <p className="text-3xl font-bold text-green-600 mb-4">Août - Oct 2025</p>
                 <p className="text-gray-600 leading-relaxed">
-                  Série d'ateliers intensifs de conception, développement et tests du nanosatellite avec formation
-                  technique approfondie.
+                  Série d'ateliers intensifs de conception et de la mission, et les formations en conception des missions spatiales.
                 </p>
               </CardContent>
             </Card>
@@ -110,13 +109,13 @@ export default function Mission237Page() {
                     <Rocket className="h-6 w-6 text-purple-600" />
                   </div>
                   <span className="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
-                    PHASE 3
+                    ETAPE 3
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Lancement</h3>
                 <p className="text-3xl font-bold text-purple-600 mb-4">Q2 2026</p>
                 <p className="text-gray-600 leading-relaxed">
-                  Lancement officiel du nanosatellite Mission 237 et début des opérations spatiales éducatives.
+                  Lancement du satellite de la première Mission 237 et début des opérations spatiales éducatives.
                 </p>
               </CardContent>
             </Card>
@@ -161,7 +160,7 @@ export default function Mission237Page() {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-8">Répartition Budgétaire</h3>
               <div className="space-y-6">
                 <div>
@@ -188,7 +187,7 @@ export default function Mission237Page() {
                   <Progress value={35} className="h-3" />
                 </div>
 
-                {/* <div>
+                <div>
                   <div className="flex justify-between mb-3">
                     <span className="text-gray-700 font-medium">Opérations</span>
                     <span className="font-semibold text-gray-900">10%</span>
@@ -202,9 +201,9 @@ export default function Mission237Page() {
                     <span className="font-semibold text-gray-900">5%</span>
                   </div>
                   <Progress value={5} className="h-3" />
-                </div> */}
+                </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -270,9 +269,9 @@ export default function Mission237Page() {
             Votre contribution permettra de former la prochaine génération d'ingénieurs spatiaux africains
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/get-involved">
+            <Link href="/become-member">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 h-14 text-lg">
-                Faire un Don
+                Contribuez à la mission
                 <DollarSign className="ml-2 h-5 w-5" />
               </Button>
             </Link>

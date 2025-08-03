@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -11,6 +11,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Users, Rocket, Globe, CheckCircle, Award, CreditCard, User } from "lucide-react"
+import { setToSubCollection } from "@/functions/add-to-a-sub-collection"
+import { toast } from "sonner"
+import { setToCollection } from "@/functions/add-to-collection"
+import Loader from "@/components/loader"
+import { useAuth } from "@/context/auth-context"
 
 export default function BecomeMemberPage() {
   const [formData, setFormData] = useState({
@@ -20,13 +25,141 @@ export default function BecomeMemberPage() {
     profession: "",
     motivation: "",
     agreeTerms: false,
+    payYearlyMembership: false,
   })
+  const [depositId, setDepositId] = useState("")
+  const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
+  const {login} = useAuth()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission and account creation
-    console.log("Form submitted:", formData)
-  }
+  useEffect(() => {
+    const savedDepositId = localStorage.getItem("depositId");
+    if (savedDepositId) {
+      setDepositId(savedDepositId);
+    }
+  }, []);
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    if (depositId) {
+      intervalId = setInterval(async () => {
+        try {
+          const response = await fetch(`/api/pawapay/deposits?depositId=${depositId}`);
+          const data = await response.json();
+          const status = data[0]?.status || data.status;
+
+          if (status === "COMPLETED") {
+            clearInterval(intervalId);
+
+            // Retrieve form data after payment
+            const savedFormData = localStorage.getItem("pendingFormData");
+            if (savedFormData) {
+              const parsedFormData = JSON.parse(savedFormData);
+
+              // Create the account here
+              try {
+                const response = await fetch("/api/users", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    email: parsedFormData.email,
+                    displayName: parsedFormData.name,
+                  }),
+                });
+
+                const data = await response.json();
+                console.log(data)
+                console.log(formData)
+
+                // Save password in localStorage
+                localStorage.setItem("password", data.password);
+                setPassword(data.password);
+
+                await setToCollection("users", data.userId, {
+                  uid: data.userId,
+                  ...parsedFormData
+                });
+
+                toast.success("New user has been added successfully");
+
+                // Reset form and close dialog
+                setFormData({
+                  name: "",
+                  email: "",
+                  country: "",
+                  profession: "",
+                  motivation: "",
+                  agreeTerms: false,
+                  payYearlyMembership: false
+                });
+
+              // Clear localStorage
+              localStorage.removeItem("depositId");
+              localStorage.removeItem("pendingFormData");
+              console.log(password)
+              console.log(parsedFormData.email)
+              await login(parsedFormData.email, data.password)
+              setLoading(false)
+              } catch (error) {
+                toast.error("Failed to create user. Please try again.",);
+              }
+              // Save the transaction here
+              // await saveTransaction(depositId);
+
+            }
+
+            toast.success("Membership activated successfully!");
+          }
+        } catch (error) {
+          console.error("Payment verification failed:", error);
+          clearInterval(intervalId);
+        }
+      }, 10000);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [depositId]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const body = JSON.stringify({
+      amount: "1",
+      currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/become-member",
+      product: "Membership"
+    });
+
+    try {
+      setLoading(true)
+      const res = await fetch("/api/pawapay/deposits", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Unknown error");
+
+      // Save depositId in localStorage
+      localStorage.setItem("depositId", data.depositId);
+      setDepositId(data.depositId);
+
+      // Optional: Save any form data so you can still create the account after refresh
+      localStorage.setItem("pendingFormData", JSON.stringify(formData));
+
+      if (data?.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      }
+
+      toast.success("Please complete the payment on your mobile device.");
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
+  };
+
 
   const benefits = [
     {
@@ -41,18 +174,19 @@ export default function BecomeMemberPage() {
     },
     {
       icon: <Globe className="h-6 w-6 text-purple-600" />,
-      title: "Réseau Continental",
-      description: "Connexion avec des professionnels spatiaux à travers l'Afrique",
+      title: "Réseau Mondiale",
+      description: "Connexion avec des professionnels spatiaux à travers l'Afrique et dans le monde",
     },
     {
       icon: <Award className="h-6 w-6 text-orange-600" />,
       title: "Espace Membre",
-      description: "Accès à votre compte personnel avec carte de membre et donations mensuelles",
+      description: "Accès à votre compte personnel avec carte de membre et autres bénéfices.",
     },
   ]
 
   return (
     <div className="min-h-screen bg-white">
+      {depositId && <Loader />}
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -196,8 +330,8 @@ export default function BecomeMemberPage() {
                   </div>
 
                   <div className="text-center bg-white p-6 rounded-xl border-2 border-blue-200">
-                    <p className="text-4xl font-bold text-blue-600 mb-2">30,000 FCFA</p>
-                    <p className="text-gray-600 mb-4">~45 EUR</p>
+                    <p className="text-4xl font-bold text-blue-600 mb-2">15,000 FCFA</p>
+                    <p className="text-gray-600 mb-4">~25 EUR | 29 USD</p>
                     <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                       <User className="h-4 w-4" />
                       <span>Compte membre inclus</span>
@@ -227,6 +361,17 @@ export default function BecomeMemberPage() {
                 <div className="flex items-center space-x-3">
                   <Checkbox
                     id="terms"
+                    checked={formData.payYearlyMembership}
+                    onCheckedChange={(checked) => setFormData({ ...formData, payYearlyMembership: checked as boolean })}
+                  />
+                  <Label htmlFor="terms" className="text-gray-600 text-sm leading-relaxed">
+                    Payer les frais de membership : 65500 FCFA | 100 EUR | 115 USD
+                  </Label>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <Checkbox
+                    id="terms"
                     checked={formData.agreeTerms}
                     onCheckedChange={(checked) => setFormData({ ...formData, agreeTerms: checked as boolean })}
                   />
@@ -241,7 +386,7 @@ export default function BecomeMemberPage() {
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
                   disabled={!formData.agreeTerms}
                 >
-                  Créer Mon Compte Membre - 30,000 FCFA
+                  {formData.payYearlyMembership ? "M'inscrire et payer les frais annuelle de membership - 65500 FCFA | 100 EUR | 115 USD" : "M'inscrire uniquement - 15000 FCFA | 25 EUR | 29 USD"}
                   <CheckCircle className="ml-2 h-5 w-5" />
                 </Button>
               </form>

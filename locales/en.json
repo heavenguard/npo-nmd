@@ -1,0 +1,409 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "mission237": "Mission 237",
+    "becomeMember": "Become Member",
+    "getInvolved": "Get Involved",
+    "contact": "Contact",
+    "join": "Join",
+    "language": "EN"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Nanosatellite Missions Design",
+      "title": "NMD ASSOCIATION",
+      "slogan": "Towards a constellation dedicated to training Africans",
+      "description": "We develop African space skills through practical missions and innovative training programs.",
+      "joinMission": "Join Mission 237",
+      "becomeMember": "Become a Member"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "subtitle": "Training the next generation of African space professionals",
+      "practicalTraining": {
+        "title": "Practical Training",
+        "description": "Hands-on learning with real satellite projects to develop technical expertise"
+      },
+      "mission237": {
+        "title": "Mission 237",
+        "description": "Our first educational nanosatellite mission, designed to train African space engineers"
+      },
+      "continentalImpact": {
+        "title": "Continental Impact",
+        "description": "Creating a network of space professionals across Africa for technological advancement"
+      }
+    },
+    "mission237Highlight": {
+      "flagshipMission": "FLAGSHIP MISSION",
+      "title": "Mission 237",
+      "description": "Our first educational nanosatellite mission, specially designed for Francophone accessibility and practical training of Africans.",
+      "launchWorkshop": "Launch Workshop",
+      "launchWorkshopDate": "August 3, 2025",
+      "designWorkshops": "Design Workshops",
+      "designWorkshopsDate": "August - October 2025",
+      "launch": "Launch",
+      "launchDate": "Q2 2026",
+      "missionBudget": "Mission Budget",
+      "totalBudget": "Total budget",
+      "unitContribution": "Unit contribution",
+      "trainingPerStudent": "Training per student",
+      "learnMore": "Learn More",
+      "contribute": "Contribute"
+    },
+    "stats": {
+      "studentsToTrain": "Students to Train",
+      "africanCountries": "African Countries",
+      "nanosatellite": "Nanosatellite",
+      "launchYear": "Launch Year"
+    },
+    "cta": {
+      "title": "Join the African Space Revolution",
+      "description": "Together, let's build Africa's technological future in space",
+      "becomeMember": "Become a Member",
+      "contactUs": "Contact Us"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About NMD ASSOCIATION",
+      "description": "A non-profit organization dedicated to developing human capacity in African space sciences"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "Promote the development of human capacity in African space sciences by training a new generation of technically competent professionals through practical satellite missions and hands-on learning opportunities."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "Launch a series of nanosatellite missions (Mission 237) to train Africans and create a robust continental space ecosystem that will contribute to Africa's technological and scientific development."
+    },
+    "organizationInfo": {
+      "title": "Organizational Information",
+      "founded": "Founded",
+      "foundedDate": "July 2025",
+      "legalStatus": "Legal Status",
+      "legalStatusValue": "Non-profit organization",
+      "focus": "Focus",
+      "focusValue": "African space training",
+      "firstMission": "First Mission",
+      "firstMissionValue": "Mission 237 - 2026"
+    },
+    "leadership": {
+      "title": "Organizational Structure",
+      "president": "President",
+      "presidentName": "Dr. Ifriky TADADJEU",
+      "presidentRole": "Strategic leadership and organizational vision",
+      "secretaryGeneral": "Secretary General",
+      "secretaryGeneralName": "To be determined",
+      "secretaryGeneralRole": "Activity coordination and communication",
+      "treasurer": "Treasurer",
+      "treasurerName": "To be determined",
+      "treasurerRole": "Financial and budget management"
+    },
+    "values": {
+      "title": "Our Core Values",
+      "excellence": {
+        "title": "Excellence",
+        "description": "We strive for excellence in all our training programs"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We encourage innovation and technological creativity"
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "We believe in the power of continental collaboration"
+      },
+      "impact": {
+        "title": "Impact",
+        "description": "We measure our success by the impact on the continent"
+      }
+    }
+  },
+  "becomeMember": {
+    "hero": {
+      "title": "Become a Member",
+      "description": "Join a community of African space and technology enthusiasts",
+      "subtitle": "Open to all Africans passionate about space and technology"
+    },
+    "benefits": {
+      "title": "Membership Benefits",
+      "technicalTraining": {
+        "title": "Technical Training",
+        "description": "Access to nanosatellite design and development workshops"
+      },
+      "projectParticipation": {
+        "title": "Project Participation",
+        "description": "Direct participation in educational space missions"
+      },
+      "continentalNetwork": {
+        "title": "Continental Network",
+        "description": "Connection with space professionals across Africa"
+      },
+      "memberSpace": {
+        "title": "Member Space",
+        "description": "Access to your personal account with member card and monthly donations"
+      }
+    },
+    "form": {
+      "title": "Membership Application Form",
+      "description": "Fill out this form to join the NMD ASSOCIATION community",
+      "fullName": "Full Name",
+      "email": "Email",
+      "country": "Country",
+      "selectCountry": "Select your country",
+      "profession": "Profession",
+      "professionPlaceholder": "Ex: Engineer, Student, Researcher...",
+      "motivation": "Motivation",
+      "motivationPlaceholder": "Explain your interest in space sciences and what you hope to contribute to the community...",
+      "membershipFee": "Membership Fee",
+      "oneTimeFee": "One-time registration fee",
+      "accountIncluded": "Member account included",
+      "automaticAccount": "Automatic creation of your member account",
+      "digitalCard": "Access to your digital member card",
+      "monthlyDonations": "Monthly donation capability",
+      "exclusiveOffers": "Access to exclusive member offers",
+      "agreeTerms": "I accept the terms and conditions and privacy policy of NMD ASSOCIATION",
+      "createAccount": "Create My Member Account - 30,000 XAF",
+      "required": "*"
+    },
+    "nextSteps": {
+      "title": "After Your Registration",
+      "accountCreated": {
+        "title": "Account Created",
+        "description": "Your member account is automatically created with your login credentials"
+      },
+      "memberAccess": {
+        "title": "Member Access",
+        "description": "Log in to access your member card and exclusive offers"
+      },
+      "monthlyDonations": {
+        "title": "Monthly Donations",
+        "description": "Set up your monthly donations to support our space missions"
+      }
+    }
+  },
+  "getInvolved": {
+    "hero": {
+      "title": "Get Involved",
+      "description": "Join us in our mission to develop African space capabilities",
+      "subtitle": "Together, let's build Africa's technological future"
+    },
+    "impact": {
+      "title": "Our Expected Impact",
+      "studentsToTrain": "Students to Train",
+      "africanCountries": "African Countries Targeted",
+      "nanosatellite": "Nanosatellite Mission 237",
+      "launchYear": "Launch Year"
+    },
+    "howToContribute": {
+      "title": "How to Contribute",
+      "financialContribution": {
+        "title": "Financial Contribution",
+        "description": "Support our educational space missions directly with an amount of your choice",
+        "options": [
+          "Free amount according to your means",
+          "One-time or recurring contribution",
+          "Direct support to space projects"
+        ],
+        "cta": "Make a Donation"
+      },
+      "studentSponsorship": {
+        "title": "Student Sponsorship",
+        "description": "Finance the training of passionate African students",
+        "options": [
+          "Complete sponsorship: 30,000 XAF",
+          "Sponsorship of multiple students",
+          "Personalized follow-up of your sponsored student"
+        ],
+        "cta": "Sponsor a Student"
+      },
+      "volunteering": {
+        "title": "Volunteering",
+        "description": "Contribute with your skills and time",
+        "options": ["Technical training", "Student mentoring", "Logistical support"],
+        "cta": "Become a Volunteer"
+      },
+      "corporatePartnership": {
+        "title": "Corporate Partnership",
+        "description": "Establish a strategic partnership with our association",
+        "options": ["Mission sponsoring", "Equipment provision", "Internships and jobs for graduates"],
+        "cta": "Become a Partner"
+      }
+    },
+    "donation": {
+      "title": "Make a Donation",
+      "freeContribution": {
+        "title": "Free Contribution",
+        "description": "Choose the amount of your donation",
+        "amountLabel": "Amount (XAF)",
+        "amountPlaceholder": "Ex: 50000",
+        "donate": "Donate"
+      },
+      "studentSponsorship": {
+        "title": "Sponsor a Student",
+        "description": "Finance the training of an African student",
+        "perStudent": "per student",
+        "completeTraining": "Complete technical training",
+        "personalizedFollowUp": "Personalized follow-up",
+        "sponsorshipCertificate": "Sponsorship certificate",
+        "numberOfStudents": "Number of students to sponsor",
+        "sponsorNow": "Sponsor Now"
+      }
+    },
+    "partnershipBenefits": {
+      "title": "Partnership Benefits",
+      "visibility": {
+        "title": "Visibility",
+        "description": "Logo on the satellite and recognition in all our communications"
+      },
+      "talents": {
+        "title": "Talents",
+        "description": "Priority access to trained graduates for your recruitment"
+      },
+      "socialImpact": {
+        "title": "Social Impact",
+        "description": "Direct contribution to African technological development"
+      }
+    },
+    "cta": {
+      "title": "Ready to Join Us?",
+      "description": "Contact us to discuss your contribution to Africa's space future",
+      "contactUs": "Contact Us",
+      "becomeMember": "Become a Member"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact Us",
+      "description": "We're here to answer your questions and discuss your participation in Africa's space future"
+    },
+    "contactInfo": {
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "description": "We will respond to you as soon as possible",
+      "fullName": "Full Name",
+      "email": "Email",
+      "subject": "Subject",
+      "selectSubject": "Select a subject",
+      "membership": "Membership",
+      "mission237": "Mission 237",
+      "partnership": "Partnership",
+      "donation": "Donation / Contribution",
+      "volunteering": "Volunteering",
+      "general": "General question",
+      "media": "Media request",
+      "message": "Message",
+      "messagePlaceholder": "Describe your request or questions...",
+      "sendMessage": "Send Message",
+      "required": "*"
+    },
+    "officeHours": {
+      "title": "Office Hours",
+      "businessDays": {
+        "title": "Business Days",
+        "days": "Monday - Friday",
+        "hours": "8:00 AM - 5:00 PM (GMT+1)"
+      },
+      "emailSupport": {
+        "title": "Email Support",
+        "response": "Response within 24h",
+        "availability": "7 days a week"
+      }
+    },
+    "location": {
+      "title": "Our Location",
+      "city": "Douala, Cameroon",
+      "address": "Building Face SCB Agency\nExpress Crossroads\nCité des Palmiers"
+    }
+  },
+  "memberPortal": {
+    "header": {
+      "title": "Member Portal",
+      "welcome": "Welcome",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "memberCard": {
+      "memberNumber": "Member number:",
+      "memberSince": "Member since:",
+      "country": "Country:",
+      "status": "Status:",
+      "downloadCard": "Download Card"
+    },
+    "monthlyDonation": {
+      "title": "Monthly Donation",
+      "monthlyAmount": "Monthly amount (XAF)",
+      "nextDonation": "Next donation: March 1, 2025",
+      "totalDonated": "Total donated: 50,000 XAF",
+      "update": "Update"
+    },
+    "exclusiveOffers": {
+      "title": "My Exclusive Offers",
+      "advancedTraining": {
+        "title": "Advanced Nanosatellite Training",
+        "description": "3-day intensive workshop on nanosatellite design",
+        "date": "March 15-17, 2025"
+      },
+      "webinar": {
+        "title": "Webinar: African Space Technologies",
+        "description": "Online conference with space industry experts",
+        "date": "February 28, 2025"
+      },
+      "mission237Beta": {
+        "title": "Mission 237 - Beta Phase",
+        "description": "Participation in Mission 237 nanosatellite testing phase",
+        "date": "April 2025"
+      },
+      "status": {
+        "available": "Available",
+        "registered": "Registered",
+        "pending": "Pending"
+      },
+      "actions": {
+        "register": "Register",
+        "registered": "Registered",
+        "pending": "Pending"
+      },
+      "types": {
+        "training": "Training",
+        "webinar": "Webinar",
+        "project": "Project"
+      }
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "oneTimeDonation": "Make a One-time Donation",
+      "sponsorStudent": "Sponsor a Student",
+      "updateProfile": "Update My Profile"
+    },
+    "statistics": {
+      "title": "Statistics",
+      "trainingsCompleted": "Trainings completed",
+      "studentsSponsored": "Students sponsored",
+      "totalDonations": "Total donations",
+      "memberLevel": "Member level",
+      "standard": "Standard"
+    }
+  },
+  "common": {
+    "currency": {
+      "xaf": "XAF",
+      "eur": "EUR"
+    },
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close"
+  }
+}
