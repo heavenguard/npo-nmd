@@ -20,6 +20,8 @@ import { setToCollection } from "@/functions/add-to-collection"
 import { useAuth } from "@/context/auth-context"
 import PaymentDialog from "@/components/payment-dialog"
 import { useRouter } from "next/navigation"
+import { nanoid } from "nanoid"
+import { addToSubCollection } from "@/functions/add-to-a-sub-collection"
 
 export default function GetInvolvedPage() {
   const [donationAmount, setDonationAmount] = useState("")
@@ -85,8 +87,33 @@ export default function GetInvolvedPage() {
   
                   await setToCollection("users", data.userId, {
                     uid: data.userId,
+                    idNumber: `NMD-ASSO-${nanoid(6)}`,
                     ...parsedFormData
                   });
+
+                  await addToSubCollection(
+                    {
+                      amount: amount,
+                      type: dialogDatas.type === "don"
+                        ? "Donation"
+                        : dialogDatas.type === "mission"
+                        ? "Mission Support"
+                        : dialogDatas.type === "student"
+                        ? "Student Sponsorship"
+                        : "Unknown",
+                      status: "completed",
+                      description: dialogDatas.type === "don"
+                        ? "General donation made"
+                        : dialogDatas.type === "mission"
+                        ? "Contribution to the mission"
+                        : dialogDatas.type === "student"
+                        ? "Sponsorship for a student"
+                        : "Unspecified donation",
+                    },
+                    "users",
+                    data.userId,
+                    "donations"
+                  );
   
                   toast.success("New user has been added successfully");
   
@@ -135,8 +162,8 @@ export default function GetInvolvedPage() {
     } 
     else if (option.type === "student") {
       setDialogDatas({
-        title: "Parrainer un étudiant",
-        description: "Aidez un étudiant à poursuivre ses études et à développer ses compétences dans le domaine spatial.",
+        title: "Parrainer un apprenant",
+        description: "Aidez un apprenant à poursuivre ses études et à développer ses compétences dans le domaine spatial.",
         amount: 250000,
         type: option.type
       });
@@ -169,7 +196,7 @@ export default function GetInvolvedPage() {
       type: "student",
       icon: <GraduationCap className="h-8 w-8 text-green-600" />,
       title: "Parrainage d'Apprenants (1ère MISSION 237)",
-      description: "Financez la formation d'étudiants africains passionnés grace à la première mission 237",
+      description: "Financez la formation d'apprenants africains passionnés grace à la première mission 237",
       options: [
         "Parrainage complet: 250,000 FCFA | 385 EUR",
         "Parrainage de plusieurs étudiants",

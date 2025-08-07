@@ -5,10 +5,13 @@ import { onAuthStateChanged, signInWithEmailAndPassword, User } from "firebase/a
 import { auth } from "@/functions/firebase";
 import { useRouter } from "next/navigation";
 import { getADocument } from "@/functions/get-a-document";
+import { listenToSubCollection } from "@/functions/get-a-sub-collection";
 
 interface AuthContextType {
   user: User | null;
   setUser: (user: User | null) => void;
+  donations: any[];
+  offers: any[];
   userInfo: any;
   loading: boolean
   login: (email: string, password: string) => Promise<void>;
@@ -19,6 +22,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userInfo, setUserInfo] = useState<any>(null);
+  const [donations, setDonations] = useState<any[]>([])
+  const [offers, setOffers] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
@@ -44,8 +49,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false); // only set loading to false *after* userInfo is set
     });
 
+    const unsubscribeDonations = listenToSubCollection("users", user.uid, "donations", setDonations)
+    const unsubscribeOffers = listenToSubCollection("users", user.uid, "offers", setOffers)
+
     return () => {
       if (unsubscribeUser) unsubscribeUser();
+      if (unsubscribeDonations) unsubscribeDonations()
+      if (unsubscribeOffers) unsubscribeOffers()
     };
   }, [user]);
 
@@ -58,7 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, userInfo, loading, login }}>
+    <AuthContext.Provider value={{ user, setUser, donations, offers, userInfo, loading, login }}>
       {children}
     </AuthContext.Provider>
   );

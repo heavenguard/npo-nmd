@@ -11,11 +11,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Users, Rocket, Globe, CheckCircle, Award, CreditCard, User } from "lucide-react"
-import { setToSubCollection } from "@/functions/add-to-a-sub-collection"
+import { addToSubCollection, setToSubCollection } from "@/functions/add-to-a-sub-collection"
 import { toast } from "sonner"
 import { setToCollection } from "@/functions/add-to-collection"
 import Loader from "@/components/loader"
 import { useAuth } from "@/context/auth-context"
+import { nanoid } from "nanoid"
 
 export default function BecomeMemberPage() {
   const [formData, setFormData] = useState({
@@ -30,6 +31,7 @@ export default function BecomeMemberPage() {
   const [depositId, setDepositId] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const [amount, setAmount] = useState(15000)
   const {login} = useAuth()
 
   useEffect(() => {
@@ -48,7 +50,8 @@ export default function BecomeMemberPage() {
           const response = await fetch(`/api/pawapay/deposits?depositId=${depositId}`);
           const data = await response.json();
           const status = data[0]?.status || data.status;
-
+          console.log(status)
+          console.log(depositId)
           if (status === "COMPLETED") {
             clearInterval(intervalId);
 
@@ -80,8 +83,23 @@ export default function BecomeMemberPage() {
 
                 await setToCollection("users", data.userId, {
                   uid: data.userId,
+                  idNumber: `NMD-ASSO-${nanoid(6)}`,
                   ...parsedFormData
                 });
+
+                await addToSubCollection(
+                  {
+                    amount: formData.payYearlyMembership ? 80500 : 15000,
+                    type: formData.payYearlyMembership ? "Inscription & Membership payment" : "Inscription payment",
+                    status: "completed",
+                    description: formData.payYearlyMembership 
+                      ? "Paid for registration and yearly membership" 
+                      : "Paid for registration",
+                  },
+                  "users",
+                  data.userId,
+                  "donations"
+                );
 
                 toast.success("New user has been added successfully");
 
@@ -99,6 +117,7 @@ export default function BecomeMemberPage() {
               // Clear localStorage
               localStorage.removeItem("depositId");
               localStorage.removeItem("pendingFormData");
+              setDepositId("")
               console.log(password)
               console.log(parsedFormData.email)
               await login(parsedFormData.email, data.password)
@@ -112,6 +131,13 @@ export default function BecomeMemberPage() {
             }
 
             toast.success("Membership activated successfully!");
+          }
+          else if(status === undefined){
+            toast.error("Le paiement a échoué, veuillez recommencer.");
+            localStorage.removeItem("depositId");
+            setDepositId("")
+            localStorage.removeItem("pendingFormData");
+            setLoading(false)
           }
         } catch (error) {
           console.error("Payment verification failed:", error);
@@ -127,7 +153,7 @@ export default function BecomeMemberPage() {
     e.preventDefault();
 
     const body = JSON.stringify({
-      amount: "1",
+      amount: formData.payYearlyMembership ? 80500 : 15000,
       currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/become-member",
       product: "Membership"
     });
@@ -386,7 +412,7 @@ export default function BecomeMemberPage() {
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
                   disabled={!formData.agreeTerms}
                 >
-                  {formData.payYearlyMembership ? "M'inscrire et payer les frais annuelle de membership - 65500 FCFA | 100 EUR | 115 USD" : "M'inscrire uniquement - 15000 FCFA | 25 EUR | 29 USD"}
+                  {formData.payYearlyMembership ? "M'inscrire et payer les frais annuelle de membership - 80500 FCFA | 125 EUR | 144 USD" : "M'inscrire uniquement - 15000 FCFA | 25 EUR | 29 USD"}
                   <CheckCircle className="ml-2 h-5 w-5" />
                 </Button>
               </form>

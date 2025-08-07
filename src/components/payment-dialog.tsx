@@ -48,9 +48,9 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
     
       const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-    
+        console.log(amount*units)
         const body = JSON.stringify({
-          amount: "1",
+          amount: amount*units,
           currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/get-involved",
           product: "Membership"
         });
@@ -171,7 +171,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                     <CreditCard className="h-8 w-8 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-gray-900">Cotisation d'Adhésion</h3>
+                                    <h3 className="text-2xl font-bold text-gray-900">Frais</h3>
                                     <p className="text-gray-600">Frais</p>
                                 </div>
                                 </div>
