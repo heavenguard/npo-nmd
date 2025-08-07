@@ -50,8 +50,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
         e.preventDefault();
         console.log(amount*units)
         const body = JSON.stringify({
-          amount: 100,
-        //   amount: amount*units,
+          amount: amount*units,
           currentUrl: "https://npo.nanosatellitemissions.com//get-involved",
           product: "Membership"
         });

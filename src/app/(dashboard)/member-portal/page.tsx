@@ -230,13 +230,11 @@ export default function MemberPortalPage() {
                 localStorage.removeItem("depositId");
                 localStorage.removeItem("pendingDonationData");
                 setDepositId("")
+                toast.success("Donation completed successfully!");
                 setLoading(false)
                 } catch (error) {
                   toast.error("Failed to create user. Please try again.",);
                 }
-                // Save the transaction here
-                // await saveTransaction(depositId);
-  
               }
   
               toast.success("Donation completed successfully!");
@@ -262,8 +260,7 @@ export default function MemberPortalPage() {
     e.preventDefault();
 
     const body = JSON.stringify({
-      amount: 10,
-      // amount: donationAmount,
+      amount: donationAmount,
       currentUrl: "https://npo.nanosatellitemissions.com//member-portal",
       product: donationType
     });

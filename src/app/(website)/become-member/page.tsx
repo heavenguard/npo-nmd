@@ -153,8 +153,7 @@ export default function BecomeMemberPage() {
     e.preventDefault();
 
     const body = JSON.stringify({
-      amount: 100,
-      // amount: formData.payYearlyMembership ? 80500 : 15000,
+      amount: formData.payYearlyMembership ? 80500 : 15000,
       currentUrl: "https://npo.nanosatellitemissions.com//become-member",
       product: "Membership"
     });
