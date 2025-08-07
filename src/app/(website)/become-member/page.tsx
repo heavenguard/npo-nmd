@@ -155,7 +155,7 @@ export default function BecomeMemberPage() {
     const body = JSON.stringify({
       amount: 100,
       // amount: formData.payYearlyMembership ? 80500 : 15000,
-      currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/become-member",
+      currentUrl: "https://npo.nanosatellitemissions.com//become-member",
       product: "Membership"
     });
 

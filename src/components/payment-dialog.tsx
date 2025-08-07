@@ -52,7 +52,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
         const body = JSON.stringify({
           amount: 100,
         //   amount: amount*units,
-          currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/get-involved",
+          currentUrl: "https://npo.nanosatellitemissions.com//get-involved",
           product: "Membership"
         });
     
