@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Satellite, Globe } from "lucide-react"
 import Image from "next/image"
+import { useAuth } from "@/context/auth-context"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const { user } = useAuth()
 
   const navItems = [
     { href: "/", label: "Accueil" },
@@ -52,9 +54,20 @@ export function Navigation() {
               <Globe className="h-4 w-4 mr-1" />
               FR
             </Button>
-            <Link href="/become-member">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">Rejoindre</Button>
-            </Link>
+            {user ? (
+              <Link href="/member-portal">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">Portail Membre</Button>
+              </Link>
+            ) : (
+              <>
+                <Link href="/become-member">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">Rejoindre</Button>
+                </Link>
+                <Link href="/login">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">Se connecter</Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu */}
