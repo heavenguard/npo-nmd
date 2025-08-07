@@ -654,7 +654,7 @@ export default function MemberPortalPage() {
 
             {/* Quick Actions */}
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="border-0 shadow-lg bg-white">
+              {/* <Card className="border-0 shadow-lg bg-white">
                 <CardHeader>
                   <CardTitle className="text-gray-900">Quick Actions</CardTitle>
                 </CardHeader>
@@ -672,7 +672,7 @@ export default function MemberPortalPage() {
                     Update Profile
                   </Button>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               <Card className="border-0 shadow-lg bg-white">
                 <CardHeader>
@@ -685,15 +685,11 @@ export default function MemberPortalPage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Students sponsored</span>
-                    <span className="font-semibold text-gray-900">1</span>
+                    <span className="font-semibold text-gray-900">{donations.filter((donation) => donation.type === "Student Sponsorship").length}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Total donations</span>
-                    <span className="font-semibold text-gray-900">{memberData.totalContributed.toLocaleString()} XAF</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Member level</span>
-                    <Badge className="bg-blue-100 text-blue-800">Standard</Badge>
+                    <span className="font-semibold text-gray-900">{donations.reduce((sum, item) => sum + item.amount, 0)} XAF</span>
                   </div>
                 </CardContent>
               </Card>
