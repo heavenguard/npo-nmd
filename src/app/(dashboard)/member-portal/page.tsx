@@ -183,26 +183,26 @@ export default function MemberPortalPage() {
               // Retrieve form data after payment
               const savedFormData = localStorage.getItem("pendingFormData");
               if (savedFormData) {
-                const parsedFormData = JSON.parse(savedFormData);
+                const pendingDonationData = JSON.parse(savedFormData);
   
                 // Create the account here
                 try {
                   await addToSubCollection(
                     {
-                      amount: donationAmount,
-                      type: donationType === "donation"
+                      amount: pendingDonationData.donationAmount,
+                      type: pendingDonationData.donationType === "donation"
                         ? "Donation"
-                        : donationType === "mission"
+                        : pendingDonationData.donationType === "mission"
                         ? "Mission Support"
-                        : donationType === "sponsorship"
+                        : pendingDonationData.donationType === "sponsorship"
                         ? "Student Sponsorship"
                         : "Membership",
                       status: "completed",
-                      description: donationType === "donation"
+                      description: pendingDonationData.donationType === "donation"
                         ? "General donation made"
-                        : donationType === "mission"
+                        : pendingDonationData.donationType === "mission"
                         ? "Contribution to the mission"
-                        : donationType === "sponsorship"
+                        : pendingDonationData.donationType === "sponsorship"
                         ? "Sponsorship for a student"
                         : "Yearly membership payment",
                     },
@@ -276,7 +276,7 @@ export default function MemberPortalPage() {
       setDepositId(data.depositId);
 
       // Optional: Save any form data so you can still create the account after refresh
-      localStorage.setItem("pendingFormData", JSON.stringify({donationType, donationAmount, donationNote}));
+      localStorage.setItem("pendingDonationData", JSON.stringify({donationType, donationAmount, donationNote}));
 
       if (data?.redirectUrl) {
         window.location.href = data.redirectUrl;
