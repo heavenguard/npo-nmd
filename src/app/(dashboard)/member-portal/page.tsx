@@ -179,7 +179,7 @@ export default function MemberPortalPage() {
             console.log(status)
             console.log(depositId)
             
-            if (status === "COMPLETED" || status === undefined) {
+            if (status === "COMPLETED") {
               clearInterval(intervalId);
   
               // Retrieve form data after payment
