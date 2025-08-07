@@ -19,9 +19,9 @@ export default function MemberPortalPage() {
   const [donationDialogOpen, setDonationDialogOpen] = useState(false)
   const [historyDialogOpen, setHistoryDialogOpen] = useState(false)
   const [donationType, setDonationType] = useState("")
-  const [donationAmount, setDonationAmount] = useState("")
+  const [donationAmount, setDonationAmount] = useState<any>(0)
   const [donationNote, setDonationNote] = useState("")
-  const { userInfo, donations, offers } = useAuth()
+  const { userInfo, donations, offers, user } = useAuth()
   const [depositId, setDepositId] = useState("")
   const [loading, setLoading] = useState(false)
   const [isRegisteringLoading, setIsRegisteringLoadin] = useState(false)
@@ -99,11 +99,11 @@ export default function MemberPortalPage() {
     if (type === "donation") {
       setDonationAmount("")
     } else if (type === "membership") {
-      setDonationAmount(fixedAmounts.membership.toString())
+      setDonationAmount(fixedAmounts.membership)
     } else if (type === "sponsorship") {
-      setDonationAmount(fixedAmounts.sponsorship.toString())
+      setDonationAmount(fixedAmounts.sponsorship)
     } else if (type === "mission") {
-      setDonationAmount(fixedAmounts.mission.toString())
+      setDonationAmount(fixedAmounts.mission)
     }
   }
 
@@ -160,7 +160,7 @@ export default function MemberPortalPage() {
     }
   }
 
-  useEffect(() => {
+    useEffect(() => {
       const savedDepositId = localStorage.getItem("depositId");
       if (savedDepositId) {
         setDepositId(savedDepositId);
@@ -178,16 +178,23 @@ export default function MemberPortalPage() {
             const status = data[0]?.status || data.status;
             console.log(status)
             console.log(depositId)
-            if (status === "COMPLETED") {
+            
+            if (status === "COMPLETED" || status === undefined) {
               clearInterval(intervalId);
   
               // Retrieve form data after payment
               const savedFormData = localStorage.getItem("pendingDonationData");
+              console.log(savedFormData)
               if (savedFormData) {
                 const pendingDonationData = JSON.parse(savedFormData);
-  
+                console.log(pendingDonationData)
                 // Create the account here
                 try {
+                  if(!user) {
+                    console.log(user)
+                    console.log(userInfo)
+                    return null
+                  }
                   await addToSubCollection(
                     {
                       amount: pendingDonationData.donationAmount,
@@ -208,7 +215,7 @@ export default function MemberPortalPage() {
                         : "Yearly membership payment",
                     },
                     "users",
-                    data.userId,
+                    user.uid,
                     "donations"
                   );
   
@@ -249,7 +256,7 @@ export default function MemberPortalPage() {
       }
   
       return () => clearInterval(intervalId);
-    }, [depositId]);
+    }, [depositId, user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -277,7 +284,7 @@ export default function MemberPortalPage() {
       setDepositId(data.depositId);
 
       // Optional: Save any form data so you can still create the account after refresh
-      localStorage.setItem("pendingDonationData", JSON.stringify({donationType, donationAmount, donationNote}));
+      localStorage.setItem("pendingDonationData", JSON.stringify({donationType: donationType, donationAmount: donationAmount, donationNote: donationNote}));
 
       if (data?.redirectUrl) {
         window.location.href = data.redirectUrl;

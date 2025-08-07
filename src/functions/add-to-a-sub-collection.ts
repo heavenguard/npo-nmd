@@ -15,9 +15,13 @@ export async function addToSubCollection(
   table: string
 ): Promise<any | null> {
   try {
+    console.log(addData)
+    console.log(collectionName)
+    console.log(documentId)
+    console.log(table)
     // Reference the Firestore collection
     const collectionRef = collection(db, collectionName, documentId, table);
-
+    console.log(addData)
     // Add the document to the collection with auto-generated ID
     const docRef = await addDoc(collectionRef, {
       ...addData,
