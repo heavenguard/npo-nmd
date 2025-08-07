@@ -13,6 +13,7 @@ import { User, CreditCard, Gift, Calendar, DollarSign, Download, Settings, LogOu
 import { useAuth } from "@/context/auth-context"
 import { toast } from "sonner"
 import { addToSubCollection, setToSubCollection } from "@/functions/add-to-a-sub-collection"
+import Loader from "@/components/loader"
 
 export default function MemberPortalPage() {
   const [donationDialogOpen, setDonationDialogOpen] = useState(false)
@@ -181,7 +182,7 @@ export default function MemberPortalPage() {
               clearInterval(intervalId);
   
               // Retrieve form data after payment
-              const savedFormData = localStorage.getItem("pendingFormData");
+              const savedFormData = localStorage.getItem("pendingDonationData");
               if (savedFormData) {
                 const pendingDonationData = JSON.parse(savedFormData);
   
@@ -220,7 +221,7 @@ export default function MemberPortalPage() {
   
                 // Clear localStorage
                 localStorage.removeItem("depositId");
-                localStorage.removeItem("pendingFormData");
+                localStorage.removeItem("pendingDonationData");
                 setDepositId("")
                 setLoading(false)
                 } catch (error) {
@@ -237,7 +238,7 @@ export default function MemberPortalPage() {
               toast.error("Le paiement a échoué, veuillez recommencer.");
               localStorage.removeItem("depositId");
               setDepositId("")
-              localStorage.removeItem("pendingFormData");
+              localStorage.removeItem("pendingDonationData");
               setLoading(false)
             }
           } catch (error) {
@@ -311,6 +312,7 @@ export default function MemberPortalPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+            {depositId && <Loader />}
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
