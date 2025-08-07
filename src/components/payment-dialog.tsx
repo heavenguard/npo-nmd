@@ -50,7 +50,8 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
         e.preventDefault();
         console.log(amount*units)
         const body = JSON.stringify({
-          amount: amount*units,
+          amount: 100,
+        //   amount: amount*units,
           currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/get-involved",
           product: "Membership"
         });

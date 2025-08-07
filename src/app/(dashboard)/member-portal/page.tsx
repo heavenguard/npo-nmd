@@ -254,7 +254,8 @@ export default function MemberPortalPage() {
     e.preventDefault();
 
     const body = JSON.stringify({
-      amount: donationAmount,
+      amount: 100,
+      // amount: donationAmount,
       currentUrl: "https://organic-parakeet-7vxx96jj4p9jcpj67-3000.app.github.dev/member-portal",
       product: donationType
     });
