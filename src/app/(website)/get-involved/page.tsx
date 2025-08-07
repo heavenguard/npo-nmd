@@ -93,7 +93,7 @@ export default function GetInvolvedPage() {
 
                   await addToSubCollection(
                     {
-                      amount: amount,
+                      amount: dialogDatas.amount,
                       type: dialogDatas.type === "don"
                         ? "Donation"
                         : dialogDatas.type === "mission"
