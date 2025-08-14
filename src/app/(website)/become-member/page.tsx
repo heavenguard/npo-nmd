@@ -17,6 +17,7 @@ import { setToCollection } from "@/functions/add-to-collection"
 import Loader from "@/components/loader"
 import { useAuth } from "@/context/auth-context"
 import { nanoid } from "nanoid"
+import { useTranslations } from "@/lib/useTranslations"
 
 export default function BecomeMemberPage() {
   const [formData, setFormData] = useState({
@@ -33,6 +34,7 @@ export default function BecomeMemberPage() {
   const [loading, setLoading] = useState(false)
   const [amount, setAmount] = useState(15000)
   const {login} = useAuth()
+  const t = useTranslations('becomeMember')
 
   useEffect(() => {
     const savedDepositId = localStorage.getItem("depositId");
@@ -190,23 +192,23 @@ export default function BecomeMemberPage() {
   const benefits = [
     {
       icon: <Rocket className="h-6 w-6 text-blue-600" />,
-      title: "Formation Technique",
-      description: "Accès aux ateliers de conception et développement de nanosatellites",
+      title: t('benefits.technicalTraining.title'),
+      description: t('benefits.technicalTraining.description'),
     },
     {
       icon: <Users className="h-6 w-6 text-green-600" />,
-      title: "Participation aux Projets",
-      description: "Participation directe aux missions spatiales éducatives",
+      title: t('benefits.projectParticipation.title'),
+      description: t('benefits.projectParticipation.description'),
     },
     {
       icon: <Globe className="h-6 w-6 text-purple-600" />,
-      title: "Réseau Mondiale",
-      description: "Connexion avec des professionnels spatiaux à travers l'Afrique et dans le monde",
+      title: t('benefits.continentalNetwork.title'),
+      description: t('benefits.continentalNetwork.description'),
     },
     {
       icon: <Award className="h-6 w-6 text-orange-600" />,
-      title: "Espace Membre",
-      description: "Accès à votre compte personnel avec carte de membre et autres bénéfices.",
+      title: t('benefits.memberSpace.title'),
+      description: t('benefits.memberSpace.description'),
     },
   ]
 
@@ -216,12 +218,12 @@ export default function BecomeMemberPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl lg:text-6xl font-bold mb-6">Devenir Membre</h1>
+          <h1 className="text-5xl lg:text-6xl font-bold mb-6">{t('hero.title')}</h1>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            Rejoignez une communauté de passionnés africains de l'espace et de la technologie
+            {t('hero.description')}
           </p>
           <p className="text-lg text-blue-50 font-medium">
-            Ouvert à tous les Africains passionnés par l'espace et la technologie
+            {t('hero.subtitle')}
           </p>
         </div>
       </section>
@@ -229,7 +231,7 @@ export default function BecomeMemberPage() {
       {/* Benefits */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Avantages de l'Adhésion</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">{t('benefits.title')}</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {benefits.map((benefit, index) => (
@@ -252,9 +254,9 @@ export default function BecomeMemberPage() {
         <div className="max-w-4xl mx-auto px-4">
           <Card className="border-0 shadow-lg bg-white">
             <CardHeader className="text-center pb-8">
-              <CardTitle className="text-3xl font-bold text-gray-900 mb-4">Formulaire d'Adhésion</CardTitle>
+              <CardTitle className="text-3xl font-bold text-gray-900 mb-4">{t('form.title')}</CardTitle>
               <p className="text-gray-600 text-lg">
-                Remplissez ce formulaire pour rejoindre la communauté NMD ASSOCIATION
+                {t('form.description')}
               </p>
             </CardHeader>
             <CardContent className="p-8">
@@ -262,7 +264,7 @@ export default function BecomeMemberPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="name" className="text-gray-900 font-medium">
-                      Nom Complet *
+                      {t('form.fullName')} *
                     </Label>
                     <Input
                       id="name"
@@ -276,7 +278,7 @@ export default function BecomeMemberPage() {
 
                   <div>
                     <Label htmlFor="email" className="text-gray-900 font-medium">
-                      Email *
+                      {t('form.email')} *
                     </Label>
                     <Input
                       id="email"
@@ -292,11 +294,11 @@ export default function BecomeMemberPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="country" className="text-gray-900 font-medium">
-                      Pays *
+                      {t('form.country')} *
                     </Label>
                     <Select onValueChange={(value) => setFormData({ ...formData, country: value })}>
                       <SelectTrigger className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                        <SelectValue placeholder="Sélectionnez votre pays" />
+                        <SelectValue placeholder={t('form.selectCountry')} />
                       </SelectTrigger>
                       <SelectContent className="bg-white border-gray-200">
                         <SelectItem value="cameroon">Cameroun</SelectItem>
@@ -316,7 +318,7 @@ export default function BecomeMemberPage() {
 
                   <div>
                     <Label htmlFor="profession" className="text-gray-900 font-medium">
-                      Profession *
+                      {t('form.profession')} *
                     </Label>
                     <Input
                       id="profession"
@@ -324,7 +326,7 @@ export default function BecomeMemberPage() {
                       value={formData.profession}
                       onChange={(e) => setFormData({ ...formData, profession: e.target.value })}
                       className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                      placeholder="Ex: Ingénieur, Étudiant, Chercheur..."
+                      placeholder={t('form.professionPlaceholder')}
                       required
                     />
                   </div>
@@ -332,14 +334,14 @@ export default function BecomeMemberPage() {
 
                 <div>
                   <Label htmlFor="motivation" className="text-gray-900 font-medium">
-                    Motivation *
+                    {t('form.motivation')} *
                   </Label>
                   <Textarea
                     id="motivation"
                     value={formData.motivation}
                     onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                     className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[120px]"
-                    placeholder="Expliquez votre intérêt pour les sciences spatiales et ce que vous espérez apporter à la communauté..."
+                    placeholder={t('form.motivationPlaceholder')}
                     required
                   />
                 </div>
@@ -350,8 +352,8 @@ export default function BecomeMemberPage() {
                       <CreditCard className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900">Cotisation d'Adhésion</h3>
-                      <p className="text-gray-600">Frais unique d'inscription</p>
+                      <h3 className="text-2xl font-bold text-gray-900">{t('form.membershipFee')}</h3>
+                      <p className="text-gray-600">{t('form.oneTimeFee')}</p>
                     </div>
                   </div>
 
@@ -360,26 +362,26 @@ export default function BecomeMemberPage() {
                     <p className="text-gray-600 mb-4">~25 EUR | 29 USD</p>
                     <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                       <User className="h-4 w-4" />
-                      <span>Compte membre inclus</span>
+                      <span>{t('form.accountIncluded')}</span>
                     </div>
                   </div>
 
                   <div className="mt-6 space-y-3 text-sm text-gray-700">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Création automatique de votre compte membre</span>
+                      <span>{t('form.automaticAccount')}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Accès à votre carte de membre digitale</span>
+                      <span>{t('form.digitalCard')}</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    {/* <div className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600" />
                       <span>Possibilité de donations mensuelles</span>
-                    </div>
+                    </div> */}
                     <div className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Accès aux opportunités exclusives membres</span>
+                      <span>{t('form.exclusiveOffers')}</span>
                     </div>
                   </div>
                 </div>
@@ -391,7 +393,7 @@ export default function BecomeMemberPage() {
                     onCheckedChange={(checked) => setFormData({ ...formData, payYearlyMembership: checked as boolean })}
                   />
                   <Label htmlFor="terms" className="text-gray-600 text-sm leading-relaxed">
-                    Payer les frais annuels de membership : 65500 FCFA | 100 EUR | 115 USD
+                    {t('form.payYearlyMembership')}
                   </Label>
                 </div>
 
@@ -402,7 +404,7 @@ export default function BecomeMemberPage() {
                     onCheckedChange={(checked) => setFormData({ ...formData, agreeTerms: checked as boolean })}
                   />
                   <Label htmlFor="terms" className="text-gray-600 text-sm leading-relaxed">
-                    J'accepte les termes et conditions et la politique de confidentialité de NMD ASSOCIATION
+                   {t('form.agreeTerms')}
                   </Label>
                 </div>
 
@@ -412,7 +414,7 @@ export default function BecomeMemberPage() {
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
                   disabled={!formData.agreeTerms}
                 >
-                  {formData.payYearlyMembership ? "M'inscrire et payer les frais annuelle de membership - 80500 FCFA | 125 EUR | 144 USD" : "M'inscrire uniquement - 15000 FCFA | 25 EUR | 29 USD"}
+                  {formData.payYearlyMembership ? t('form.inscriptionAndMembership') : t('form.inscriptionOnly')}
                   <CheckCircle className="ml-2 h-5 w-5" />
                 </Button>
               </form>
@@ -424,33 +426,33 @@ export default function BecomeMemberPage() {
       {/* Next Steps */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">Après Votre Inscription</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-12">{t('nextSteps.title')}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6">
               <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Compte Créé</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('nextSteps.accountCreated.title')}</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Votre compte membre est créé automatiquement avec vos identifiants de connexion
+                {t('nextSteps.accountCreated.description')}
               </p>
             </div>
             <div className="p-6">
               <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-green-600">2</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Accès Membre</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('nextSteps.memberAccess.title')}</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Connectez-vous pour accéder à votre carte de membre et vos offres exclusives
+                {t('nextSteps.memberAccess.description')}
               </p>
             </div>
             <div className="p-6">
               <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-purple-600">3</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Donations Mensuelles</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('nextSteps.access.title')}</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Configurez vos donations mensuelles pour soutenir nos missions spatiales
+                {t('nextSteps.access.description')}
               </p>
             </div>
           </div>

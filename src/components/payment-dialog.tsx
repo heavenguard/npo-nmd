@@ -18,6 +18,7 @@ import { CheckCircle, CreditCard, User } from "lucide-react"
 import { Textarea } from "./ui/textarea"
 import { Checkbox } from "./ui/checkbox"
 import { Button } from "./ui/button"
+import { useTranslations } from "@/lib/useTranslations"
 
 interface PaymentDialogProps {
   open: boolean;
@@ -30,7 +31,7 @@ interface PaymentDialogProps {
 
 export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescription, amount, type } : PaymentDialogProps ){
     const [units, setUnits] = useState(1)
-
+    const t = useTranslations()
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -101,7 +102,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                             {/* Name & Email */}
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                <Label htmlFor="name" className="text-gray-900 font-medium">Nom Complet *</Label>
+                                <Label htmlFor="name" className="text-gray-900 font-medium">{t('contact.form.fullName')} *</Label>
                                 <Input
                                     id="name"
                                     type="text"
@@ -112,7 +113,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                 />
                                 </div>
                                 <div>
-                                <Label htmlFor="email" className="text-gray-900 font-medium">Email *</Label>
+                                <Label htmlFor="email" className="text-gray-900 font-medium">{t('contact.form.email')} *</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -127,7 +128,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                             {/* Country & Profession */}
                             <div className="grid md:grid-cols-2 gap-20">
                                 <div className="w-full">
-                                <Label htmlFor="country" className="text-gray-900 font-medium">Pays *</Label>
+                                <Label htmlFor="country" className="text-gray-900 font-medium">{t('becomeMember.form.country')} *</Label>
                                 <Select
                                     onValueChange={(value) => setFormData({ ...formData, country: value })}
                                 >
@@ -151,14 +152,14 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                 </div>
 
                                 <div>
-                                <Label htmlFor="profession" className="text-gray-900 font-medium">Profession *</Label>
+                                <Label htmlFor="profession" className="text-gray-900 font-medium">{t('becomeMember.form.profession')} *</Label>
                                 <Input
                                     id="profession"
                                     type="text"
                                     value={formData.profession}
                                     onChange={(e) => setFormData({ ...formData, profession: e.target.value })}
                                     className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                    placeholder="Ex: Ingénieur, Étudiant, Chercheur..."
+                                    placeholder={t('becomeMember.form.professionPlaceholder')}
                                     required
                                 />
                                 </div>
@@ -171,8 +172,8 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                     <CreditCard className="h-8 w-8 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-gray-900">Frais</h3>
-                                    <p className="text-gray-600">Frais</p>
+                                    <h3 className="text-2xl font-bold text-gray-900">{t('common.fees')}</h3>
+                                    <p className="text-gray-600">{t('common.fees')}</p>
                                 </div>
                                 </div>
 
@@ -212,11 +213,11 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                 <div className="mt-6 space-y-3 text-sm text-gray-700">
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-4 w-4 text-green-600" />
-                                    <span>Création automatique de votre compte membre</span>
+                                    <span>{t('becomeMember.form.automaticAccount')}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-4 w-4 text-green-600" />
-                                    <span>Accès à votre carte de membre digitale</span>
+                                    <span>{t('becomeMember.form.digitalCard')}</span>
                                 </div>
                                 {formData.voting && (
                                     <div className="flex items-center gap-2">
@@ -226,7 +227,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                 )}
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-4 w-4 text-green-600" />
-                                    <span>Accès aux opportunités exclusives membres</span>
+                                    <span>{t('becomeMember.form.exclusiveOffers')}</span>
                                 </div>
                                 </div>
                             </div>
@@ -239,7 +240,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                 onCheckedChange={(checked) => setFormData({ ...formData, agreeTerms: checked as boolean })}
                                 />
                                 <Label htmlFor="terms" className="text-gray-600 text-sm leading-relaxed">
-                                J'accepte les termes et conditions et la politique de confidentialité de NMD ASSOCIATION
+                                {t('becomeMember.form.agreeTerms')}
                                 </Label>
                             </div>
 
@@ -250,7 +251,7 @@ export default function PaymentDialog({ open, setOpen, dialogTitle, dialogDescri
                                 className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
                                 disabled={!formData.agreeTerms}
                             >
-                                Contribuez Maintenant
+                                {t('common.contributeNow')}
                                 <CheckCircle className="ml-2 h-5 w-5" />
                             </Button>
                         </form>

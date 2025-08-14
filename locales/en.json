@@ -7,6 +7,8 @@
     "getInvolved": "Get Involved",
     "contact": "Contact",
     "join": "Join",
+    "login": "Login",
+    "dashboard": "Member Portal",
     "language": "EN"
   },
   "home": {
@@ -15,7 +17,7 @@
       "title": "NMD ASSOCIATION",
       "slogan": "Towards a constellation dedicated to training Africans",
       "description": "We develop African space skills through practical missions and innovative training programs.",
-      "joinMission": "Join Mission 237",
+      "joinMission": "Join Our Missions 237",
       "becomeMember": "Become a Member"
     },
     "mission": {
@@ -26,8 +28,8 @@
         "description": "Hands-on learning with real satellite projects to develop technical expertise"
       },
       "mission237": {
-        "title": "Mission 237",
-        "description": "Our first educational nanosatellite mission, designed to train African space engineers"
+        "title": "Missions 237",
+        "description": "A series of consolidated African space missions organized into an open and inclusive constellation, designed to serve as a vehicle for the effective training of Africans in space science and technology."
       },
       "continentalImpact": {
         "title": "Continental Impact",
@@ -54,8 +56,8 @@
     "stats": {
       "studentsToTrain": "Students to Train",
       "africanCountries": "African Countries",
-      "nanosatellite": "Nanosatellite",
-      "launchYear": "Launch Year"
+      "nanosatellite": "Cameroonian Nanosatellite",
+      "launchYear": "First Mission Launch Year"
     },
     "cta": {
       "title": "Join the African Space Revolution",
@@ -86,7 +88,7 @@
       "focus": "Focus",
       "focusValue": "African space training",
       "firstMission": "First Mission",
-      "firstMissionValue": "Mission 237 - 2026"
+      "firstMissionValue": "Mission 237 - 2025"
     },
     "leadership": {
       "title": "Organizational Structure",
@@ -120,6 +122,83 @@
       }
     }
   },
+  "mission237": {
+    "hero": {
+      "tag": "FLAGSHIP MISSION",
+      "title": "First Mission 237",
+      "subtitle": "Our First Educational Nanosatellite Mission",
+      "description": "The first Mission 237 is specially designed for French-speaking accessibility and practical training of African space professionals. This pioneering mission will lay the foundations of our educational constellation.",
+      "joinButton": "Join the Mission",
+      "contributeButton": "Contribute to the Project"
+    },
+    "timeline": {
+      "title": "Mission Timeline",
+      "steps": {
+        "1": {
+          "step": "STEP 1",
+          "title": "Launch Workshop",
+          "date": "03 August 2025",
+          "description": "Official launch workshop of Mission 237 with project presentation, team training, and objective setting."
+        },
+        "2": {
+          "step": "STEP 2",
+          "title": "Design Workshops",
+          "date": "Aug - Oct 2025",
+          "description": "Series of intensive workshops for mission design and training in space mission design."
+        },
+        "3": {
+          "step": "STEP 3",
+          "title": "Launch",
+          "date": "Q2 2026",
+          "description": "Launch of the first Mission 237 satellite and start of educational space operations."
+        }
+      }
+    },
+    "budget": {
+      "title": "Mission Budget",
+      "total": "Total Budget",
+      "totalFCFA": "131,191,400 FCFA",
+      "contributionUnit": {
+        "label": "Unit Contribution",
+        "value": "1,000 EUR",
+        "description": "655,000 FCFA per participant"
+      },
+      "training": {
+        "label": "Design Training",
+        "value": "250,000 FCFA",
+        "description": "Per student for technical training"
+      }
+    },
+    "objectives": {
+      "title": "Mission Objectives",
+      "items": {
+        "1": {
+          "title": "Practical Training",
+          "description": "Train 200+ African professionals in space technologies"
+        },
+        "2": {
+          "title": "Accessibility",
+          "description": "French-speaking priority for inclusion of West and Central African countries"
+        },
+        "3": {
+          "title": "Innovation",
+          "description": "Develop space solutions adapted to African needs"
+        },
+        "4": {
+          "title": "Sustainability",
+          "description": "Create a reproducible model for future educational missions"
+        }
+      }
+    },
+    "cta": {
+      "title": "Contribute or Sponsor a Learner",
+      "subtitle": "Your contribution will help train the next generation of African space engineers",
+      "buttons": {
+        "contribute": "Contribute to the mission",
+        "becomeParticipant": "Become a Participant"
+      }
+    }
+  },
   "becomeMember": {
     "hero": {
       "title": "Become a Member",
@@ -138,7 +217,7 @@
       },
       "continentalNetwork": {
         "title": "Continental Network",
-        "description": "Connection with space professionals across Africa"
+        "description": "Connection with space professionals across Africa and all over the world"
       },
       "memberSpace": {
         "title": "Member Space",
@@ -162,9 +241,12 @@
       "automaticAccount": "Automatic creation of your member account",
       "digitalCard": "Access to your digital member card",
       "monthlyDonations": "Monthly donation capability",
-      "exclusiveOffers": "Access to exclusive member offers",
+      "exclusiveOffers": "Access to exclusive member opportunities",
+      "payYearlyMembership": "Pay Membership Yearly Fees : 65500 FCFA | 100 EUR | 115 USD",
       "agreeTerms": "I accept the terms and conditions and privacy policy of NMD ASSOCIATION",
       "createAccount": "Create My Member Account - 30,000 XAF",
+      "inscriptionOnly": "Register only - 15000 FCFA | 25 EUR | 29 USD",
+      "inscriptionAndMembership": "Register and pay the annual membership fee - 80,500 CFA francs | 125 EUR | 144 USD",
       "required": "*"
     },
     "nextSteps": {
@@ -177,9 +259,9 @@
         "title": "Member Access",
         "description": "Log in to access your member card and exclusive offers"
       },
-      "monthlyDonations": {
-        "title": "Monthly Donations",
-        "description": "Set up your monthly donations to support our space missions"
+      "access": {
+        "title": "Offers & Voting Rights",
+        "description": "Access to exclusive offers and voting rights for the advancement of the project"
       }
     }
   },
@@ -199,35 +281,44 @@
     "howToContribute": {
       "title": "How to Contribute",
       "financialContribution": {
-        "title": "Financial Contribution",
-        "description": "Support our educational space missions directly with an amount of your choice",
-        "options": [
-          "Free amount according to your means",
-          "One-time or recurring contribution",
-          "Direct support to space projects"
-        ],
+        "title": "Financial Contribution to the 1st MISSION 237",
+        "description": "Support directly our first educational space missions",
+        "options": {
+          "1": "Contribution unit: 655,000 CFA francs | 1,000 EUR",
+          "2": "Direct creation of a voting account, granting you various benefits and the right to vote on various decisions that may arise in the course of the mission.",
+          "3": "Direct support to our 1st space mission"
+        },
         "cta": "Make a Donation"
       },
       "studentSponsorship": {
-        "title": "Student Sponsorship",
-        "description": "Finance the training of passionate African students",
-        "options": [
-          "Complete sponsorship: 30,000 XAF",
-          "Sponsorship of multiple students",
-          "Personalized follow-up of your sponsored student"
-        ],
+        "title": "Student Sponsorship (1st MISSION 237)",
+        "description": "Fund the training of passionate African learners through the first mission 237",
+        "options": {
+          "1": "Complete sponsorship: 30,000 XAF",
+          "2": "Sponsorship of multiple students",
+          "3": "Creation of your voting account"
+        },
         "cta": "Sponsor a Student"
       },
-      "volunteering": {
-        "title": "Volunteering",
-        "description": "Contribute with your skills and time",
-        "options": ["Technical training", "Student mentoring", "Logistical support"],
-        "cta": "Become a Volunteer"
+      "donation": {
+        "title": "Make a Donation",
+        "description": "Support our projects",
+        "options": {
+          "1": "Access to a member account.", 
+          "2": "Make a donation starting at 15,000 CFA francs", 
+          "3": "Donate more than 100,000 CFA francs and become a voting member.",
+          "4": "Access to promotions and benefits."
+        },
+        "cta": "Make a Donation"
       },
       "corporatePartnership": {
         "title": "Corporate Partnership",
         "description": "Establish a strategic partnership with our association",
-        "options": ["Mission sponsoring", "Equipment provision", "Internships and jobs for graduates"],
+        "options": {
+          "1": "Mission sponsoring", 
+          "2": "Equipment provision", 
+          "3": "Internships and jobs for graduates"
+        },
         "cta": "Become a Partner"
       }
     },
@@ -391,6 +482,64 @@
       "standard": "Standard"
     }
   },
+  "login": {
+    "hero": {
+      "title": "Welcome Back",
+      "description": "Sign in to your NMD ASSOCIATION member account"
+    },
+    "form": {
+      "title": "Member Sign In",
+      "email": "Email Address",
+      "emailPlaceholder": "your.email@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "signIn": "Sign In",
+      "signingIn": "Signing In...",
+      "invalidCredentials": "Invalid email or password. Please try again.",
+      "error": "An error occurred. Please try again."
+    },
+    "demo": {
+      "title": "Demo Credentials",
+      "email": "Email:",
+      "password": "Password:"
+    },
+    "signUp": {
+      "text": "Don't have an account?",
+      "link": "Become a member"
+    },
+    "help": {
+      "needHelp": "Need help?",
+      "about": "About NMD"
+    }
+  },
+  "forgotPassword": {
+    "hero": {
+      "title": "Reset Password",
+      "description": "Enter your email to receive a password reset link"
+    },
+    "form": {
+      "title": "Forgot Your Password?",
+      "email": "Email Address",
+      "emailPlaceholder": "your.email@example.com",
+      "sendLink": "Send Reset Link",
+      "sendingLink": "Sending Reset Link...",
+      "backToSignIn": "Back to Sign In"
+    },
+    "success": {
+      "title": "Check Your Email",
+      "description": "We've sent a password reset link to",
+      "instructions": "Click the link in the email to reset your password. If you don't see the email, check your spam folder.",
+      "backToSignIn": "Back to Sign In",
+      "didntReceive": "Didn't receive the email?",
+      "tryAgain": "Try again"
+    },
+    "help": {
+      "trouble": "Still having trouble accessing your account?",
+      "contact": "Contact our support team"
+    }
+  },
   "common": {
     "currency": {
       "xaf": "XAF",
@@ -403,7 +552,18 @@
     "save": "Save",
     "edit": "Edit",
     "delete": "Delete",
+    "fees": "Fees",
     "confirm": "Confirm",
-    "close": "Close"
+    "footerMessage": "Let's develop African space skills through practical missions and innovative training programs.",
+    "footerDate": "Founded in July 2025 • Non-profit organization",
+    "copyright": "All rights reserved.",
+    "close": "Close",
+    "contributeNow": "Contribute Now",
+    "donation": "Make a Donation",
+    "missionSupport": "Contribution to the first mission",
+    "studentSponsorship": "Student Sponsorship",
+    "donationDescription": "Support our projects by making a donation of any amount you choose.",
+    "missionSupportDescription": "Take part in our first space mission by contributing directly to its funding.",
+    "studentSponsorshipDescription": "Help a learner continue their studies and develop their skills in the space sector."
   }
 }

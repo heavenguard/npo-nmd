@@ -1,8 +1,11 @@
 import Link from "next/link"
 import { Satellite, Phone, Mail, MapPin, Linkedin } from "lucide-react"
 import Image from "next/image"
+import { useTranslations } from "@/lib/useTranslations";
 
 export function Footer() {
+  const t = useTranslations();
+  
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -22,10 +25,9 @@ export function Footer() {
               />
             </div>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
-              Développons les compétences spatiales africaines à travers des missions pratiques et des programmes de
-              formation innovants.
+              {t('common.footerMessage')}
             </p>
-            <p className="text-sm text-gray-500">Fondée en Juillet 2025 • Organisation à but non lucratif</p>
+            <p className="text-sm text-gray-500">{t('common.footerDate')}</p>
           </div>
 
           {/* Quick Links */}
@@ -33,16 +35,16 @@ export function Footer() {
             <h3 className="font-semibold mb-6">Liens Rapides</h3>
             <div className="space-y-3">
               <Link href="/about" className="block text-gray-400 hover:text-blue-400 transition-colors">
-                À Propos
+                {t('navigation.about')}
               </Link>
               <Link href="/mission-237" className="block text-gray-400 hover:text-blue-400 transition-colors">
-                Mission 237
+                {t('navigation.mission237')}
               </Link>
               <Link href="/become-member" className="block text-gray-400 hover:text-blue-400 transition-colors">
-                Devenir Membre
+                {t('navigation.becomeMember')}
               </Link>
               <Link href="/get-involved" className="block text-gray-400 hover:text-blue-400 transition-colors">
-                S'Impliquer
+                {t('navigation.getInvolved')}
               </Link>
             </div>
           </div>
@@ -86,7 +88,7 @@ export function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-500 text-sm">
-            © 2025 NMD ASSOCIATION. Tous droits réservés. |
+            © 2025 NMD ASSOCIATION. {t('common.copyright')} |
             <a href="https://npo.nanosatellitemissions.com" className="hover:text-blue-400 transition-colors ml-1">
               npo.nanosatellitemissions.com
             </a>

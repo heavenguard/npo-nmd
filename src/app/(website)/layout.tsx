@@ -6,6 +6,8 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Toaster } from "@/components/ui/sonner"
 import { AuthProvider } from "@/context/auth-context"
+import {NextIntlClientProvider} from 'next-intl';
+import {getLocale} from 'next-intl/server';
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,11 +22,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const locale = await getLocale();
   return (
     <html lang="fr">
       <head>
@@ -32,10 +35,14 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <AuthProvider>
-          <Navigation />
-          <main>{children}</main>
-          <Toaster />
-          <Footer />
+          <NextIntlClientProvider>
+            <Navigation />
+            <main>
+                {children}
+            </main>
+            <Toaster />
+            <Footer />
+          </NextIntlClientProvider>
         </AuthProvider>
       </body>
     </html>

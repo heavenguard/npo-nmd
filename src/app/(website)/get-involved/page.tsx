@@ -22,6 +22,7 @@ import PaymentDialog from "@/components/payment-dialog"
 import { useRouter } from "next/navigation"
 import { nanoid } from "nanoid"
 import { addToSubCollection } from "@/functions/add-to-a-sub-collection"
+import { useTranslations } from "@/lib/useTranslations"
 
 export default function GetInvolvedPage() {
   const [donationAmount, setDonationAmount] = useState("")
@@ -39,6 +40,8 @@ export default function GetInvolvedPage() {
   const [amount, setAmount] = useState(15000)
   const { login } = useAuth()
   const router = useRouter()
+  const t = useTranslations('getInvolved')
+  const s = useTranslations()
 
   useEffect(() => {
       const savedDepositId = localStorage.getItem("depositId");
@@ -103,7 +106,7 @@ export default function GetInvolvedPage() {
                         : "Unknown",
                       status: "completed",
                       description: dialogDatas.type === "don"
-                        ? "General donation made"
+                        ? "General donation"
                         : dialogDatas.type === "mission"
                         ? "Contribution to the mission"
                         : dialogDatas.type === "student"
@@ -154,24 +157,24 @@ export default function GetInvolvedPage() {
     }
     else if (option.type === "mission") {
       setDialogDatas({
-        title: "Contribution à la première mission",
-        description: "Participez à notre première mission spatiale en contribuant directement à son financement.",
+        title: s('common.missionSupport'),
+        description: s('common.missionSupportDescription'),
         amount: 655000,
         type: option.type
       });
     } 
     else if (option.type === "student") {
       setDialogDatas({
-        title: "Parrainer un apprenant",
-        description: "Aidez un apprenant à poursuivre ses études et à développer ses compétences dans le domaine spatial.",
+        title: s('common.studentSponsorship'),
+        description:  s('common.studentSponsorshipDescription'),
         amount: 250000,
         type: option.type
       });
     } 
     else if (option.type === "don") {
       setDialogDatas({
-        title: "Faire un don",
-        description: "Soutenez nos projets en effectuant un don du montant de votre choix.",
+        title: s('common.donation'),
+        description: s('common.donationDescription'),
         amount,
         type: option.type
       });
@@ -183,42 +186,51 @@ export default function GetInvolvedPage() {
     {
       type: "mission",
       icon: <DollarSign className="h-8 w-8 text-blue-600" />,
-      title: "Contribution Financière (1ère MISSION 237)",
-      description: "Soutenez directement notre première missions spatiales éducatives.",
+      title: t('howToContribute.financialContribution.title'),
+      description: t('howToContribute.financialContribution.description'),
       options: [
-        "Unité de contribution : 650,000 FCFA | 1000 EUR",
-        "Création direct d'un compte votant, vous octroyant de divers bénéfices et le droit de voter aux différente décisions éventuelle pour l'avancement de la mission.",
-        "Support direct à la première mission 237",
+        t('howToContribute.financialContribution.options.1'),
+        t('howToContribute.financialContribution.options.2'),
+        t('howToContribute.financialContribution.options.3'),
       ],
-      cta: "Faire un Don",
+      cta: t('howToContribute.financialContribution.description'),
     },
     {
       type: "student",
       icon: <GraduationCap className="h-8 w-8 text-green-600" />,
-      title: "Parrainage d'Apprenants (1ère MISSION 237)",
-      description: "Financez la formation d'apprenants africains passionnés grace à la première mission 237",
+      title: t('howToContribute.studentSponsorship.title'),
+      description: t('howToContribute.studentSponsorship.description'),
       options: [
-        "Parrainage complet: 250,000 FCFA | 385 EUR",
-        "Parrainage de plusieurs étudiants",
-        "Suivi personnalisé de votre filleul",
+        t('howToContribute.studentSponsorship.options.1'),
+        t('howToContribute.studentSponsorship.options.2'),
+        t('howToContribute.studentSponsorship.options.3'),
       ],
-      cta: "Parrainer un Étudiant",
+      cta: t('howToContribute.studentSponsorship.cta'),
     },
     {
       type: "don",
       icon: <Users className="h-8 w-8 text-purple-600" />,
-      title: "Donnation Libre",
-      description: "Soutenez notre projets",
-      options: ["Accès à un compte membre.", "Faire un don à partir de 15000 FCFA","Donner plus de 100,000 FCFA et devenez membre votant.", "Accès à des promotions et avantages."],
-      cta: "Faire une donnation",
+      title: t('howToContribute.donation.title'),
+      description: t('howToContribute.donation.description'),
+      options: [
+        t('howToContribute.donation.options.1'),
+        t('howToContribute.donation.options.2'),
+        t('howToContribute.donation.options.3'), 
+        t('howToContribute.donation.options.4')
+      ],
+      cta: t('howToContribute.donation.cta'),
     },
     {
       type: "partner",
       icon: <Building className="h-8 w-8 text-orange-600" />,
-      title: "Partenariat Entreprise",
-      description: "Établissez un partenariat stratégique avec notre association",
-      options: ["Sponsoring de missions", "Fourniture d'équipements", "Stages et emplois pour diplômés"],
-      cta: "Devenir Partenaire",
+      title: t('howToContribute.corporatePartnership.title'),
+      description: t('howToContribute.corporatePartnership.description'),
+      options: [
+        t('howToContribute.corporatePartnership.options.1'), 
+        t('howToContribute.corporatePartnership.options.2'), 
+        t('howToContribute.corporatePartnership.options.3')
+      ],
+      cta: t('howToContribute.corporatePartnership.cta'),
     },
   ]
 
@@ -234,18 +246,18 @@ export default function GetInvolvedPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl lg:text-6xl font-bold mb-6">S'Impliquer</h1>
+          <h1 className="text-5xl lg:text-6xl font-bold mb-6">{t('hero.title')}</h1>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            Rejoignez-nous dans notre mission de développement des capacités spatiales africaines
+            {t('hero.description')}
           </p>
-          <p className="text-lg text-blue-50 font-medium">Ensemble, construisons l'avenir technologique de l'Afrique</p>
+          <p className="text-lg text-blue-50 font-medium">{t('hero.subtitle')}</p>
         </div>
       </section>
 
       {/* Contribution Options */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Comment Contribuer</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">{t('howToContribute.title')}</h2>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {contributionOptions.map((option, index) => (
@@ -340,14 +352,14 @@ export default function GetInvolvedPage() {
       {/* Contact for Partnerships */}
       <section className="py-20 bg-black text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">Prêt à Nous Rejoindre ?</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">{t('cta.title')}</h2>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-            Contactez-nous pour discuter de votre contribution à l'avenir spatial africain
+            {t('cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/contact">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 h-14 text-lg">
-                Nous Contacter
+                {t('cta.contactUs')}
                 <Handshake className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -357,7 +369,7 @@ export default function GetInvolvedPage() {
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 h-14 text-lg bg-transparent"
               >
-                Devenir Membre
+                {t('cta.becomeMember')}
                 <Users className="ml-2 h-5 w-5" />
               </Button>
             </Link>

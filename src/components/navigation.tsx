@@ -7,18 +7,27 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Satellite, Globe } from "lucide-react"
 import Image from "next/image"
 import { useAuth } from "@/context/auth-context"
+import { useTranslations } from "@/lib/useTranslations"
+
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const { user } = useAuth()
+  const t = useTranslations('navigation');
+  
+  function changeLanguage(locale: string) {
+    document.cookie = `NEXT_LOCALE=${locale}; path=/`;
+    window.location.reload(); // Force reload so `request.ts` picks up the new cookie
+  }
+  const nextLocale = t('language') === 'FR' ? 'en' : 'fr';
 
   const navItems = [
-    { href: "/", label: "Accueil" },
-    { href: "/about", label: "À Propos" },
-    { href: "/mission-237", label: "Missions 237" },
-    { href: "/become-member", label: "Devenir Membre" },
-    { href: "/get-involved", label: "S'Impliquer" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: t('home') },
+    { href: "/about", label: t('about') },
+    { href: "/mission-237", label: t('mission237') },
+    { href: "/become-member", label: t('becomeMember') },
+    { href: "/get-involved", label: t('getInvolved') },
+    { href: "/contact", label: t('contact') },
   ]
 
   return (
@@ -50,21 +59,26 @@ export function Navigation() {
 
           {/* Language Toggle & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-gray-600 hover:text-blue-600">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gray-600 hover:text-blue-600"
+              onClick={() => changeLanguage(nextLocale)}
+            >
               <Globe className="h-4 w-4 mr-1" />
-              FR
+              {t('language')}
             </Button>
             {user ? (
               <Link href="/member-portal">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">Portail Membre</Button>
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">{t('dashboard')}</Button>
               </Link>
             ) : (
               <>
                 <Link href="/become-member">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">Rejoindre</Button>
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">{t('join')}</Button>
                 </Link>
                 <Link href="/login">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">Se connecter</Button>
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">{t('login')}</Button>
                 </Link>
               </>
             )}
@@ -92,11 +106,22 @@ export function Navigation() {
                 <div className="pt-4 border-t border-gray-200">
                   <Button variant="ghost" size="sm" className="text-gray-600 hover:text-blue-600 mb-4">
                     <Globe className="h-4 w-4 mr-1" />
-                    Français
+                    {t('language')}
                   </Button>
-                  <Link href="/become-member">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full">Rejoindre</Button>
-                  </Link>
+                  {user ? (
+                      <Link href="/member-portal">
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white">{t('dashboard')}</Button>
+                      </Link>
+                    ) : (
+                      <>
+                        <Link href="/become-member">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white">{t('join')}</Button>
+                        </Link>
+                        <Link href="/login">
+                          <Button className="bg-blue-600 hover:bg-blue-700 text-white">{t('login')}</Button>
+                        </Link>
+                      </>
+                    )}
                 </div>
               </div>
             </SheetContent>

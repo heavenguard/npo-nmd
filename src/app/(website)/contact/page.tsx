@@ -10,8 +10,10 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Phone, Mail, MapPin, Clock, Send, Linkedin } from "lucide-react"
+import { useTranslations } from "@/lib/useTranslations"
 
 export default function ContactPage() {
+  const t = useTranslations('contact')
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,27 +30,27 @@ export default function ContactPage() {
   const contactInfo = [
     {
       icon: <Phone className="h-6 w-6 text-green-600" />,
-      title: "Téléphone",
+      title: t('contactInfo.phone'),
       details: "+237 691 341 013",
       action: "tel:+237691341013",
     },
     {
       icon: <Mail className="h-6 w-6 text-blue-600" />,
-      title: "Email",
+      title: t('contactInfo.email'),
       details: "contact@npo.nanosatellitemissions.com",
       action: "mailto:contact@npo.nanosatellitemissions.com",
     },
     {
       icon: <MapPin className="h-6 w-6 text-purple-600" />,
-      title: "Adresse",
+      title: t('contactInfo.address'),
       details: "Immeuble Face Agence SCB, Carrefour Express, Cité des Palmiers, Douala",
       action: null,
     },
     {
       icon: <Linkedin className="h-6 w-6 text-blue-500" />,
-      title: "LinkedIn",
+      title: t('contactInfo.linkedin'),
       details: "NMD Foundation Page",
-      action: "#",
+      action: "https://cm.linkedin.com/company/nanosatellitemissions",
     },
   ]
 
@@ -57,9 +59,9 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl lg:text-6xl font-bold mb-6">Nous Contacter</h1>
+          <h1 className="text-5xl lg:text-6xl font-bold mb-6">{t('hero.title')}</h1>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            Nous sommes là pour répondre à vos questions et discuter de votre participation à l'avenir spatial africain
+            {t('hero.description')}
           </p>
         </div>
       </section>
@@ -97,15 +99,15 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto px-4">
           <Card className="border-0 shadow-lg bg-white">
             <CardHeader className="text-center pb-8">
-              <CardTitle className="text-3xl font-bold text-gray-900 mb-4">Envoyez-nous un Message</CardTitle>
-              <p className="text-gray-600 text-lg">Nous vous répondrons dans les plus brefs délais</p>
+              <CardTitle className="text-3xl font-bold text-gray-900 mb-4">{t('form.title')}</CardTitle>
+              <p className="text-gray-600 text-lg">{t('form.description')}</p>
             </CardHeader>
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="name" className="text-gray-900 font-medium">
-                      Nom Complet *
+                      {t('form.fullName')} *
                     </Label>
                     <Input
                       id="name"
@@ -119,7 +121,7 @@ export default function ContactPage() {
 
                   <div>
                     <Label htmlFor="email" className="text-gray-900 font-medium">
-                      Email *
+                      {t('form.email')} *
                     </Label>
                     <Input
                       id="email"
@@ -134,34 +136,34 @@ export default function ContactPage() {
 
                 <div>
                   <Label htmlFor="subject" className="text-gray-900 font-medium">
-                    Sujet *
+                    {t('form.subject')} *
                   </Label>
                   <Select onValueChange={(value) => setFormData({ ...formData, subject: value })}>
                     <SelectTrigger className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                      <SelectValue placeholder="Sélectionnez un sujet" />
+                      <SelectValue placeholder={t('form.selectSubject')} />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-gray-200">
-                      <SelectItem value="membership">Adhésion</SelectItem>
-                      <SelectItem value="mission-237">Mission 237</SelectItem>
-                      <SelectItem value="partnership">Partenariat</SelectItem>
-                      <SelectItem value="donation">Don / Contribution</SelectItem>
-                      <SelectItem value="volunteering">Bénévolat</SelectItem>
-                      <SelectItem value="general">Question générale</SelectItem>
-                      <SelectItem value="media">Demande média</SelectItem>
+                      <SelectItem value="membership">{t('form.membership')}</SelectItem>
+                      <SelectItem value="mission-237">{t('form.mission237')}</SelectItem>
+                      <SelectItem value="partnership">{t('form.partnership')}</SelectItem>
+                      <SelectItem value="donation">{t('form.donation')}</SelectItem>
+                      <SelectItem value="volunteering">{t('form.volunteering')}</SelectItem>
+                      <SelectItem value="general">{t('form.general')}</SelectItem>
+                      <SelectItem value="media">{t('form.media')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div>
                   <Label htmlFor="message" className="text-gray-900 font-medium">
-                    Message *
+                    {t('form.message')} *
                   </Label>
                   <Textarea
                     id="message"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 min-h-[150px]"
-                    placeholder="Décrivez votre demande ou vos questions..."
+                    placeholder={t('form.messagePlaceholder')}
                     required
                   />
                 </div>
@@ -171,7 +173,7 @@ export default function ContactPage() {
                   size="lg"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
                 >
-                  Envoyer le Message
+                  {t('form.sendMessage')}
                   <Send className="ml-2 h-5 w-5" />
                 </Button>
               </form>
@@ -183,16 +185,16 @@ export default function ContactPage() {
       {/* Office Hours */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">Heures de Bureau</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-12">{t('officeHours.title')}</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Clock className="h-8 w-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Jours Ouvrables</h3>
-                <p className="text-gray-600 mb-2">Lundi - Vendredi</p>
-                <p className="text-gray-600">8h00 - 17h00 (GMT+1)</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{t('officeHours.businessDays.title')}</h3>
+                <p className="text-gray-600 mb-2">{t('officeHours.businessDays.days')}</p>
+                <p className="text-gray-600">{t('officeHours.businessDays.hours')}</p>
               </CardContent>
             </Card>
 
@@ -201,9 +203,9 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Mail className="h-8 w-8 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Support Email</h3>
-                <p className="text-gray-600 mb-2">Réponse sous 24h</p>
-                <p className="text-gray-600">7 jours sur 7</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{t('officeHours.emailSupport.title')}</h3>
+                <p className="text-gray-600 mb-2">{t('officeHours.emailSupport.response')}</p>
+                <p className="text-gray-600">{t('officeHours.emailSupport.availability')}</p>
               </CardContent>
             </Card>
           </div>
@@ -213,7 +215,7 @@ export default function ContactPage() {
       {/* Map Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Notre Localisation</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">{t('location.title')}</h2>
           <Card className="border-0 shadow-lg bg-white">
             <CardContent className="p-8">
               <div className="aspect-video bg-gray-100 rounded-2xl flex items-center justify-center">
@@ -221,13 +223,9 @@ export default function ContactPage() {
                   <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                     <MapPin className="h-10 w-10 text-blue-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Douala, Cameroun</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('location.city')}</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Immeuble Face Agence SCB
-                    <br />
-                    Carrefour Express
-                    <br />
-                    Cité des Palmiers
+                    {t('location.address')}
                   </p>
                 </div>
               </div>

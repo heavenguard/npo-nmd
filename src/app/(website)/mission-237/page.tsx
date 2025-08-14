@@ -1,11 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import { useTranslations } from "@/lib/useTranslations"
 import { Calendar, DollarSign, Users, Rocket, Target, Clock, BookOpen, Zap } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
 export default function Mission237Page() {
+  const t = useTranslations('mission237')
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -15,21 +18,19 @@ export default function Mission237Page() {
             <div>
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
                 <Rocket className="h-4 w-4" />
-                <span className="text-sm font-medium">MISSION PHARE</span>
+                <span className="text-sm font-medium">{t('hero.tag')}</span>
               </div>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6">Première Mission 237</h1>
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6">{t('hero.title')}</h1>
               <p className="text-2xl text-blue-100 font-light mb-6">
-                Notre Première Mission Nanosatellitaire Éducative
+                {t('hero.subtitle')}
               </p>
               <p className="text-lg text-blue-50 mb-10 leading-relaxed">
-                La première Mission 237 est spécialement conçue pour l'accessibilité francophone et la formation pratique des
-                professionnels spatiaux africains. Cette mission pionnière établira les fondations de notre
-                constellation éducative.
+                {t('hero.description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/become-member">
                   <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 h-14 text-lg">
-                    Rejoindre la Mission
+                    {t('hero.joinButton')}
                     <Rocket className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
@@ -39,7 +40,7 @@ export default function Mission237Page() {
                     variant="outline"
                     className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 h-14 text-lg bg-transparent"
                   >
-                    Contribuer au Projet
+                    {t('hero.contributeButton')}
                   </Button>
                 </Link>
               </div>
@@ -61,7 +62,7 @@ export default function Mission237Page() {
       {/* Timeline */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Chronologie de la Mission</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">{t('timeline.title')}</h2>
 
           <div className="grid lg:grid-cols-3 gap-8">
             <Card className="border-0 shadow-lg bg-white relative overflow-hidden">
@@ -71,14 +72,13 @@ export default function Mission237Page() {
                     <Calendar className="h-6 w-6 text-blue-600" />
                   </div>
                   <span className="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
-                    ETAPE 1
+                    {t('timeline.steps.1.step')}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Lancement Workshop</h3>
-                <p className="text-3xl font-bold text-blue-600 mb-4">03 Août 2025</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('timeline.steps.1.title')}</h3>
+                <p className="text-3xl font-bold text-blue-600 mb-4">{t('timeline.steps.1.date')}</p>
                 <p className="text-gray-600 leading-relaxed">
-                  Atelier de lancement officiel de la Mission 237 avec présentation du projet, formation des équipes et
-                  définition des objectifs.
+                  {t('timeline.steps.1.description')}
                 </p>
               </CardContent>
             </Card>
@@ -90,13 +90,13 @@ export default function Mission237Page() {
                     <BookOpen className="h-6 w-6 text-green-600" />
                   </div>
                   <span className="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full">
-                    ETAPE 2
+                    {t('timeline.steps.2.step')}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Ateliers de Conception</h3>
-                <p className="text-3xl font-bold text-green-600 mb-4">Août - Oct 2025</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('timeline.steps.2.title')}</h3>
+                <p className="text-3xl font-bold text-green-600 mb-4">{t('timeline.steps.2.date')}</p>
                 <p className="text-gray-600 leading-relaxed">
-                  Série d'ateliers intensifs de conception et de la mission, et les formations en conception des missions spatiales.
+                  {t('timeline.steps.2.description')}
                 </p>
               </CardContent>
             </Card>
@@ -108,13 +108,13 @@ export default function Mission237Page() {
                     <Rocket className="h-6 w-6 text-purple-600" />
                   </div>
                   <span className="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
-                    ETAPE 3
+                    {t('timeline.steps.3.step')}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Lancement</h3>
-                <p className="text-3xl font-bold text-purple-600 mb-4">Q2 2026</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('timeline.steps.3.title')}</h3>
+                <p className="text-3xl font-bold text-purple-600 mb-4">{t('timeline.steps.3.date')}</p>
                 <p className="text-gray-600 leading-relaxed">
-                  Lancement du satellite de la première Mission 237 et début des opérations spatiales éducatives.
+                  {t('timeline.steps.3.description')}
                 </p>
               </CardContent>
             </Card>
@@ -125,7 +125,7 @@ export default function Mission237Page() {
       {/* Budget Breakdown */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Budget de la Mission</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">{t('budget.title')}</h2>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -134,7 +134,7 @@ export default function Mission237Page() {
                   <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-6">
                     <DollarSign className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Budget Total</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('budget.total')}</h3>
                   <p className="text-4xl font-bold text-blue-600 mb-2">200,000 EUR</p>
                   <p className="text-xl text-gray-600">(131,191,400 FCFA)</p>
                 </CardContent>
@@ -143,18 +143,18 @@ export default function Mission237Page() {
               <div className="space-y-6">
                 <div className="bg-gray-50 p-6 rounded-2xl">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-semibold text-gray-900">Contribution Unitaire</span>
+                    <span className="font-semibold text-gray-900">{t('budget.contributionUnit.label')}</span>
                     <span className="text-blue-600 font-bold text-lg">1,000 EUR</span>
                   </div>
-                  <p className="text-gray-600 text-sm">655,000 FCFA par participant</p>
+                  <p className="text-gray-600 text-sm">{t('budget.contributionUnit.description')}</p>
                 </div>
 
                 <div className="bg-gray-50 p-6 rounded-2xl">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-semibold text-gray-900">Formation Design</span>
+                    <span className="font-semibold text-gray-900">{t('budget.training.label')}</span>
                     <span className="text-green-600 font-bold text-lg">250,000 FCFA</span>
                   </div>
-                  <p className="text-gray-600 text-sm">Par étudiant pour la formation technique</p>
+                  <p className="text-gray-600 text-sm">{t('budget.training.description')}</p>
                 </div>
               </div>
             </div>
@@ -218,7 +218,7 @@ export default function Mission237Page() {
       {/* Mission Objectives */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Objectifs de la Mission</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">{t('objectives.title')}</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="border-0 shadow-lg text-center bg-white hover:shadow-xl transition-shadow">
@@ -226,8 +226,8 @@ export default function Mission237Page() {
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Users className="h-8 w-8 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Formation Pratique</h3>
-                <p className="text-gray-600 text-sm">Former 200+ professionnels africains aux technologies spatiales</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{t('objectives.items.1.title')}</h3>
+                <p className="text-gray-600 text-sm">{t('objectives.items.1.description')}</p>
               </CardContent>
             </Card>
 
@@ -236,9 +236,9 @@ export default function Mission237Page() {
                 <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Target className="h-8 w-8 text-green-600" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Accessibilité</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{t('objectives.items.2.title')}</h3>
                 <p className="text-gray-600 text-sm">
-                  Priorité francophone pour l'inclusion des pays d'Afrique de l'Ouest et Centrale
+                  {t('objectives.items.2.description')}
                 </p>
               </CardContent>
             </Card>
@@ -248,9 +248,9 @@ export default function Mission237Page() {
                 <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Zap className="h-8 w-8 text-purple-600" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Innovation</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{t('objectives.items.3.title')}</h3>
                 <p className="text-gray-600 text-sm">
-                  Développer des solutions spatiales adaptées aux besoins africains
+                  {t('objectives.items.3.description')}
                 </p>
               </CardContent>
             </Card>
@@ -260,8 +260,8 @@ export default function Mission237Page() {
                 <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Clock className="h-8 w-8 text-orange-600" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Durabilité</h3>
-                <p className="text-gray-600 text-sm">Créer un modèle reproductible pour futures missions éducatives</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{t('objectives.items.4.title')}</h3>
+                <p className="text-gray-600 text-sm">{t('objectives.items.4.description')}</p>
               </CardContent>
             </Card>
           </div>
@@ -271,14 +271,14 @@ export default function Mission237Page() {
       {/* Call to Action */}
       <section className="py-20 bg-black text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">Contribuez ou Parrainez un Apprenant</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">{t('cta.title')}</h2>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-            Votre contribution permettra de former la prochaine génération d'ingénieurs spatiaux africains
+            {t('cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/become-member">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 h-14 text-lg">
-                Contribuez à la mission
+                {t('cta.buttons.contribute')}
                 <DollarSign className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -288,7 +288,7 @@ export default function Mission237Page() {
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 h-14 text-lg bg-transparent"
               >
-                Devenir Participant
+                {t('cta.buttons.becomeParticipant')}
                 <Users className="ml-2 h-5 w-5" />
               </Button>
             </Link>

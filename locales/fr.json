@@ -7,6 +7,8 @@
     "getInvolved": "S'Impliquer",
     "contact": "Contact",
     "join": "Rejoindre",
+    "login": "Se connecter",
+    "dashboard": "Portail Membre",
     "language": "FR"
   },
   "home": {
@@ -15,7 +17,7 @@
       "title": "NMD ASSOCIATION",
       "slogan": "Vers une constellation dédiée à la formation des Africains",
       "description": "Nous développons les compétences spatiales africaines à travers des missions pratiques et des programmes de formation innovants.",
-      "joinMission": "Rejoignez la Mission 237",
+      "joinMission": "Rejoignez les Missions 237",
       "becomeMember": "Devenir Membre"
     },
     "mission": {
@@ -26,8 +28,8 @@
         "description": "Apprentissage hands-on avec des projets satellitaires réels pour développer l'expertise technique"
       },
       "mission237": {
-        "title": "Mission 237",
-        "description": "Notre première mission nanosatellitaire éducative, conçue pour former les ingénieurs spatiaux africains"
+        "title": "Missions 237",
+        "description": "Une série de missions spatiales africaines consolidées en constellation, ouverte et inclusive, conçue pour servir de vecteur de formation effective des Africains dans les sciences et technologies spatiales"
       },
       "continentalImpact": {
         "title": "Impact Continental",
@@ -54,8 +56,8 @@
     "stats": {
       "studentsToTrain": "Étudiants à Former",
       "africanCountries": "Pays Africains",
-      "nanosatellite": "Nanosatellite",
-      "launchYear": "Année de Lancement"
+      "nanosatellite": "Nanosatellite Camerounais",
+      "launchYear": "Année de Lancement de la première mission"
     },
     "cta": {
       "title": "Rejoignez la Révolution Spatiale Africaine",
@@ -86,7 +88,7 @@
       "focus": "Focus",
       "focusValue": "Formation spatiale africaine",
       "firstMission": "Première Mission",
-      "firstMissionValue": "Mission 237 - 2026"
+      "firstMissionValue": "Mission 237 - 2025"
     },
     "leadership": {
       "title": "Structure Organisationnelle",
@@ -120,6 +122,83 @@
       }
     }
   },
+  "mission237": {
+    "hero": {
+      "tag": "MISSION PHARE",
+      "title": "Première Mission 237",
+      "subtitle": "Notre Première Mission Nanosatellitaire Éducative",
+      "description": "La première Mission 237 est spécialement conçue pour l'accessibilité francophone et la formation pratique des professionnels spatiaux africains. Cette mission pionnière établira les fondations de notre constellation éducative.",
+      "joinButton": "Rejoindre la Mission",
+      "contributeButton": "Contribuer au Projet"
+    },
+    "timeline": {
+      "title": "Chronologie de la Mission",
+      "steps": {
+        "1": {
+          "step": "ETAPE 1",
+          "title": "Lancement Workshop",
+          "date": "03 Août 2025",
+          "description": "Atelier de lancement officiel de la Mission 237 avec présentation du projet, formation des équipes et définition des objectifs."
+        },
+        "2": {
+          "step": "ETAPE 2",
+          "title": "Ateliers de Conception",
+          "date": "Août - Oct 2025",
+          "description": "Série d'ateliers intensifs de conception et de la mission, et les formations en conception des missions spatiales."
+        },
+        "3": {
+          "step": "ETAPE 3",
+          "title": "Lancement",
+          "date": "Q2 2026",
+          "description": "Lancement du satellite de la première Mission 237 et début des opérations spatiales éducatives."
+        }
+      }
+    },
+    "budget": {
+      "title": "Budget de la Mission",
+      "total": "Budget Total",
+      "totalFCFA": "131,191,400 FCFA",
+      "contributionUnit": {
+        "label": "Contribution Unitaire",
+        "value": "1,000 EUR",
+        "description": "655,000 FCFA par participant"
+      },
+      "training": {
+        "label": "Formation Design",
+        "value": "250,000 FCFA",
+        "description": "Par étudiant pour la formation technique"
+      }
+    },
+    "objectives": {
+      "title": "Objectifs de la Mission",
+      "items": {
+        "1": {
+          "title": "Formation Pratique",
+          "description": "Former 200+ professionnels africains aux technologies spatiales"
+        },
+        "2": {
+          "title": "Accessibilité",
+          "description": "Priorité francophone pour l'inclusion des pays d'Afrique de l'Ouest et Centrale"
+        },
+        "3": {
+          "title": "Innovation",
+          "description": "Développer des solutions spatiales adaptées aux besoins africains"
+        },
+        "4": {
+          "title": "Durabilité",
+          "description": "Créer un modèle reproductible pour futures missions éducatives"
+        }
+      }
+    },
+    "cta": {
+      "title": "Contribuez ou Parrainez un Apprenant",
+      "subtitle": "Votre contribution permettra de former la prochaine génération d'ingénieurs spatiaux africains",
+      "buttons": {
+        "contribute": "Contribuez à la mission",
+        "becomeParticipant": "Devenir Participant"
+      }
+    }
+  },
   "becomeMember": {
     "hero": {
       "title": "Devenir Membre",
@@ -138,7 +217,7 @@
       },
       "continentalNetwork": {
         "title": "Réseau Continental",
-        "description": "Connexion avec des professionnels spatiaux à travers l'Afrique"
+        "description": "Connexion avec des professionnels spatiaux à travers l'Afrique et dans le monde"
       },
       "memberSpace": {
         "title": "Espace Membre",
@@ -162,9 +241,12 @@
       "automaticAccount": "Création automatique de votre compte membre",
       "digitalCard": "Accès à votre carte de membre digitale",
       "monthlyDonations": "Possibilité de donations mensuelles",
-      "exclusiveOffers": "Accès aux offres exclusives membres",
+      "exclusiveOffers": "Accès aux opportunités exclusives membres",
+      "payYearlyMembership": "Payer les frais annuels de membership : 65500 FCFA | 100 EUR | 115 USD",
       "agreeTerms": "J'accepte les termes et conditions et la politique de confidentialité de NMD ASSOCIATION",
       "createAccount": "Créer Mon Compte Membre - 30,000 FCFA",
+      "inscriptionOnly": "M'inscrire uniquement - 15000 FCFA | 25 EUR | 29 USD",
+      "inscriptionAndMembership": "M'inscrire et payer les frais annuelle de membership - 80500 FCFA | 125 EUR | 144 USD",
       "required": "*"
     },
     "nextSteps": {
@@ -177,9 +259,9 @@
         "title": "Accès Membre",
         "description": "Connectez-vous pour accéder à votre carte de membre et vos offres exclusives"
       },
-      "monthlyDonations": {
-        "title": "Donations Mensuelles",
-        "description": "Configurez vos donations mensuelles pour soutenir nos missions spatiales"
+      "access": {
+        "title": "Offres et Droits de Votes",
+        "description": "Accès aux offres exclusives et droit aux votes pour l'avancement du projet"
       }
     }
   },
@@ -199,35 +281,44 @@
     "howToContribute": {
       "title": "Comment Contribuer",
       "financialContribution": {
-        "title": "Contribution Financière",
-        "description": "Soutenez directement nos missions spatiales éducatives avec le montant de votre choix",
-        "options": [
-          "Montant libre selon vos moyens",
-          "Contribution ponctuelle ou récurrente",
-          "Support direct aux projets spatiaux"
-        ],
+        "title": "Contribution Financière (1ère MISSION 237)",
+        "description": "Soutenez directement notre première mission spatiale éducative",
+        "options": {
+          "one": "Unité de contribution : 655,000 FCFA | 1000 EUR",
+          "2": "Création direct d'un compte votant, vous octroyant de divers bénéfices et le droit de voter aux différente décisions éventuelle pour l'avancement de la mission.",
+          "3": "Support direct à la première mission 237"
+        },
         "cta": "Faire un Don"
       },
       "studentSponsorship": {
-        "title": "Parrainage d'Apprenants",
-        "description": "Financez la formation d'étudiants africains passionnés",
-        "options": [
-          "Parrainage complet: 30,000 FCFA",
-          "Parrainage de plusieurs étudiants",
-          "Suivi personnalisé de votre filleul"
-        ],
+        "title": "Parrainage d'Apprenants (1ère MISSION 237)",
+        "description": "Financez la formation d'apprenants africains passionnés grace à la première mission 237",
+        "options": {
+          "1": "Parrainage complet: 250,000 FCFA | 385 EUR",
+          "2": "Parrainage de plusieurs étudiants",
+          "3": "Création de votre compte votant"
+        },
         "cta": "Parrainer un Étudiant"
       },
-      "volunteering": {
-        "title": "Bénévolat",
-        "description": "Contribuez avec vos compétences et votre temps",
-        "options": ["Formation technique", "Mentorat des étudiants", "Support logistique"],
-        "cta": "Devenir Bénévole"
+      "donation": {
+        "title": "Donnation Libre",
+        "description": "Soutenez notre projets",
+        "options": {
+          "1": "Accès à un compte membre.", 
+          "2": "Faire un don à partir de 15000 FCFA", 
+          "3": "Donnez plus de 100,000 FCFA et devenez membre votant.",
+          "4": "Accès à des promotions et avantages."
+        },
+        "cta": "Faire un Don"
       },
       "corporatePartnership": {
         "title": "Partenariat Entreprise",
         "description": "Établissez un partenariat stratégique avec notre association",
-        "options": ["Sponsoring de missions", "Fourniture d'équipements", "Stages et emplois pour diplômés"],
+        "options": {
+          "1": "Sponsoring de missions", 
+          "2": "Fourniture d'équipements", 
+          "3": "Stages et emplois pour diplômés"
+        },
         "cta": "Devenir Partenaire"
       }
     },
@@ -391,6 +482,64 @@
       "standard": "Standard"
     }
   },
+  "login": {
+    "hero": {
+      "title": "Bon Retour",
+      "description": "Connectez-vous à votre compte membre NMD ASSOCIATION"
+    },
+    "form": {
+      "title": "Connexion Membre",
+      "email": "Adresse Email",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "password": "Mot de Passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié ?",
+      "signIn": "Se Connecter",
+      "signingIn": "Connexion en cours...",
+      "invalidCredentials": "Email ou mot de passe invalide. Veuillez réessayer.",
+      "error": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "demo": {
+      "title": "Identifiants de Démonstration",
+      "email": "Email :",
+      "password": "Mot de passe :"
+    },
+    "signUp": {
+      "text": "Vous n'avez pas de compte ?",
+      "link": "Devenir membre"
+    },
+    "help": {
+      "needHelp": "Besoin d'aide ?",
+      "about": "À propos de NMD"
+    }
+  },
+  "forgotPassword": {
+    "hero": {
+      "title": "Réinitialiser le Mot de Passe",
+      "description": "Entrez votre email pour recevoir un lien de réinitialisation"
+    },
+    "form": {
+      "title": "Mot de Passe Oublié ?",
+      "email": "Adresse Email",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "sendLink": "Envoyer le Lien",
+      "sendingLink": "Envoi du lien...",
+      "backToSignIn": "Retour à la Connexion"
+    },
+    "success": {
+      "title": "Vérifiez Votre Email",
+      "description": "Nous avons envoyé un lien de réinitialisation à",
+      "instructions": "Cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. Si vous ne voyez pas l'email, vérifiez votre dossier spam.",
+      "backToSignIn": "Retour à la Connexion",
+      "didntReceive": "Vous n'avez pas reçu l'email ?",
+      "tryAgain": "Réessayer"
+    },
+    "help": {
+      "trouble": "Vous avez encore des difficultés à accéder à votre compte ?",
+      "contact": "Contactez notre équipe de support"
+    }
+  },
   "common": {
     "currency": {
       "xaf": "FCFA",
@@ -403,7 +552,18 @@
     "save": "Enregistrer",
     "edit": "Modifier",
     "delete": "Supprimer",
+    "fees": "Frais",
     "confirm": "Confirmer",
-    "close": "Fermer"
+    "footerMessage": "Développons les compétences spatiales africaines à travers des missions pratiques et des programmes de formation innovants.",
+    "footerDate": "Fondée en Juillet 2025 • Organisation à but non lucratif",
+    "copyright": "Tous droits réservés.",
+    "close": "Fermer",
+    "contributeNow": "Contribuez Maintenant",
+    "donation": "Faire un Don",
+    "missionSupport": "Contribution à la première mission",
+    "studentSponsorship": "Parrainer un apprenant",
+    "donationDescription": "Soutenez nos projets en effectuant un don du montant de votre choix.",
+    "missionSupportDescription": "Participez à notre première mission spatiale en contribuant directement à son financement.",
+    "studentSponsorshipDescription": "Aidez un apprenant à poursuivre ses études et à développer ses compétences dans le domaine spatial."
   }
 }
