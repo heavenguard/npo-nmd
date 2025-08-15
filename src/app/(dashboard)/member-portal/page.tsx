@@ -29,7 +29,7 @@ export default function MemberPortalPage() {
   // Fixed amounts for different donation types
   const fixedAmounts = {
     membership: 65500,
-    sponsorship: 250000,
+    sponsorship: 655000,
     mission: 655000, // Example fixed amount for mission contribution
   }
 

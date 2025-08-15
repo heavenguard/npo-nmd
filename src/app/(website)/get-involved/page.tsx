@@ -167,7 +167,7 @@ export default function GetInvolvedPage() {
       setDialogDatas({
         title: s('common.studentSponsorship'),
         description:  s('common.studentSponsorshipDescription'),
-        amount: 250000,
+        amount: 655000,
         type: option.type
       });
     } 
@@ -215,8 +215,7 @@ export default function GetInvolvedPage() {
       options: [
         t('howToContribute.donation.options.1'),
         t('howToContribute.donation.options.2'),
-        t('howToContribute.donation.options.3'), 
-        t('howToContribute.donation.options.4')
+        t('howToContribute.donation.options.3')
       ],
       cta: t('howToContribute.donation.cta'),
     },

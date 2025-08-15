@@ -292,9 +292,9 @@
       },
       "studentSponsorship": {
         "title": "Parrainage d'Apprenants (1ère MISSION 237)",
-        "description": "Financez la formation d'apprenants africains passionnés grace à la première mission 237",
+        "description": "Financez la formation (Conception) d'apprenants africains passionnés grace à la première mission 237",
         "options": {
-          "1": "Parrainage complet: 250,000 FCFA | 385 EUR",
+          "1": "Parrainage pour la formation à la conception: 655,000 FCFA | 1000 EUR",
           "2": "Parrainage de plusieurs étudiants",
           "3": "Création de votre compte votant"
         },
