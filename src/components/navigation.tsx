@@ -106,7 +106,7 @@ export function Navigation() {
                 <div className="pt-4 border-t border-gray-200">
                   <Button variant="ghost" size="sm" className="text-gray-600 hover:text-blue-600 mb-4">
                     <Globe className="h-4 w-4 mr-1" />
-                    {t('language')}
+                    {t('language') === "EN" ? "FR" : "EN"}
                   </Button>
                   {user ? (
                       <Link href="/member-portal">
