@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       email: email,
       name: displayName,
       uid: userRecordLMS.uid,
-      courses: []
+      courses: ["course_1755885288009", "course_1756029344223"]
     })
     
     const transporter = nodemailer.createTransport({
