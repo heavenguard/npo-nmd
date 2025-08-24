@@ -164,7 +164,7 @@ export default function HomePage() {
                     <p className="text-sm text-gray-600">{t('mission237Highlight.unitContribution')}</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-blue-600">250,000 FCFA</p>
+                    <p className="text-2xl font-bold text-blue-600">655,000 FCFA</p>
                     <p className="text-sm text-gray-600">{t('mission237Highlight.trainingPerStudent')}</p>
                   </div>
                 </div>
