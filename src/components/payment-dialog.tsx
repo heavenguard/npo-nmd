@@ -353,8 +353,8 @@ export default function PaymentDialog({
                     <Image
                       src="/mobile-money.jpg"
                       alt="Mobile Money"
-                      width={24}
-                      height={24}
+                      width={100}
+                      height={100}
                     />
                   </Button>
                   <PaypalButtonWrapper
