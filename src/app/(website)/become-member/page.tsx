@@ -36,6 +36,7 @@ import { useAuth } from "@/context/auth-context";
 import { nanoid } from "nanoid";
 import { useTranslations } from "@/lib/useTranslations";
 import PaypalButtonWrapper from "@/components/paypalButtonWrapper";
+import Image from "next/image";
 
 export default function BecomeMemberPage() {
   const [formData, setFormData] = useState({
@@ -514,8 +515,12 @@ export default function BecomeMemberPage() {
                   className="w-full bg-blue-600 hover:bg-blue-700 mb-5 text-white py-4 h-14 text-lg"
                   disabled={!formData.agreeTerms}
                 >
-                  Mobile Money
-                  <CheckCircle className="ml-2 h-5 w-5" />
+                  <Image
+                    src="/mobile-money.jpg"
+                    alt="Mobile Money"
+                    width={24}
+                    height={24}
+                  />
                 </Button>
               </form>
               <PaypalButtonWrapper

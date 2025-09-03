@@ -26,6 +26,7 @@ import { Checkbox } from "./ui/checkbox";
 import { Button } from "./ui/button";
 import { useTranslations } from "@/lib/useTranslations";
 import PaypalButtonWrapper from "./paypalButtonWrapper";
+import Image from "next/image";
 
 interface PaymentDialogProps {
   open: boolean;
@@ -349,8 +350,12 @@ export default function PaymentDialog({
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
                     disabled={!formData.agreeTerms}
                   >
-                    {t("common.contributeNow")}
-                    <CheckCircle className="ml-2 h-5 w-5" />
+                    <Image
+                      src="/mobile-money.jpg"
+                      alt="Mobile Money"
+                      width={24}
+                      height={24}
+                    />
                   </Button>
                   <PaypalButtonWrapper
                     total={amount}
