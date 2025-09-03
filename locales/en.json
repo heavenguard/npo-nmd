@@ -245,8 +245,8 @@
       "payYearlyMembership": "Pay Membership Yearly Fees : 65500 FCFA | 100 EUR | 115 USD",
       "agreeTerms": "I accept the terms and conditions and privacy policy of NMD ASSOCIATION",
       "createAccount": "Create My Member Account - 30,000 XAF",
-      "inscriptionOnly": "Register only - 15000 FCFA | 25 EUR | 29 USD",
-      "inscriptionAndMembership": "Register and pay the annual membership fee - 80,500 CFA francs | 125 EUR | 144 USD",
+      "inscriptionOnly": "Register - 15000 FCFA",
+      "inscriptionAndMembership": "Membership fee - 80,500 CFA",
       "required": "*"
     },
     "nextSteps": {
