@@ -1,7 +1,7 @@
 import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../globals.css";
+import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
@@ -34,10 +34,12 @@ export default async function RootLayout({
         <link rel="icon" href="/assets/logoWhiteOnBlue.png" type="image/png" />
       </head>
       <body className={inter.className}>
-        <Navigation />
-        <main>{children}</main>
-        <Toaster />
-        <Footer />
+        <AuthProvider>
+          <NextIntlClientProvider>
+            {children}
+            <Toaster />
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -106,6 +106,7 @@ export default function GetInvolvedPage() {
                 await setToCollection("users", data.userId, {
                   uid: data.userId,
                   idNumber: `NMD-ASSO-${nanoid(6)}`,
+                  role: "user",
                   ...parsedFormData,
                 });
 

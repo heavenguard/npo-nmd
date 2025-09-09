@@ -348,7 +348,7 @@ export default function PaymentDialog({
                     type="submit"
                     size="lg"
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
-                    disabled={!formData.agreeTerms}
+                    disabled={!isFormValid || !formData.agreeTerms}
                   >
                     <Image
                       src="/mobile-money.jpg"

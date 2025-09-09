@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { AuthProvider } from "@/context/auth-context";
+import ProtectedRoute from "@/components/protected-route";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "NMD ASSOCIATION - Nanosatellite Missions Design",
-  description: "Promoting the development of technically competent African professionals in space sciences and technologies through practical satellite missions and hands-on learning opportunities.",
+  description:
+    "Promoting the development of technically competent African professionals in space sciences and technologies through practical satellite missions and hands-on learning opportunities.",
   icons: {
     icon: "/assets/logoWhiteOnBlue.png", // path in your public folder
     shortcut: "/assets/logoWhiteOnBlue.png",
@@ -33,9 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <ProtectedRoute>{children}</ProtectedRoute>
       </body>
     </html>
   );
