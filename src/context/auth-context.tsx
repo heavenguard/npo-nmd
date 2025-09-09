@@ -1,7 +1,17 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword, User } from "firebase/auth";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  User,
+} from "firebase/auth";
 import { auth } from "@/functions/firebase";
 import { useRouter } from "next/navigation";
 import { getADocument } from "@/functions/get-a-document";
@@ -13,7 +23,7 @@ interface AuthContextType {
   donations: any[];
   offers: any[];
   userInfo: any;
-  loading: boolean
+  loading: boolean;
   login: (email: string, password: string) => Promise<void>;
 }
 
@@ -22,9 +32,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userInfo, setUserInfo] = useState<any>(null);
-  const [donations, setDonations] = useState<any[]>([])
-  const [offers, setOffers] = useState<any[]>([])
-  const [loading, setLoading] = useState<boolean>(false);
+  const [donations, setDonations] = useState<any[]>([]);
+  const [offers, setOffers] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   const login = async (email: string, password: string) => {
@@ -40,7 +50,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (!user) {
-      setLoading(false);
       return;
     }
 
@@ -49,13 +58,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false); // only set loading to false *after* userInfo is set
     });
 
-    const unsubscribeDonations = listenToSubCollection("users", user.uid, "donations", setDonations)
-    const unsubscribeOffers = listenToSubCollection("users", user.uid, "offers", setOffers)
+    const unsubscribeDonations = listenToSubCollection(
+      "users",
+      user.uid,
+      "donations",
+      setDonations
+    );
+    const unsubscribeOffers = listenToSubCollection(
+      "users",
+      user.uid,
+      "offers",
+      setOffers
+    );
 
     return () => {
       if (unsubscribeUser) unsubscribeUser();
-      if (unsubscribeDonations) unsubscribeDonations()
-      if (unsubscribeOffers) unsubscribeOffers()
+      if (unsubscribeDonations) unsubscribeDonations();
+      if (unsubscribeOffers) unsubscribeOffers();
+      setLoading(false);
     };
   }, [user]);
 
@@ -68,7 +88,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, donations, offers, userInfo, loading, login }}>
+    <AuthContext.Provider
+      value={{ user, setUser, donations, offers, userInfo, loading, login }}
+    >
       {children}
     </AuthContext.Provider>
   );

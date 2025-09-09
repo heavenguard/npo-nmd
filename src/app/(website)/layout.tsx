@@ -29,16 +29,11 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
   return (
-    <html lang="fr">
-      <head>
-        <link rel="icon" href="/assets/logoWhiteOnBlue.png" type="image/png" />
-      </head>
-      <body className={inter.className}>
-        <Navigation />
-        <main>{children}</main>
-        <Toaster />
-        <Footer />
-      </body>
-    </html>
+    <>
+      <Navigation />
+      <main>{children}</main>
+      <Toaster />
+      <Footer />
+    </>
   );
 }

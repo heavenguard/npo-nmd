@@ -15,67 +15,6 @@ export default function AdvisoryBoardPage() {
       expertise: ["Satellite Design", "Mission Planning", "Policy Development"],
       linkedin: "#",
     },
-    {
-      name: "Prof. Kwame Asante",
-      title: "Professor of Aerospace Engineering",
-      organization: "University of Ghana",
-      image: "/professional-african-man-aerospace-professor.jpg",
-      bio: "Professor Asante is a renowned educator and researcher with over 20 years in aerospace engineering. He has published extensively on space technology applications for sustainable development and has mentored hundreds of engineers across West Africa.",
-      expertise: ["Aerospace Engineering", "Research", "Education"],
-      linkedin: "#",
-    },
-    {
-      name: "Dr. Fatima Al-Rashid",
-      title: "Chief Technology Officer",
-      organization: "SpaceTech Africa",
-      image: "/professional-african-woman-technology-executive.jpg",
-      bio: "Dr. Al-Rashid is a visionary technology leader who has successfully launched three space technology startups. She specializes in commercializing space innovations and has raised over $50M in funding for African space ventures.",
-      expertise: [
-        "Technology Leadership",
-        "Entrepreneurship",
-        "Commercialization",
-      ],
-      linkedin: "#",
-    },
-    {
-      name: "Dr. Omar Benali",
-      title: "Senior Space Engineer",
-      organization: "European Space Agency",
-      image: "/professional-middle-eastern-man-space-engineer.jpg",
-      bio: "Dr. Benali has been with ESA for over 12 years, working on major missions including ExoMars and BepiColombo. He brings deep technical expertise in spacecraft systems and has been a strong advocate for international collaboration in space exploration.",
-      expertise: [
-        "Spacecraft Systems",
-        "Mission Operations",
-        "International Cooperation",
-      ],
-      linkedin: "#",
-    },
-    {
-      name: "Dr. Grace Mwangi",
-      title: "Director of Education",
-      organization: "Kenya Space Agency",
-      image: "/professional-african-woman-education-director.jpg",
-      bio: "Dr. Mwangi leads educational initiatives that have trained over 1,000 students in space technology across East Africa. She is passionate about making space education accessible and has developed innovative curriculum frameworks adopted by multiple universities.",
-      expertise: [
-        "Space Education",
-        "Curriculum Development",
-        "Youth Engagement",
-      ],
-      linkedin: "#",
-    },
-    {
-      name: "Dr. Thierry Mbeki",
-      title: "Space Policy Advisor",
-      organization: "African Development Bank",
-      image: "/professional-african-man-policy-advisor.jpg",
-      bio: "Dr. Mbeki advises on space technology investments and policy frameworks across Africa. He has been instrumental in securing funding for major space infrastructure projects and has deep expertise in the intersection of space technology and economic development.",
-      expertise: [
-        "Policy Development",
-        "Investment Strategy",
-        "Economic Development",
-      ],
-      linkedin: "#",
-    },
   ];
 
   return (

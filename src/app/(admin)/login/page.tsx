@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Rocket, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { useAuth } from "@/context/auth-context";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -25,6 +26,7 @@ export default function AdminLoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const { login } = useAuth();
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -35,23 +37,7 @@ export default function AdminLoginPage() {
     // Simulate authentication
     try {
       // In a real app, this would be an API call
-      if (email === "admin@nponmd.org" && password === "admin123") {
-        // Store auth token/session
-        localStorage.setItem("admin_token", "authenticated");
-        localStorage.setItem(
-          "admin_user",
-          JSON.stringify({
-            email: email,
-            name: "Admin User",
-            role: "super-admin",
-          })
-        );
-
-        // Redirect to admin dashboard
-        router.push("/admin");
-      } else {
-        setError("Invalid email or password. Please try again.");
-      }
+      await login(email, password);
     } catch (err) {
       setError("An error occurred during login. Please try again.");
     } finally {
@@ -69,9 +55,11 @@ export default function AdminLoginPage() {
               <Rocket className="h-6 w-6 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-foreground">NPO NMD Admin</h1>
+          <h1 className="text-2xl font-bold text-foreground">
+            NMD ASSOCIATION
+          </h1>
           <p className="text-muted-foreground">
-            Sign in to access the admin dashboard
+            Sign in to access your member portal
           </p>
         </div>
 
@@ -80,7 +68,7 @@ export default function AdminLoginPage() {
           <CardHeader>
             <CardTitle>Sign In</CardTitle>
             <CardDescription>
-              Enter your credentials to access the admin panel
+              Enter your credentials to access the member panel
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -97,7 +85,7 @@ export default function AdminLoginPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@nponmd.org"
+                  placeholder="example@email.org"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -149,33 +137,18 @@ export default function AdminLoginPage() {
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
+            {/* <div className="mt-6 text-center">
               <Button variant="link" className="text-sm text-muted-foreground">
                 Forgot your password?
               </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Demo Credentials */}
-        <Card className="mt-4 bg-blue-50 border-blue-200">
-          <CardContent className="pt-4">
-            <div className="text-center">
-              <p className="text-sm font-medium text-blue-800 mb-2">
-                Demo Credentials
-              </p>
-              <div className="text-xs text-blue-700 space-y-1">
-                <p>Email: admin@nponmd.org</p>
-                <p>Password: admin123</p>
-              </div>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
 
         {/* Footer */}
         <div className="mt-8 text-center text-xs text-muted-foreground">
           <p>© 2024 NPO NMD. All rights reserved.</p>
-          <p>Secure admin access for authorized personnel only.</p>
+          <p>Secure portal access for authorized personnel only.</p>
         </div>
       </div>
     </div>

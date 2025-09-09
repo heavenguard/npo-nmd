@@ -30,13 +30,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ProtectedRoute>{children}</ProtectedRoute>
-      </body>
-    </html>
-  );
+  return <ProtectedRoute>{children}</ProtectedRoute>;
 }

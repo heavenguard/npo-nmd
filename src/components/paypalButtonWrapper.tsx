@@ -14,6 +14,7 @@ interface PaypalButtonWrapperProps {
   login: any;
   type?: string;
   description?: string;
+  currency: string;
 }
 
 export default function PaypalButtonWrapper({
@@ -23,18 +24,20 @@ export default function PaypalButtonWrapper({
   login,
   type,
   description,
+  currency,
 }: PaypalButtonWrapperProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paypalError, setPaypalError] = useState("");
+
   const createOrder = (data: any, actions: any) => {
     return actions.order.create({
       purchase_units: [
         {
           amount: {
             value: total.toFixed(2),
-            currency_code: "USD",
+            currency_code: currency,
           },
-          description: "Farm Market Order",
+          description: description,
         },
       ],
     });
@@ -177,7 +180,7 @@ export default function PaypalButtonWrapper({
       <PayPalScriptProvider
         options={{
           clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
-          currency: "USD",
+          currency: currency,
           intent: "capture",
         }}
       >

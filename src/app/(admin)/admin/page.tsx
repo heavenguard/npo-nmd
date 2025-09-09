@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -16,37 +18,9 @@ import {
   BookOpen,
   AlertCircle,
 } from "lucide-react";
-
-const stats = [
-  {
-    title: "Total Members",
-    value: "1,247",
-    change: "+12%",
-    changeType: "positive" as const,
-    icon: Users,
-  },
-  {
-    title: "Active Projects",
-    value: "23",
-    change: "+3",
-    changeType: "positive" as const,
-    icon: Rocket,
-  },
-  {
-    title: "Upcoming Events",
-    value: "8",
-    change: "2 this week",
-    changeType: "neutral" as const,
-    icon: Calendar,
-  },
-  {
-    title: "Website Visitors",
-    value: "15.2K",
-    change: "+8.2%",
-    changeType: "positive" as const,
-    icon: Globe,
-  },
-];
+import { useAdminContext } from "@/context/admin-context";
+import { useEffect, useState } from "react";
+import { getACollection } from "@/functions/get-a-collection";
 
 const recentActivities = [
   {
@@ -104,6 +78,49 @@ const upcomingEvents = [
 ];
 
 export default function AdminDashboard() {
+  const [members, setMembers] = useState<any[]>([]);
+
+  useEffect(() => {
+    // const unsubscribeDonations = listenToSubCollection("users", user.uid, "donations", setDonations)
+    // const unsubscribeOffers = listenToSubCollection("users", user.uid, "offers", setOffers)
+    const unsubscribeMembers = getACollection("users", setMembers);
+
+    return () => {
+      if (unsubscribeMembers) unsubscribeMembers();
+    };
+  }, []);
+
+  const stats = [
+    {
+      title: "Total Members",
+      value: members?.length ?? 0,
+      change: "+12%",
+      changeType: "positive" as const,
+      icon: Users,
+    },
+    {
+      title: "Contribution",
+      value: "-",
+      change: "coming soon",
+      changeType: "positive" as const,
+      icon: Rocket,
+    },
+    {
+      title: "Upcoming Events",
+      value: "-",
+      change: "coming soon",
+      changeType: "positive" as const,
+      icon: Calendar,
+    },
+    {
+      title: "Website Visitors",
+      value: "-",
+      change: "coming soon",
+      changeType: "positive" as const,
+      icon: Globe,
+    },
+  ];
+
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
@@ -139,7 +156,7 @@ export default function AdminDashboard() {
                     : "text-muted-foreground"
                 }`}
               >
-                {stat.change} from last month
+                {stat.change}
               </p>
             </CardContent>
           </Card>
@@ -152,7 +169,7 @@ export default function AdminDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Activity className="h-5 w-5" />
-              Recent Activities
+              Recent Activities {members?.length ?? 0}
             </CardTitle>
             <CardDescription>
               Latest updates and activities across the platform
@@ -276,7 +293,7 @@ export default function AdminDashboard() {
       </Card>
 
       {/* System Alerts */}
-      <Card className="border-yellow-200 bg-yellow-50">
+      {/* <Card className="border-yellow-200 bg-yellow-50">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-yellow-800">
             <AlertCircle className="h-5 w-5" />
@@ -296,7 +313,7 @@ export default function AdminDashboard() {
             </p>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   );
 }

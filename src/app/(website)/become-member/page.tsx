@@ -529,6 +529,7 @@ export default function BecomeMemberPage() {
                 disabled={!isFormValid}
                 formData={formData}
                 login={login}
+                currency={"USD"}
               />
             </CardContent>
           </Card>

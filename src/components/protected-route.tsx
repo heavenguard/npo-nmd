@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import Loader from "@/components/loader";
 
@@ -17,6 +17,7 @@ const ProtectedRoute = ({
   const { user, userInfo, loading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!loading) {
@@ -28,18 +29,24 @@ const ProtectedRoute = ({
         return;
       }
 
-      // user exists but role not allowed → redirect (example: homepage)
+      // userInfo might not be loaded yet
+      if (!userInfo) return;
+
+      // user exists but role not allowed → redirect
       if (allowedRoles.length > 0 && !allowedRoles.includes(userInfo.role)) {
         router.push("/");
+        return;
       }
-    }
-  }, [user, loading, router, pathname, allowedRoles]);
 
-  if (loading) {
+      setReady(true); // auth passed, render children
+    }
+  }, [user, userInfo, loading, router, pathname, allowedRoles]);
+
+  if (loading || !ready) {
     return <Loader />;
   }
 
-  return user ? <>{children}</> : null;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

@@ -363,6 +363,7 @@ export default function PaymentDialog({
                     formData={formData}
                     login={login}
                     type={type}
+                    currency={"USD"}
                     description={
                       type === "don"
                         ? "General donation"

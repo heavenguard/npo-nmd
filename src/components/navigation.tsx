@@ -74,8 +74,7 @@ export function Navigation() {
               {t("language")}
             </Button>
             {user ? (
-                  role: "user",
-                  <Link href="/member-portal">
+              <Link href="/member-portal">
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                   {t("dashboard")}
                 </Button>
