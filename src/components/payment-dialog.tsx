@@ -35,6 +35,7 @@ interface PaymentDialogProps {
   dialogDescription: string;
   amount: number;
   type: string;
+  currency?: "USD" | "EUR" | "XAF" | null;
 }
 
 export default function PaymentDialog({
@@ -44,6 +45,7 @@ export default function PaymentDialog({
   dialogDescription,
   amount,
   type,
+  currency,
 }: PaymentDialogProps) {
   const [units, setUnits] = useState(1);
   const t = useTranslations();
@@ -175,7 +177,7 @@ export default function PaymentDialog({
                   </div>
 
                   {/* Country & Profession */}
-                  <div className="grid md:grid-cols-2 gap-20">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div className="w-full">
                       <Label
                         htmlFor="country"
@@ -188,7 +190,7 @@ export default function PaymentDialog({
                           setFormData({ ...formData, country: value })
                         }
                       >
-                        <SelectTrigger className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                        <SelectTrigger className="mt-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                           <SelectValue placeholder="Sélectionnez votre pays" />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-gray-200">
@@ -347,7 +349,9 @@ export default function PaymentDialog({
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg"
+                    className={`w-full ${
+                      type === "don" && currency !== "XAF" ? "hidden" : ""
+                    } bg-blue-600 hover:bg-blue-700 text-white py-4 h-14 text-lg`}
                     disabled={!isFormValid || !formData.agreeTerms}
                   >
                     <Image
@@ -357,23 +361,29 @@ export default function PaymentDialog({
                       height={100}
                     />
                   </Button>
-                  <PaypalButtonWrapper
-                    total={amount}
-                    disabled={!isFormValid}
-                    formData={formData}
-                    login={login}
-                    type={type}
-                    currency={"USD"}
-                    description={
-                      type === "don"
-                        ? "General donation"
-                        : type === "mission"
-                        ? "Contribution to the mission"
-                        : type === "student"
-                        ? "Sponsorship for a student"
-                        : "Unspecified donation"
-                    }
-                  />
+                  <div
+                    className={`${
+                      type === "don" && currency !== "XAF" ? "block" : "hidden"
+                    }`}
+                  >
+                    <PaypalButtonWrapper
+                      total={currency ? amount : amount / 580}
+                      disabled={!isFormValid}
+                      formData={formData}
+                      login={login}
+                      type={type}
+                      currency={currency ?? "USD"}
+                      description={
+                        type === "don"
+                          ? "General donation"
+                          : type === "mission"
+                          ? "Contribution to the mission"
+                          : type === "student"
+                          ? "Sponsorship for a student"
+                          : "Unspecified donation"
+                      }
+                    />
+                  </div>
                 </form>
               </CardContent>
             </Card>

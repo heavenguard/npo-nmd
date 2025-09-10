@@ -18,6 +18,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Rocket, Eye, EyeOff, AlertCircle } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
+import Link from "next/link";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -137,11 +138,11 @@ export default function AdminLoginPage() {
               </Button>
             </form>
 
-            {/* <div className="mt-6 text-center">
+            <div className="mt-6 text-center">
               <Button variant="link" className="text-sm text-muted-foreground">
-                Forgot your password?
+                <Link href="/reset-password">Forgot your password?</Link>
               </Button>
-            </div> */}
+            </div>
           </CardContent>
         </Card>
 

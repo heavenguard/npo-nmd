@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { toast } from "sonner";
 import { setToCollection } from "@/functions/add-to-collection";
@@ -161,6 +161,11 @@ export default function PaypalButtonWrapper({
     console.error("PayPal error:", err);
     setPaypalError("An error occurred with PayPal. Please try again.");
   };
+
+  useEffect(() => {
+    console.log(total);
+    console.log(currency);
+  }, []);
 
   return (
     <div>

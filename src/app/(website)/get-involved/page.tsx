@@ -33,6 +33,13 @@ import { nanoid } from "nanoid";
 import { addToSubCollection } from "@/functions/add-to-a-sub-collection";
 import { useTranslations } from "@/lib/useTranslations";
 import Loader from "@/components/loader";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function GetInvolvedPage() {
   const [donationAmount, setDonationAmount] = useState("");
@@ -45,6 +52,7 @@ export default function GetInvolvedPage() {
     description: "",
     amount: 0,
   });
+  const [currency, setCurrency] = useState<"XAF" | "USD" | "EUR">("XAF");
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [amount, setAmount] = useState(15000);
@@ -181,7 +189,7 @@ export default function GetInvolvedPage() {
   const handleClickOptionButton = (option: any) => {
     if (option.type === "partner") {
       router.push("/contact");
-    } else if (amount < 15000 && option.type === "don") {
+    } else if (amount < 15000 && option.type === "don" && currency === "XAF") {
       toast.error("Montant minimum est de 15000 FCFA");
       return;
     } else if (option.type === "mission") {
@@ -326,20 +334,34 @@ export default function GetInvolvedPage() {
                   </ul>
                   {option.type === "don" && (
                     <div className="mb-5">
+                      <Select
+                        onValueChange={(value) =>
+                          setCurrency(value as "XAF" | "USD" | "EUR")
+                        }
+                      >
+                        <SelectTrigger className="mt-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                          <SelectValue placeholder="Sélectionnez votre dévise" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-gray-200">
+                          <SelectItem value="XAF">FCFA</SelectItem>
+                          <SelectItem value="USD">USD</SelectItem>
+                          <SelectItem value="EUR-coast">EUR</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <Label
                         htmlFor="amount"
-                        className="text-gray-900 font-medium"
+                        className="text-gray-900 mt-5 font-medium"
                       >
-                        Montant (FCFA)
+                        Montant ({currency})
                       </Label>
                       <Input
                         id="amount"
                         type="number"
                         value={amount}
-                        min={15000}
+                        min={currency === "XAF" ? 15000 : 30}
                         onChange={(e) => setAmount(parseInt(e.target.value))}
                         className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Min: 15000"
+                        placeholder={`Min: ${currency === "XAF" ? 15000 : 30}`}
                       />
                     </div>
                   )}
@@ -440,6 +462,7 @@ export default function GetInvolvedPage() {
         dialogTitle={dialogDatas.title}
         dialogDescription={dialogDatas.description}
         amount={dialogDatas.amount}
+        currency={dialogDatas.type === "don" ? currency : null}
       />
     </div>
   );

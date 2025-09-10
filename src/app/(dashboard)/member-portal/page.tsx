@@ -435,7 +435,7 @@ export default function MemberPortalPage() {
                         Donation Type
                       </Label>
                       <Select onValueChange={handleDonationTypeChange}>
-                        <SelectTrigger className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                        <SelectTrigger className="mt-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                           <SelectValue placeholder="Select donation type" />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-gray-200">

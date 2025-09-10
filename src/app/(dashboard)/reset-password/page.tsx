@@ -1,30 +1,32 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Mail, ArrowLeft, CheckCircle, Satellite } from "lucide-react"
-import Link from "next/link"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Mail, ArrowLeft, CheckCircle, Satellite } from "lucide-react";
+import Link from "next/link";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "@/functions/firebase";
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
-    // Simulate password reset request
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    // Send password reset request
+    await sendPasswordResetEmail(auth, email);
 
-    setIsLoading(false)
-    setIsSuccess(true)
-  }
+    setIsLoading(false);
+    setIsSuccess(true);
+  };
 
   if (isSuccess) {
     return (
@@ -36,7 +38,9 @@ export default function ForgotPasswordPage() {
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Check Your Email</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Check Your Email
+            </h1>
             <p className="text-gray-600 mb-8">
               We've sent a password reset link to <strong>{email}</strong>
             </p>
@@ -46,8 +50,8 @@ export default function ForgotPasswordPage() {
             <CardContent className="p-8 text-center">
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  Click the link in the email to reset your password. If you don't see the email, check your spam
-                  folder.
+                  Click the link in the email to reset your password. If you
+                  don't see the email, check your spam folder.
                 </p>
                 <div className="pt-4">
                   <Link href="/login">
@@ -64,14 +68,17 @@ export default function ForgotPasswordPage() {
           <div className="text-center">
             <p className="text-sm text-gray-500">
               Didn't receive the email?{" "}
-              <button onClick={() => setIsSuccess(false)} className="text-blue-600 hover:text-blue-500 font-medium">
+              <button
+                onClick={() => setIsSuccess(false)}
+                className="text-blue-600 hover:text-blue-500 font-medium"
+              >
                 Try again
               </button>
             </p>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -84,14 +91,20 @@ export default function ForgotPasswordPage() {
               <Satellite className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Reset Password</h1>
-          <p className="text-gray-600">Enter your email to receive a password reset link</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Reset Password
+          </h1>
+          <p className="text-gray-600">
+            Enter your email to receive a password reset link
+          </p>
         </div>
 
         {/* Reset Form */}
         <Card className="border-0 shadow-lg bg-white">
           <CardHeader className="text-center pb-6">
-            <CardTitle className="text-2xl font-bold text-gray-900">Forgot Your Password?</CardTitle>
+            <CardTitle className="text-2xl font-bold text-gray-900">
+              Forgot Your Password?
+            </CardTitle>
           </CardHeader>
           <CardContent className="p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -126,7 +139,10 @@ export default function ForgotPasswordPage() {
             </form>
 
             <div className="mt-6 text-center">
-              <Link href="/login" className="text-blue-600 hover:text-blue-500 font-medium inline-flex items-center">
+              <Link
+                href="/login"
+                className="text-blue-600 hover:text-blue-500 font-medium inline-flex items-center"
+              >
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 Back to Sign In
               </Link>
@@ -136,12 +152,17 @@ export default function ForgotPasswordPage() {
 
         {/* Additional Help */}
         <div className="text-center">
-          <p className="text-gray-600 mb-4">Still having trouble accessing your account?</p>
-          <Link href="/contact" className="text-blue-600 hover:text-blue-500 font-medium">
+          <p className="text-gray-600 mb-4">
+            Still having trouble accessing your account?
+          </p>
+          <Link
+            href="/contact"
+            className="text-blue-600 hover:text-blue-500 font-medium"
+          >
             Contact our support team
           </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }

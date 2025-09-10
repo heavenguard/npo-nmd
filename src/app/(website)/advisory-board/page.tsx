@@ -7,13 +7,13 @@ import Link from "next/link";
 export default function AdvisoryBoardPage() {
   const advisoryMembers = [
     {
-      name: "Dr. Amina Hassan",
-      title: "Space Systems Engineer",
+      name: "Prof Jordi Puig-Suari",
+      title: "Head of Advisory board",
       organization: "African Space Research Centre",
-      image: "/professional-african-woman-space-scientist.jpg",
-      bio: "Dr. Hassan brings over 15 years of experience in satellite systems design and has led multiple successful space missions across Africa. She holds a PhD in Aerospace Engineering from MIT and has been instrumental in developing space technology policies for the African Union.",
+      image: "/assets/jordi.jpg",
+      bio: "Dr. Puig-Suari received B.S., M.S., and Ph.D. Degrees in Aeronautics and Astronautics from Purdue University. Dr.Puig-Suari is a professor in the Aerospace Engineering Department at CalPoly, San Luis Obispo.\n\nIn 1999, Dr Puig-Suari and Prof. Bob Twiggs at Stanford developed the CubeSat standard. Dr. Puig-Suari’s teamwas responsible for the development of the standard CubeSat deployer (the P-POD) and has supported launches forover 130 CubeSats in the U.S. and abroad.\n\nIn 2011, Dr. Puig-Suari co-founded Tyvak Nano-satellite Systems to support the commercial CubeSat market.",
       expertise: ["Satellite Design", "Mission Planning", "Policy Development"],
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/jordi-puig-suari-44428a9",
     },
   ];
 
@@ -102,14 +102,6 @@ export default function AdvisoryBoardPage() {
                     >
                       <Linkedin className="h-3 w-3 mr-1" />
                       LinkedIn
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="text-xs bg-transparent"
-                    >
-                      <Mail className="h-3 w-3 mr-1" />
-                      Contact
                     </Button>
                   </div>
                 </CardContent>
