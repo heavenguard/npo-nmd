@@ -20,7 +20,7 @@ export default function AdvisoryBoardPage() {
       title: "Member of Advisory board",
       organization: "AAC Space Africa",
       image: "/assets/robert.jpg",
-      bio: "As the founding Director of the Satellite Programme at CPUT I spearheaded the nanosatellite industry in South Africa (and Africa). Under my leadership the group developed Africa’s first nanosatellite, ZACube-1, that has been launched into space on 21 November 2013. CPUT has since launched its second nanosatellite, ZACube-2, in 2019 and a mini-constellation of three satellites in 2022. The CPUT Satellite Programme has made a significant contribution to human capacity development and community awareness in the national and regional space industries.",
+      bio: "Professor Robert van Zyl is a leading South African engineer and space technology pioneer. He was the founding Director of the Satellite Programme at Cape Peninsula University of Technology, where he oversaw the development of Africa’s first nanosatellite, ZACube-1. He also serves as Managing Director of AAC Space Africa, advancing small satellite technologies across the continent. As Director of the French South African Institute of Technology, he leads innovation in space research and education. His work has greatly influenced Africa’s space industry and inspired a new generation of engineers.",
       expertise: ["Satellite Design", "Mission Planning", "Policy Development"],
       linkedin: "https://www.linkedin.com/in/robert-van-zyl-8b78624/",
     },
