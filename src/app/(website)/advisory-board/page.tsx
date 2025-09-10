@@ -9,7 +9,7 @@ export default function AdvisoryBoardPage() {
     {
       name: "Prof Jordi Puig-Suari",
       title: "Head of Advisory board",
-      organization: "",
+      organization: "NMD Association",
       image: "/assets/jordi.jpg",
       bio: "Dr. Puig-Suari received B.S., M.S., and Ph.D. Degrees in Aeronautics and Astronautics from Purdue University. Dr.Puig-Suari is a professor in the Aerospace Engineering Department at CalPoly, San Luis Obispo.\n\nIn 1999, Dr Puig-Suari and Prof. Bob Twiggs at Stanford developed the CubeSat standard. Dr. Puig-Suari’s teamwas responsible for the development of the standard CubeSat deployer (the P-POD) and has supported launches forover 130 CubeSats in the U.S. and abroad.\n\nIn 2011, Dr. Puig-Suari co-founded Tyvak Nano-satellite Systems to support the commercial CubeSat market.",
       expertise: ["Satellite Design", "Mission Planning", "Policy Development"],
@@ -18,7 +18,7 @@ export default function AdvisoryBoardPage() {
     {
       name: "Prof Robert van Zyl",
       title: "Member of Advisory board",
-      organization: "AAC Space Africa",
+      organization: "NMD Association",
       image: "/assets/robert.jpg",
       bio: "Professor Robert van Zyl is a leading South African engineer and space technology pioneer. He was the founding Director of the Satellite Programme at Cape Peninsula University of Technology, where he oversaw the development of Africa’s first nanosatellite, ZACube-1. He also serves as Managing Director of AAC Space Africa, advancing small satellite technologies across the continent. As Director of the French South African Institute of Technology, he leads innovation in space research and education. His work has greatly influenced Africa’s space industry and inspired a new generation of engineers.",
       expertise: ["Satellite Design", "Mission Planning", "Policy Development"],
@@ -27,12 +27,11 @@ export default function AdvisoryBoardPage() {
     {
       name: "Prof Laurent Dusseau",
       title: "Member of Advisory board",
-      organization: "Centre spatial de l’université de Montpellier (CSUM)",
+      organization: "NMD Association",
       image: "/assets/laurent.jpg",
       bio: "Le professeur d’université sétois est le père du Centre spatial de l’université de Montpellier (CSUM), qu’il dirige, ainsi que la fondation qui lui est associée. Avec ses étudiants, ses ingénieurs, cet homme de 56 ans, affable, féru de technologies a conquis une parcelle d’espace grâce à ses nanosatellites.",
       expertise: ["Nanosatellites", "Mission Planning", "Policy Development"],
-      linkedin:
-        "https://digitalmag.ci/pr-laurent-dusseau-universite-de-montpelier-avec-les-satellites-on-peut-faire-emerger-un-tissu-dinnovations-en-cote-divoire/",
+      linkedin: "https://fr.linkedin.com/company/csumontpellier",
     },
   ];
 
