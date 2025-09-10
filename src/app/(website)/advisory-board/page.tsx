@@ -96,7 +96,7 @@ export default function AdvisoryBoardPage() {
                         {member.organization}
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      {/* <div className="flex flex-wrap gap-2 mb-4">
                         {member.expertise.map((skill, skillIndex) => (
                           <span
                             key={skillIndex}
@@ -105,7 +105,7 @@ export default function AdvisoryBoardPage() {
                             {skill}
                           </span>
                         ))}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 

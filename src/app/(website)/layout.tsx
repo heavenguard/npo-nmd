@@ -11,17 +11,6 @@ import { getLocale } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "NMD ASSOCIATION - Nanosatellite Missions Design",
-  description:
-    "Promoting the development of technically competent African professionals in space sciences and technologies through practical satellite missions and hands-on learning opportunities.",
-  icons: {
-    icon: "/assets/logoWhiteOnBlue.png", // path in your public folder
-    shortcut: "/assets/logoWhiteOnBlue.png",
-    apple: "/assets/logoWhiteOnBlue.png",
-  },
-};
-
 export default async function RootLayout({
   children,
 }: {
