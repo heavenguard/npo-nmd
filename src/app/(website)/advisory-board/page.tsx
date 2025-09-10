@@ -29,7 +29,7 @@ export default function AdvisoryBoardPage() {
       title: "Member of Advisory board",
       organization: "NMD Association",
       image: "/assets/laurent.jpg",
-      bio: "Le professeur d’université sétois est le père du Centre spatial de l’université de Montpellier (CSUM), qu’il dirige, ainsi que la fondation qui lui est associée. Avec ses étudiants, ses ingénieurs, cet homme de 56 ans, affable, féru de technologies a conquis une parcelle d’espace grâce à ses nanosatellites.",
+      bio: "Professor Laurent Dusseau, from Sète, is the founder of the Montpellier University Space Center (CSUM), which he directs, along with its associated foundation. Together with his students and engineers, this 56-year-old, affable technology enthusiast has carved out a piece of space thanks to his nanosatellites.",
       expertise: ["Nanosatellites", "Mission Planning", "Policy Development"],
       linkedin: "https://fr.linkedin.com/company/csumontpellier",
     },
