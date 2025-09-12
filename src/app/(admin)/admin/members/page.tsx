@@ -39,57 +39,12 @@ import {
   Edit,
   Trash2,
 } from "lucide-react";
-
-const members = [
-  {
-    id: 1,
-    name: "Dr. Sarah Johnson",
-    email: "sarah.johnson@email.com",
-    phone: "+1 (555) 123-4567",
-    location: "Lagos, Nigeria",
-    role: "Space Engineer",
-    status: "active",
-    joinDate: "2023-01-15",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    id: 2,
-    name: "Prof. Michael Chen",
-    email: "m.chen@university.edu",
-    phone: "+1 (555) 234-5678",
-    location: "Cape Town, South Africa",
-    role: "Research Director",
-    status: "active",
-    joinDate: "2022-11-20",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    id: 3,
-    name: "Dr. Amara Okafor",
-    email: "amara.okafor@space.org",
-    phone: "+1 (555) 345-6789",
-    location: "Nairobi, Kenya",
-    role: "Mission Specialist",
-    status: "pending",
-    joinDate: "2024-02-10",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    id: 4,
-    name: "Eng. David Mbeki",
-    email: "d.mbeki@tech.com",
-    phone: "+1 (555) 456-7890",
-    location: "Accra, Ghana",
-    role: "Systems Analyst",
-    status: "active",
-    joinDate: "2023-08-05",
-    avatar: "/placeholder.svg?height=40&width=40",
-  },
-];
+import { useAdminContext } from "@/context/admin-context";
 
 export default function MembersPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const { members } = useAdminContext();
 
   const filteredMembers = members.filter((member) => {
     const matchesSearch =
@@ -213,7 +168,7 @@ export default function MembersPage() {
                 <TableHead>Member</TableHead>
                 <TableHead>Contact</TableHead>
                 <TableHead>Role</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead>Total Contribution</TableHead>
                 <TableHead>Join Date</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
@@ -230,7 +185,7 @@ export default function MembersPage() {
                         <AvatarFallback>
                           {member.name
                             .split(" ")
-                            .map((n) => n[0])
+                            .map((n: any) => n[0])
                             .join("")}
                         </AvatarFallback>
                       </Avatar>
@@ -238,7 +193,7 @@ export default function MembersPage() {
                         <div className="font-medium">{member.name}</div>
                         <div className="text-sm text-muted-foreground flex items-center gap-1">
                           <MapPin className="h-3 w-3" />
-                          {member.location}
+                          {member.country}
                         </div>
                       </div>
                     </div>
@@ -256,7 +211,7 @@ export default function MembersPage() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="outline">{member.role}</Badge>
+                    <Badge variant="outline">{member.role ?? "members"}</Badge>
                   </TableCell>
                   <TableCell>
                     <Badge
@@ -272,7 +227,7 @@ export default function MembersPage() {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    {new Date(member.joinDate).toLocaleDateString()}
+                    {member.createdAt?.toDate().toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">

@@ -63,6 +63,7 @@ export default function GetInvolvedPage() {
 
   useEffect(() => {
     const savedDepositId = localStorage.getItem("depositId");
+    localStorage.removeItem("depositId");
     console.log(savedDepositId);
     if (savedDepositId) {
       setDepositId(savedDepositId);
@@ -345,7 +346,7 @@ export default function GetInvolvedPage() {
                         <SelectContent className="bg-white border-gray-200">
                           <SelectItem value="XAF">FCFA</SelectItem>
                           <SelectItem value="USD">USD</SelectItem>
-                          <SelectItem value="EUR-coast">EUR</SelectItem>
+                          <SelectItem value="EUR">EUR</SelectItem>
                         </SelectContent>
                       </Select>
                       <Label

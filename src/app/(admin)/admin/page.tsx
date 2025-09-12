@@ -21,6 +21,7 @@ import {
 import { useAdminContext } from "@/context/admin-context";
 import { useEffect, useState } from "react";
 import { getACollection } from "@/functions/get-a-collection";
+import { toast } from "sonner";
 
 const recentActivities = [
   {
@@ -78,17 +79,22 @@ const upcomingEvents = [
 ];
 
 export default function AdminDashboard() {
-  const [members, setMembers] = useState<any[]>([]);
+  // const [members, setMembers] = useState<any[]>([]);
+  const { members } = useAdminContext();
 
-  useEffect(() => {
-    // const unsubscribeDonations = listenToSubCollection("users", user.uid, "donations", setDonations)
-    // const unsubscribeOffers = listenToSubCollection("users", user.uid, "offers", setOffers)
-    const unsubscribeMembers = getACollection("users", setMembers);
+  // useEffect(() => {
+  //   // const unsubscribeDonations = listenToSubCollection("users", user.uid, "donations", setDonations)
+  //   // const unsubscribeOffers = listenToSubCollection("users", user.uid, "offers", setOffers)
+  //   const unsubscribeMembers = getACollection("users", setMembers);
 
-    return () => {
-      if (unsubscribeMembers) unsubscribeMembers();
-    };
-  }, []);
+  //   return () => {
+  //     if (unsubscribeMembers) unsubscribeMembers();
+  //   };
+  // }, []);
+
+  const toastComingSoon = () => {
+    toast.success("Coming soon");
+  };
 
   const stats = [
     {
@@ -177,7 +183,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentActivities.map((activity) => (
+              {/* {recentActivities.map((activity) => (
                 <div key={activity.id} className="flex items-start gap-3">
                   <div
                     className={`w-2 h-2 rounded-full mt-2 ${
@@ -197,7 +203,8 @@ export default function AdminDashboard() {
                     </p>
                   </div>
                 </div>
-              ))}
+              ))} */}
+              Coming soon
             </div>
             <Button variant="outline" className="w-full mt-4 bg-transparent">
               View All Activities
@@ -218,7 +225,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {upcomingEvents.map((event) => (
+              {/* {upcomingEvents.map((event) => (
                 <div
                   key={event.id}
                   className="flex items-center justify-between"
@@ -244,7 +251,8 @@ export default function AdminDashboard() {
                     </Badge>
                   </div>
                 </div>
-              ))}
+              ))} */}
+              Coming soon
             </div>
             <Button variant="outline" className="w-full mt-4 bg-transparent">
               Manage Events
@@ -270,6 +278,7 @@ export default function AdminDashboard() {
             <Button
               variant="outline"
               className="h-20 flex-col gap-2 bg-transparent"
+              onClick={toastComingSoon}
             >
               <Rocket className="h-5 w-5" />
               New Project
@@ -277,6 +286,7 @@ export default function AdminDashboard() {
             <Button
               variant="outline"
               className="h-20 flex-col gap-2 bg-transparent"
+              onClick={toastComingSoon}
             >
               <Calendar className="h-5 w-5" />
               Schedule Event
@@ -284,6 +294,7 @@ export default function AdminDashboard() {
             <Button
               variant="outline"
               className="h-20 flex-col gap-2 bg-transparent"
+              onClick={toastComingSoon}
             >
               <BookOpen className="h-5 w-5" />
               Create Content

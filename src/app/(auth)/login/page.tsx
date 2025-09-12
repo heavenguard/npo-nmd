@@ -52,13 +52,11 @@ export default function AdminLoginPage() {
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600">
               <Rocket className="h-6 w-6 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-foreground">
-            NMD ASSOCIATION
-          </h1>
+          <h1 className="text-2xl text-blue-600 font-bold">NMD ASSOCIATION</h1>
           <p className="text-muted-foreground">
             Sign in to access your member portal
           </p>
@@ -133,7 +131,11 @@ export default function AdminLoginPage() {
                 </Label>
               </div>
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                disabled={isLoading}
+              >
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
             </form>

@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
@@ -13,14 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import {
   User,
   CreditCard,
@@ -46,24 +36,15 @@ import {
 } from "@/functions/add-to-a-sub-collection";
 import Loader from "@/components/loader";
 import Link from "next/link";
+import { PaymentFlow } from "@/components/member-donation-dialog";
 
 export default function MemberPortalPage() {
   const [donationDialogOpen, setDonationDialogOpen] = useState(false);
   const [historyDialogOpen, setHistoryDialogOpen] = useState(false);
-  const [donationType, setDonationType] = useState("");
-  const [donationAmount, setDonationAmount] = useState<any>(0);
-  const [donationNote, setDonationNote] = useState("");
   const { userInfo, donations, offers, user } = useAuth();
   const [depositId, setDepositId] = useState("");
   const [loading, setLoading] = useState(false);
   const [isRegisteringLoading, setIsRegisteringLoadin] = useState(false);
-
-  // Fixed amounts for different donation types
-  const fixedAmounts = {
-    membership: 65500,
-    sponsorship: 655000,
-    mission: 655000,
-  };
 
   const memberOffers = [
     {
@@ -76,34 +57,6 @@ export default function MemberPortalPage() {
       type: "Training",
     },
   ];
-
-  const handleDonationTypeChange = (type: string) => {
-    setDonationType(type);
-    // Set fixed amount for non-donation types, clear amount for donation
-    if (type === "donation") {
-      setDonationAmount("");
-    } else if (type === "membership") {
-      setDonationAmount(fixedAmounts.membership);
-    } else if (type === "sponsorship") {
-      setDonationAmount(fixedAmounts.sponsorship);
-    } else if (type === "mission") {
-      setDonationAmount(fixedAmounts.mission);
-    }
-  };
-
-  const handleDonation = () => {
-    // Handle donation submission
-    console.log("Donation submitted:", {
-      donationType,
-      donationAmount,
-      donationNote,
-    });
-    setDonationDialogOpen(false);
-    // Reset form
-    setDonationType("");
-    setDonationAmount("");
-    setDonationNote("");
-  };
 
   const getDonationTypeIcon = (type: string) => {
     switch (type) {
@@ -130,21 +83,6 @@ export default function MemberPortalPage() {
         return "bg-red-100 text-red-800";
       default:
         return "bg-gray-100 text-gray-800";
-    }
-  };
-
-  const getDonationTypeDescription = (type: string) => {
-    switch (type) {
-      case "donation":
-        return "Support our general activities and mission";
-      case "membership":
-        return "Annual membership fee - 65,500 XAF";
-      case "sponsorship":
-        return "Sponsor a student's training - 250,000 XAF";
-      case "mission":
-        return "Contribute to the first Mission 237 development - 655,000 XAF";
-      default:
-        return "";
     }
   };
 
@@ -214,9 +152,6 @@ export default function MemberPortalPage() {
                 toast.success("New user has been added successfully");
 
                 // Reset form and close dialog
-                setDonationType("");
-                setDonationAmount("");
-                setDonationNote("");
 
                 // Clear localStorage
                 localStorage.removeItem("depositId");
@@ -247,9 +182,11 @@ export default function MemberPortalPage() {
     return () => clearInterval(intervalId);
   }, [depositId, user]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleSubmit = async (
+    donationType: string,
+    donationAmount: number,
+    donationNote: string
+  ) => {
     const body = JSON.stringify({
       amount: donationAmount,
       currentUrl: "https://npo.nanosatellitemissions.com//member-portal",
@@ -410,139 +347,7 @@ export default function MemberPortalPage() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Donation Dialog */}
-              <Dialog
-                open={donationDialogOpen}
-                onOpenChange={setDonationDialogOpen}
-              >
-                <DialogTrigger asChild>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white flex-1">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Make a Donation
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md bg-white">
-                  <DialogHeader>
-                    <DialogTitle className="text-gray-900">
-                      Make a Donation
-                    </DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-6 py-4">
-                    <div>
-                      <Label
-                        htmlFor="donation-type"
-                        className="text-gray-900 font-medium"
-                      >
-                        Donation Type
-                      </Label>
-                      <Select onValueChange={handleDonationTypeChange}>
-                        <SelectTrigger className="mt-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                          <SelectValue placeholder="Select donation type" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white border-gray-200">
-                          <SelectItem value="donation">
-                            General Donation
-                          </SelectItem>
-                          <SelectItem value="membership">
-                            Membership Payment
-                          </SelectItem>
-                          <SelectItem value="sponsorship">
-                            Student Sponsorship
-                          </SelectItem>
-                          <SelectItem value="mission">
-                            Mission Contribution
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                      {donationType && (
-                        <p className="text-sm text-gray-600 mt-2">
-                          {getDonationTypeDescription(donationType)}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label
-                        htmlFor="amount"
-                        className="text-gray-900 font-medium"
-                      >
-                        Amount (XAF)
-                      </Label>
-                      {donationType === "donation" ? (
-                        <Input
-                          id="amount"
-                          type="number"
-                          value={donationAmount}
-                          onChange={(e) => setDonationAmount(e.target.value)}
-                          className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Enter amount"
-                        />
-                      ) : (
-                        <div className="mt-2 p-3 bg-gray-50 border border-gray-300 rounded-md">
-                          <div className="flex items-center justify-between">
-                            <span className="text-gray-900 font-semibold">
-                              {donationAmount
-                                ? Number.parseInt(
-                                    donationAmount
-                                  ).toLocaleString()
-                                : "0"}{" "}
-                              XAF
-                            </span>
-                            <span className="text-sm text-gray-600">
-                              Fixed amount
-                            </span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label
-                        htmlFor="note"
-                        className="text-gray-900 font-medium"
-                      >
-                        Note (Optional)
-                      </Label>
-                      <Textarea
-                        id="note"
-                        value={donationNote}
-                        onChange={(e) => setDonationNote(e.target.value)}
-                        className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Add a note for your donation..."
-                        rows={3}
-                      />
-                    </div>
-
-                    <div className="flex gap-3">
-                      <Button
-                        onClick={() => setDonationDialogOpen(false)}
-                        variant="outline"
-                        className="flex-1"
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        onClick={handleSubmit}
-                        className="bg-blue-600 hover:bg-blue-700 text-white flex-1"
-                        disabled={!donationType || !donationAmount}
-                      >
-                        {donationType === "donation"
-                          ? "Donate"
-                          : donationType === "membership"
-                          ? "Pay Membership"
-                          : donationType === "sponsorship"
-                          ? "Sponsor Student"
-                          : donationType === "mission"
-                          ? "Contribute to Mission"
-                          : "Proceed"}
-                        {donationAmount &&
-                          ` - ${Number.parseInt(
-                            donationAmount
-                          ).toLocaleString()} XAF`}
-                      </Button>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <PaymentFlow handleSubmit={handleSubmit} />
 
               {/* Donation History Dialog */}
               <Dialog
