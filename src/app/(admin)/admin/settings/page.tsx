@@ -32,6 +32,7 @@ import {
   Mail,
   Save,
 } from "lucide-react";
+import { useAuth } from "@/context/auth-context";
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState({
@@ -40,6 +41,7 @@ export default function SettingsPage() {
     sms: false,
     marketing: true,
   });
+  const { userInfo } = useAuth();
 
   return (
     <div className="space-y-6">
@@ -52,13 +54,13 @@ export default function SettingsPage() {
       </div>
 
       <Tabs defaultValue="general" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
           <TabsTrigger value="integrations">Integrations</TabsTrigger>
-          <TabsTrigger value="advanced">Advanced</TabsTrigger>
+          {/* <TabsTrigger value="advanced">Advanced</TabsTrigger> */}
         </TabsList>
 
         {/* General Settings */}
@@ -77,7 +79,11 @@ export default function SettingsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="org-name">Organization Name</Label>
-                  <Input id="org-name" defaultValue="NPO NMD" />
+                  <Input
+                    readOnly
+                    id="org-name"
+                    defaultValue="NMD ASSOCIATION"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="org-type">Organization Type</Label>
@@ -99,33 +105,31 @@ export default function SettingsPage() {
                   </Select>
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="org-description">Description</Label>
-                <Textarea
-                  id="org-description"
-                  defaultValue="Advancing space initiatives across Africa through innovation, education, and collaboration."
-                  rows={3}
-                />
-              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="org-email">Contact Email</Label>
                   <Input
+                    readOnly
                     id="org-email"
                     type="email"
-                    defaultValue="contact@nponmd.org"
+                    defaultValue="contact@npo.nanosatellitemissions.com"
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="org-phone">Contact Phone</Label>
-                  <Input id="org-phone" defaultValue="+1 (234) 567-8900" />
+                  <Input
+                    readOnly
+                    id="org-phone"
+                    defaultValue="+237 691 341 013"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="org-address">Address</Label>
                 <Textarea
+                  readOnly
                   id="org-address"
-                  defaultValue="123 Space Innovation Drive, Lagos, Nigeria"
+                  defaultValue="Immeuble Face Agence SCB, Carrefour Express, Cité des Palmiers, Douala"
                   rows={2}
                 />
               </div>
@@ -153,7 +157,12 @@ export default function SettingsPage() {
               <div className="flex items-center gap-4">
                 <Avatar className="h-20 w-20">
                   <AvatarImage src="/placeholder.svg?height=80&width=80" />
-                  <AvatarFallback>AD</AvatarFallback>
+                  <AvatarFallback>
+                    {userInfo?.name
+                      ?.split(" ")
+                      .map((n: any) => n[0])
+                      .join("") || "AD"}
+                  </AvatarFallback>
                 </Avatar>
                 <div>
                   <Button variant="outline">Change Avatar</Button>
@@ -164,12 +173,8 @@ export default function SettingsPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="first-name">First Name</Label>
-                  <Input id="first-name" defaultValue="Admin" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="last-name">Last Name</Label>
-                  <Input id="last-name" defaultValue="User" />
+                  <Label htmlFor="first-name">Full Name</Label>
+                  <Input id="first-name" defaultValue={userInfo?.name} />
                 </div>
               </div>
               <div className="space-y-2">
@@ -177,23 +182,8 @@ export default function SettingsPage() {
                 <Input
                   id="admin-email"
                   type="email"
-                  defaultValue="admin@nponmd.org"
+                  defaultValue={userInfo?.email}
                 />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="admin-role">Role</Label>
-                <Select defaultValue="super-admin">
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="super-admin">
-                      Super Administrator
-                    </SelectItem>
-                    <SelectItem value="admin">Administrator</SelectItem>
-                    <SelectItem value="moderator">Moderator</SelectItem>
-                  </SelectContent>
-                </Select>
               </div>
               <Button className="gap-2">
                 <Save className="h-4 w-4" />
@@ -327,7 +317,7 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          {/* <Card>
             <CardHeader>
               <CardTitle>Two-Factor Authentication</CardTitle>
               <CardDescription>
@@ -345,7 +335,7 @@ export default function SettingsPage() {
                 <Button variant="outline">Setup 2FA</Button>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </TabsContent>
 
         {/* Integrations */}

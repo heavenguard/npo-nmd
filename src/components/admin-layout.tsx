@@ -31,6 +31,7 @@ import {
   Globe,
   BookOpen,
 } from "lucide-react";
+import { useAuth } from "@/context/auth-context";
 
 const navigationItems = [
   {
@@ -82,7 +83,7 @@ export default function AdminLayoutContent({
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
-  //   const { user, logout } = useAuth()
+  const { userInfo } = useAuth();
 
   // Don't show layout for login page
   if (pathname === "/admin/login") {
@@ -136,17 +137,16 @@ export default function AdminLayoutContent({
               <Avatar className="h-8 w-8">
                 <AvatarImage src="/placeholder.svg?height=32&width=32" />
                 <AvatarFallback>
-                  {/* {user?.name
+                  {userInfo?.name
                     ?.split(" ")
-                    .map((n) => n[0])
-                    .join("") || "AD"} */}
-                  AD
+                    .map((n: any) => n[0])
+                    .join("") || "AD"}
                 </AvatarFallback>
               </Avatar>
               <div className="flex flex-col items-start text-sm">
-                <span className="font-medium">{"Admin User"}</span>
+                <span className="font-medium">{userInfo?.name}</span>
                 <span className="text-xs text-sidebar-foreground/60">
-                  {"admin@nponmd.org"}
+                  {userInfo.email}
                 </span>
               </div>
             </Button>
@@ -222,14 +222,13 @@ export default function AdminLayoutContent({
                   <Avatar className="h-8 w-8">
                     <AvatarImage src="/placeholder.svg?height=32&width=32" />
                     <AvatarFallback>
-                      {/* {user?.name
+                      {userInfo?.name
                         ?.split(" ")
-                        .map((n) => n[0])
-                        .join("") || "AD"} */}
-                      AD
+                        .map((n: any) => n[0])
+                        .join("") || "AD"}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden md:inline">{"Admin User"}</span>
+                  <span className="hidden md:inline">{userInfo?.name}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">

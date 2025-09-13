@@ -33,6 +33,7 @@ import {
   MousePointer,
   Clock,
 } from "lucide-react";
+import { useState } from "react";
 
 const websiteTrafficData = [
   { month: "Jan", visitors: 4200, pageViews: 12600 },
@@ -68,6 +69,11 @@ const topPages = [
 ];
 
 export default function AnalyticsPage() {
+  const [coming, setComing] = useState(true);
+
+  if (coming) {
+    return <>Coming Soon</>;
+  }
   return (
     <div className="space-y-6">
       {/* Header */}

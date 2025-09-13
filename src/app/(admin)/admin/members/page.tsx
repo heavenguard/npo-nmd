@@ -110,25 +110,46 @@ export default function MembersPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-4">
-            <div className="text-2xl font-bold text-primary">1,247</div>
+            <div className="text-2xl font-bold text-primary">
+              {members.length}
+            </div>
             <p className="text-sm text-muted-foreground">Total Members</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <div className="text-2xl font-bold text-green-600">1,198</div>
+            <div className="text-2xl font-bold text-green-600">
+              {members.length}
+            </div>
             <p className="text-sm text-muted-foreground">Active Members</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <div className="text-2xl font-bold text-yellow-600">49</div>
-            <p className="text-sm text-muted-foreground">Pending Approval</p>
+            <div className="text-2xl font-bold text-yellow-600">
+              {members.length}
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Total Contributed more than FCFA 15k
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <div className="text-2xl font-bold text-accent">23</div>
+            <div className="text-2xl font-bold">
+              {
+                members.filter((member) => {
+                  if (!member.createdAt) return false; // skip if missing
+                  const date = member.createdAt.toDate(); // Firestore Timestamp → JS Date
+
+                  const now = new Date();
+                  return (
+                    date.getMonth() === now.getMonth() &&
+                    date.getFullYear() === now.getFullYear()
+                  );
+                }).length
+              }
+            </div>
             <p className="text-sm text-muted-foreground">New This Month</p>
           </CardContent>
         </Card>
