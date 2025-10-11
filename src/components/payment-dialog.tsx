@@ -107,9 +107,9 @@ export default function PaymentDialog({
         })
       );
 
-      if (data?.redirectUrl) {
-        window.location.href = data.redirectUrl;
-      }
+      // if (data?.redirectUrl) {
+      //   window.location.href = data.redirectUrl;
+      // }
 
       toast.success("Please complete the payment on your mobile device.");
     } catch (error) {
@@ -175,6 +175,7 @@ export default function PaymentDialog({
                       />
                     </div>
                   </div>
+
 
                   {/* Country & Profession */}
                   <div className="grid md:grid-cols-2 gap-6">

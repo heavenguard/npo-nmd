@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     const payload = {
         depositId: newDepositId,
         returnUrl: currentUrl,
-        customerMessage: `Achat payLive ${product}`.slice(0, 22),
+        customerMessage: `NMD ASSOCIATION ${product}`.slice(0, 22),
         amountDetails: {
             amount: String(amount),
             currency: "XAF"

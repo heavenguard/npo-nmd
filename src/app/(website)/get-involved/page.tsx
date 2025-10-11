@@ -40,6 +40,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import contributionMethods from "./contribution-methods"
+import PricingPlans from "./contribution-methods";
+
+
 
 export default function GetInvolvedPage() {
   const [donationAmount, setDonationAmount] = useState("");
@@ -69,6 +73,83 @@ export default function GetInvolvedPage() {
       setDepositId(savedDepositId);
     }
   }, []);
+
+  // Handle plan selection from PricingPlans component
+  const handlePlanSelect = (plan: any, frequency: string) => {
+    console.log("Plan selected:", plan, "Frequency:", frequency);
+
+    // Calculate amount based on frequency and plan type
+    let calculatedAmount = 0;
+
+    if (typeof plan.price[frequency as keyof typeof plan.price] === 'number') {
+      calculatedAmount = plan.price[frequency as keyof typeof plan.price] as number;
+    } else {
+      // Handle custom pricing or default amounts
+      switch (plan.id) {
+        case 'mission':
+          calculatedAmount = 655000;
+          break;
+        case 'student':
+          calculatedAmount = 655000;
+          break;
+        case 'donation':
+          calculatedAmount = amount; // Use the donation amount state
+          break;
+        case 'partner':
+          // For partnerships, redirect to contact page
+          router.push("/contact");
+          return;
+        default:
+          calculatedAmount = 15000; // Default minimum
+      }
+    }
+
+    // Handle different plan types
+    if (plan.id === 'partner') {
+      router.push("/contact");
+      return;
+    }
+
+    // Set dialog data based on plan type
+    let dialogTitle = "";
+    let dialogDescription = "";
+    let dialogType = plan.id;
+
+    switch (plan.id) {
+      case 'mission':
+        dialogTitle = s("common.missionSupport");
+        dialogDescription = s("common.missionSupportDescription");
+        break;
+      case 'student':
+        dialogTitle = s("common.studentSponsorship");
+        dialogDescription = s("common.studentSponsorshipDescription");
+        break;
+      case 'donation':
+        dialogTitle = s("common.donation");
+        dialogDescription = s("common.donationDescription");
+        // For donations, use the selected amount
+        calculatedAmount = amount;
+        break;
+      default:
+        dialogTitle = plan.name;
+        dialogDescription = plan.description;
+    }
+
+    // Validate minimum amount for donations
+    if (plan.id === 'donation' && calculatedAmount < 15000 && currency === "XAF") {
+      toast.error("Montant minimum est de 15000 FCFA");
+      return;
+    }
+
+    setDialogDatas({
+      title: dialogTitle,
+      description: dialogDescription,
+      amount: calculatedAmount,
+      type: dialogType,
+    });
+
+    setIsDialogOpened(true);
+  };
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -126,19 +207,19 @@ export default function GetInvolvedPage() {
                       parsedDatas.type === "don"
                         ? "Donation"
                         : parsedDatas.type === "mission"
-                        ? "Mission Support"
-                        : parsedDatas.type === "student"
-                        ? "Student Sponsorship"
-                        : "Unknown",
+                          ? "Mission Support"
+                          : parsedDatas.type === "student"
+                            ? "Student Sponsorship"
+                            : "Unknown",
                     status: "completed",
                     description:
                       parsedDatas.type === "don"
                         ? "General donation"
                         : parsedDatas.type === "mission"
-                        ? "Contribution to the mission"
-                        : parsedDatas.type === "student"
-                        ? "Sponsorship for a student"
-                        : "Unspecified donation",
+                          ? "Contribution to the mission"
+                          : parsedDatas.type === "student"
+                            ? "Sponsorship for a student"
+                            : "Unspecified donation",
                   },
                   "users",
                   data.userId,
@@ -220,52 +301,72 @@ export default function GetInvolvedPage() {
 
   const contributionOptions = [
     {
-      type: "mission",
-      icon: <DollarSign className="h-8 w-8 text-blue-600" />,
-      title: t("howToContribute.financialContribution.title"),
+      id: 'mission',
+      name: t("howToContribute.financialContribution.title"),
+      price: {
+        monthly: 650000,
+        yearly: 39,
+      },
       description: t("howToContribute.financialContribution.description"),
-      options: [
+      features: [
         t("howToContribute.financialContribution.options.1"),
         t("howToContribute.financialContribution.options.2"),
         t("howToContribute.financialContribution.options.3"),
       ],
-      cta: t("howToContribute.financialContribution.description"),
+      cta: t("howToContribute.financialContribution.cta"),
+      popular: false, // You can set this to true for highlighted plans
+      icon: <DollarSign className="h-8 w-8 text-blue-600" />,
     },
     {
-      type: "student",
-      icon: <GraduationCap className="h-8 w-8 text-green-600" />,
-      title: t("howToContribute.studentSponsorship.title"),
+      id: 'student',
+      name: t("howToContribute.studentSponsorship.title"),
+      price: {
+        monthly: 650000,
+        yearly: 39,
+      },
       description: t("howToContribute.studentSponsorship.description"),
-      options: [
+      features: [
         t("howToContribute.studentSponsorship.options.1"),
         t("howToContribute.studentSponsorship.options.2"),
         t("howToContribute.studentSponsorship.options.3"),
       ],
       cta: t("howToContribute.studentSponsorship.cta"),
+      popular: true, // Example: highlight this plan
+      icon: <GraduationCap className="h-8 w-8 text-green-600" />,
     },
     {
-      type: "don",
-      icon: <Users className="h-8 w-8 text-purple-600" />,
-      title: t("howToContribute.donation.title"),
+      id: 'donation',
+      name: t("howToContribute.donation.title"),
+      price: {
+        monthly: 49,
+        yearly: 39,
+      },
       description: t("howToContribute.donation.description"),
-      options: [
+      features: [
         t("howToContribute.donation.options.1"),
         t("howToContribute.donation.options.2"),
         t("howToContribute.donation.options.3"),
       ],
       cta: t("howToContribute.donation.cta"),
+      popular: false,
+      icon: <Users className="h-8 w-8 text-purple-600" />,
     },
     {
-      type: "partner",
-      icon: <Building className="h-8 w-8 text-orange-600" />,
-      title: t("howToContribute.corporatePartnership.title"),
+      id: 'partner',
+      name: t("howToContribute.corporatePartnership.title"),
+      price: {
+        monthly: 49,
+        yearly: 39,
+      },
       description: t("howToContribute.corporatePartnership.description"),
-      options: [
+      features: [
         t("howToContribute.corporatePartnership.options.1"),
         t("howToContribute.corporatePartnership.options.2"),
         t("howToContribute.corporatePartnership.options.3"),
       ],
       cta: t("howToContribute.corporatePartnership.cta"),
+      popular: false,
+      icon: <Building className="h-8 w-8 text-orange-600" />,
     },
   ];
 
@@ -298,131 +399,14 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Contribution Options */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
-            {t("howToContribute.title")}
-          </h2>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {contributionOptions.map((option, index) => (
-              <Card
-                key={index}
-                className="border-0 shadow-lg bg-white hover:shadow-xl transition-shadow"
-              >
-                <CardHeader>
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center">
-                      {option.icon}
-                    </div>
-                    <CardTitle className="text-2xl text-gray-900">
-                      {option.title}
-                    </CardTitle>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed">
-                    {option.description}
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-8">
-                    {option.options.map((opt, idx) => (
-                      <li key={idx} className="flex items-center space-x-3">
-                        <Target className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                        <span className="text-gray-700">{opt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {option.type === "don" && (
-                    <div className="mb-5">
-                      <Select
-                        onValueChange={(value) =>
-                          setCurrency(value as "XAF" | "USD" | "EUR")
-                        }
-                      >
-                        <SelectTrigger className="mt-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                          <SelectValue placeholder="Sélectionnez votre dévise" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white border-gray-200">
-                          <SelectItem value="XAF">FCFA</SelectItem>
-                          <SelectItem value="USD">USD</SelectItem>
-                          <SelectItem value="EUR">EUR</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Label
-                        htmlFor="amount"
-                        className="text-gray-900 mt-5 font-medium"
-                      >
-                        Montant ({currency})
-                      </Label>
-                      <Input
-                        id="amount"
-                        type="number"
-                        value={amount}
-                        min={currency === "XAF" ? 15000 : 30}
-                        onChange={(e) => setAmount(parseInt(e.target.value))}
-                        className="mt-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder={`Min: ${currency === "XAF" ? 15000 : 30}`}
-                      />
-                    </div>
-                  )}
-                  <Button
-                    onClick={() => handleClickOptionButton(option)}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white h-12"
-                  >
-                    {option.cta}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership Benefits */}
-      {/* <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Avantages du Partenariat</h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Rocket className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Visibilité</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Logo sur le satellite et reconnaissance dans toutes nos communications
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Users className="h-8 w-8 text-green-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Talents</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Accès prioritaire aux diplômés formés pour vos recrutements
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Heart className="h-8 w-8 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Impact Social</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Contribution directe au développement technologique africain
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section> */}
+      <PricingPlans
+        title="Ways to Contribute"
+        description="Join our mission to advance space technology education and research through various contribution options"
+        plans={contributionOptions}
+        onPlanSelect={handlePlanSelect}
+        showFrequencyToggle={true} // Set to false if you don't want monthly/yearly toggle
+        className="bg-gradient-to-b from-blue-50 to-white"
+      />
 
       {/* Contact for Partnerships */}
       <section className="py-20 bg-black text-white">
