@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         reason: `Achat ${product}`
     }
 
-    const response = await fetch("https://api.pawapay.io/v2/paymentpage", {
+    const response = await fetch("https://api.pawapay.io/paymentpage", {
       method: 'POST',
       headers: {
         'Authorization': `Bearer eyJraWQiOiIxIiwiYWxnIjoiRVMyNTYifQ.eyJ0dCI6IkFBVCIsInN1YiI6IjgxOSIsIm1hdiI6IjEiLCJleHAiOjIwNjIwNzc0NzgsImlhdCI6MTc0NjU0NDY3OCwicG0iOiJEQUYsUEFGIiwianRpIjoiMzkwMjA4Y2UtOTFhYy00Njg3LTlhMDItNmQxYjdlMDAwZWZkIn0.HCamwQRaGe3UkJD3RH5qVxs7pWaiqVfp6PtXNoy4aMST2nsvWkja0KpOX8eucxrZljU5BCaqdqgm7rvVjNMQSw`,

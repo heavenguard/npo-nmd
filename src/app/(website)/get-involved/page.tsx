@@ -100,7 +100,7 @@ export default function GetInvolvedPage() {
           router.push("/contact");
           return;
         default:
-          calculatedAmount = 15000; // Default minimum
+          calculatedAmount = 15000; 
       }
     }
 
@@ -321,7 +321,7 @@ export default function GetInvolvedPage() {
       id: 'student',
       name: t("howToContribute.studentSponsorship.title"),
       price: {
-        monthly: 650000,
+        monthly: 250000,
         yearly: 39,
       },
       description: t("howToContribute.studentSponsorship.description"),
