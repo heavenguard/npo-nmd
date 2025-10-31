@@ -201,10 +201,19 @@
     }
   },
   "becomeMember": {
+    "title": "Devenir Membre",
+    "description": "Rejoignez notre communauté et profitez d'avantages exclusifs",
     "hero": {
       "title": "Devenir Membre",
       "description": "Rejoignez une communauté de passionnés africains de l'espace et de la technologie",
       "subtitle": "Ouvert à tous les Africains passionnés par l'espace et la technologie"
+    },
+    "form": {
+      "countryPlaceholder": "Sélectionnez votre pays",
+      "currency": "Devise",
+      "currencyPlaceholder": "Sélectionnez la devise",
+      "profession": "Profession",
+      "professionPlaceholder": "Votre profession"
     },
     "benefits": {
       "title": "Avantages de l'Adhésion",
@@ -225,7 +234,44 @@
         "description": "Accès à votre compte personnel avec carte de membre et donations mensuelles"
       }
     },
+    "payment": {
+      "title": "Finalisez Votre Paiement",
+      "mobileMoney": "Mobile Money",
+      "paypal": "PayPal & Cartes de crédit",
+      "processing": "Traitement de votre paiement...",
+      "success": "Paiement réussi !",
+      "failed": "Paiement échoué",
+      "security": "Vos informations de paiement sont cryptées et sécurisées",
+      "amount": "Montant",
+      "currency": "Devise",
+      "method": "Méthode de paiement"
+    },
+    "countries": {
+    "cameroon": "Cameroun",
+    "senegal": "Sénégal",
+    "ivory-coast": "Côte d'Ivoire",
+    "mali": "Mali",
+    "burkina-faso": "Burkina Faso",
+    "niger": "Niger",
+    "chad": "Tchad",
+    "gabon": "Gabon",
+    "congo": "Congo",
+    "drc": "RD Congo",
+    "other": "Autre"
+  },
+   "products": {
+    "donation": "Don",
+    "mission": "Contribution à la mission",
+    "student": "Parrainage d'étudiant",
+    "membership": "Adhésion NMD"
+  },
     "form": {
+      "countryPlaceholder": "Sélectionnez votre pays",
+      "currency": "Devise",
+      "currencyPlaceholder": "Sélectionnez la devise",
+      "voting": "Je souhaite participer aux votes",
+      "yearlyMembership": "Payer l'adhésion annuelle pour une réduction",
+      "submit": "Finaliser l'adhésion",
       "title": "Formulaire d'Adhésion",
       "description": "Remplissez ce formulaire pour rejoindre la communauté NMD ASSOCIATION",
       "fullName": "Nom Complet",
@@ -305,8 +351,8 @@
         "title": "Donnation Libre",
         "description": "Soutenez notre projets",
         "options": {
-          "1": "Accès à un compte membre.", 
-          "2": "Faire un don à partir de 15000 FCFA", 
+          "1": "Accès à un compte membre.",
+          "2": "Faire un don à partir de 15000 FCFA",
           "3": "Donnez plus de 100,000 FCFA et devenez membre votant.",
           "4": "Accès à des promotions et avantages."
         },
@@ -316,8 +362,8 @@
         "title": "Partenariat Entreprise",
         "description": "Établissez un partenariat stratégique avec notre association",
         "options": {
-          "1": "Sponsoring de missions", 
-          "2": "Fourniture d'équipements", 
+          "1": "Sponsoring de missions",
+          "2": "Fourniture d'équipements",
           "3": "Stages et emplois pour diplômés"
         },
         "cta": "Devenir Partenaire"
@@ -377,6 +423,10 @@
       "linkedin": "LinkedIn"
     },
     "form": {
+      "fullNamePlaceholder": "Jean Dupont",
+      "emailPlaceholder": "vous@exemple.com",
+      "phone": "Numéro de téléphone",
+      "send": "Envoyer le message",
       "title": "Envoyez-nous un Message",
       "description": "Nous vous répondrons dans les plus brefs délais",
       "fullName": "Nom Complet",
@@ -546,6 +596,9 @@
       "xaf": "FCFA",
       "eur": "EUR"
     },
+    "processing": "Traitement en cours",
+    "required": "Requis",
+    "optional": "Optionnel",
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
     "success": "Succès !",

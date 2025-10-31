@@ -12,6 +12,37 @@
     "dashboard": "Member Portal",
     "language": "EN"
   },
+  "payment": {
+    "title": "Complete Your Payment",
+    "mobileMoney": "Mobile Money",
+    "paypal": "PayPal & Credit Cards",
+    "processing": "Processing your payment...",
+    "success": "Payment successful!",
+    "failed": "Payment failed",
+    "security": "Your payment information is encrypted and secure",
+    "amount": "Amount",
+    "currency": "Currency",
+    "method": "Payment Method"
+  },
+  "countries": {
+    "cameroon": "Cameroon",
+    "senegal": "Senegal",
+    "ivory-coast": "Ivory Coast",
+    "mali": "Mali",
+    "burkina-faso": "Burkina Faso",
+    "niger": "Niger",
+    "chad": "Chad",
+    "gabon": "Gabon",
+    "congo": "Congo",
+    "drc": "DR Congo",
+    "other": "Other"
+  },
+  "products": {
+    "donation": "Donation",
+    "mission": "Mission Contribution",
+    "student": "Student Sponsorship",
+    "membership": "NMD Membership"
+  },
   "home": {
     "hero": {
       "tagline": "Nanosatellite Missions Design",
@@ -201,6 +232,8 @@
     }
   },
   "becomeMember": {
+    "title": "Become a Member",
+    "description": "Join our community and enjoy exclusive benefits",
     "hero": {
       "title": "Become a Member",
       "description": "Join a community of African space and technology enthusiasts",
@@ -212,6 +245,13 @@
         "title": "Technical Training",
         "description": "Access to nanosatellite design and development workshops"
       },
+     "form": {
+      "countryPlaceholder": "Select your country",
+      "currency": "Currency",
+      "currencyPlaceholder": "Select currency",
+      "profession": "Profession",
+      "professionPlaceholder": "Your profession"
+    },
       "projectParticipation": {
         "title": "Project Participation",
         "description": "Direct participation in educational space missions"
@@ -305,8 +345,8 @@
         "title": "Make a Donation",
         "description": "Support our projects",
         "options": {
-          "1": "Access to a member account.", 
-          "2": "Make a donation starting at 15,000 CFA francs", 
+          "1": "Access to a member account.",
+          "2": "Make a donation starting at 15,000 CFA francs",
           "3": "Donate more than 100,000 CFA francs and become a voting member.",
           "4": "Access to promotions and benefits."
         },
@@ -316,8 +356,8 @@
         "title": "Corporate Partnership",
         "description": "Establish a strategic partnership with our association",
         "options": {
-          "1": "Mission sponsoring", 
-          "2": "Equipment provision", 
+          "1": "Mission sponsoring",
+          "2": "Equipment provision",
           "3": "Internships and jobs for graduates"
         },
         "cta": "Become a Partner"
@@ -377,6 +417,10 @@
       "linkedin": "LinkedIn"
     },
     "form": {
+      "fullNamePlaceholder": "Jane Doe",
+      "emailPlaceholder": "you@example.com",
+      "phone": "Phone number",
+      "send": "Send message",
       "title": "Send Us a Message",
       "description": "We will respond to you as soon as possible",
       "fullName": "Full Name",
@@ -546,6 +590,9 @@
       "xaf": "XAF",
       "eur": "EUR"
     },
+    "processing": "Processing",
+    "required": "Required",
+    "optional": "Optional",
     "loading": "Loading...",
     "error": "An error occurred",
     "success": "Success!",

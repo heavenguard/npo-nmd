@@ -1,202 +1,231 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { toast } from "sonner";
-import { setToCollection } from "@/functions/add-to-collection";
-import { addToSubCollection } from "@/functions/add-to-a-sub-collection";
-import { nanoid } from "nanoid";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+import { useState } from "react"
+import { Loader2 } from "lucide-react"
+import { Button } from "./ui/button"
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/functions/firebase"
+import { setToCollection } from "@/functions/add-to-collection"
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/functions/firebase"
 
 interface PaypalButtonWrapperProps {
-  total: number;
-  disabled: boolean;
-  formData: any;
-  login: any;
-  type?: string;
-  description?: string;
-  currency: string;
+  total: number
+  disabled: boolean
+  formData: any
+  type: string
+  currency: string
+  description: string
+  onPaymentStart: () => void
+  onPaymentComplete: (paymentData: any) => void
+  onPaymentError: (error: string) => void
 }
 
 export default function PaypalButtonWrapper({
   total,
   disabled,
   formData,
-  login,
   type,
-  description,
   currency,
+  description,
+  onPaymentStart,
+  onPaymentComplete,
+  onPaymentError,
 }: PaypalButtonWrapperProps) {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [paypalError, setPaypalError] = useState("");
+  const [paypalLoading, setPaypalLoading] = useState(true)
+
+  const paypalOptions = {
+    clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+    currency: currency,
+    intent: "capture",
+  }
+
+  // Create user account for PayPal payments
+  const createUserAccount = async (userData: any) => {
+    try {
+      // Create user in Firebase Auth with provided password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth, 
+        userData.email, 
+        userData.password
+      );
+      
+      const firebaseUser = userCredential.user;
+      
+      // Prepare user data for Firestore
+      const userFirestoreData = {
+        id: firebaseUser.uid,
+        email: userData.email,
+        name: userData.name,
+        profession: userData.profession,
+        country: userData.country,
+        phoneNumber: userData.phoneNumber,
+        membershipType: type,
+        paymentMethod: "paypal",
+        units: userData.units,
+        totalAmount: userData.amount,
+        currency: userData.currency,
+        depositId: userData.depositId,
+        status: "active",
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        lastLogin: null,
+        emailVerified: false,
+        profileCompleted: false,
+        role: "member",
+        subscriptionStatus: "active",
+        paymentStatus: "completed",
+        transactionHistory: [
+          {
+            depositId: userData.depositId,
+            amount: userData.amount,
+            currency: userData.currency,
+            type: type,
+            status: "completed",
+            date: new Date().toISOString(),
+            paymentMethod: "paypal"
+          }
+        ]
+      };
+
+      // Add user to Firestore
+      await setToCollection("users", firebaseUser.uid, userFirestoreData);
+      
+      return { success: true, user: firebaseUser };
+
+    } catch (error: any) {
+      console.error("Error creating user account:", error);
+      throw error;
+    }
+  };
+
+  // Create transaction record
+  const createTransactionRecord = async (depositId: string, status: string = "COMPLETED") => {
+    try {
+      const transactionData = {
+        depositId,
+        amount: total,
+        currency: currency,
+        status,
+        type,
+        units: formData.units || 1,
+        customer: {
+          name: formData.name,
+          email: formData.email,
+          country: formData.country,
+          profession: formData.profession,
+          phoneNumber: formData.phoneNumber,
+        },
+        paymentMethod: "paypal",
+        metadata: [
+          { fieldName: "productType", fieldValue: type },
+          { fieldName: "customerEmail", fieldValue: formData.email, isPII: true },
+          { fieldName: "customerId", fieldValue: formData.email, isPII: true },
+          { fieldName: "units", fieldValue: (formData.units || 1).toString() },
+        ],
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      };
+
+      await setDoc(doc(collection(db, "transactions"), depositId), transactionData);
+      return depositId;
+    } catch (error) {
+      console.error("Error creating transaction record:", error);
+      throw error;
+    }
+  };
 
   const createOrder = (data: any, actions: any) => {
     return actions.order.create({
       purchase_units: [
         {
+          description: description,
           amount: {
             value: total.toFixed(2),
             currency_code: currency,
           },
-          description: description,
         },
       ],
-    });
-  };
+      application_context: {
+        shipping_preference: "NO_SHIPPING",
+      },
+    })
+  }
 
   const onApprove = async (data: any, actions: any) => {
-    setIsProcessing(true);
     try {
-      const order = await actions.order.get();
-      console.log("Payment successful", order);
-
-      const payerName = order.payer?.name?.given_name || "";
-      const payerEmail = order.payer?.email_address || "";
-
-      const paymentData = {
-        name: payerName,
-        email: payerEmail,
-        amount: total.toFixed(2),
-        orderID: data.orderID,
-      };
-
-      console.log("Sending to API:", paymentData);
-
-      const response = await fetch("/api/payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(paymentData),
+      onPaymentStart();
+      const details = await actions.order.capture();
+      
+      // Create transaction record first
+      await createTransactionRecord(data.orderID, "COMPLETED");
+      
+      // Then create user account
+      await createUserAccount({
+        email: formData.email,
+        password: formData.password,
+        name: formData.name,
+        profession: formData.profession,
+        country: formData.country,
+        phoneNumber: formData.phoneNumber,
+        paymentMethod: "paypal",
+        units: formData.units || 1,
+        amount: total,
+        currency: currency,
+        depositId: data.orderID,
+        type: type
       });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("API error response:", errorText);
-        throw new Error("Payment processing failed");
-      }
-      try {
-        const response = await fetch("/api/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            displayName: formData.name,
-          }),
-        });
-
-        const data = await response.json();
-        console.log(data);
-        console.log(formData);
-
-        // Save password in localStorage
-        const password = data.password;
-
-        await setToCollection("users", data.userId, {
-          uid: data.userId,
-          idNumber: `NMD-ASSO-${nanoid(6)}`,
-          ...formData,
-        });
-
-        await addToSubCollection(
-          {
-            amount: total,
-            type: type
-              ? type
-              : formData.payYearlyMembership
-              ? "Inscription & Membership payment"
-              : "Inscription payment",
-            status: "completed",
-            description: description
-              ? description
-              : formData.payYearlyMembership
-              ? "Paid for registration and yearly membership"
-              : "Paid for registration",
-          },
-          "users",
-          data.userId,
-          "donations"
-        );
-
-        toast.success("New user has been added successfully");
-        await setToCollection("transactions", data.orderId, {
-          transactionId: data.orderId,
-          userId: data.userId,
-          amount: total,
-          currency: "XAF",
-          status: "completed",
-          paymentMethod: "paypal",
-          type: type
-            ? type
-            : formData.payYearlyMembership
-            ? "membership"
-            : "inscription",
-          description: description
-            ? description
-            : formData.payYearlyMembership
-            ? "Inscription and Membership"
-            : "Inscription only",
-        });
-
-        console.log(password);
-        console.log(formData.email);
-        await login(formData.email, data.password);
-      } catch (error) {
-        toast.error("Failed to create user. Please try again.");
-      }
-
-      toast.success("Membership activated successfully!");
-
-      const result = await response.json();
-      console.log("API response:", result);
-      alert("Payment processed successfully!");
-    } catch (error) {
-      console.error("Payment failed:", error);
-      setPaypalError("Payment failed. Please try again.");
-    } finally {
-      setIsProcessing(false);
+      
+      onPaymentComplete(details);
+      
+    } catch (error: any) {
+      console.error("PayPal payment error:", error);
+      onPaymentError(error.message || "Payment processing failed");
     }
-  };
+  }
 
   const onError = (err: any) => {
-    console.error("PayPal error:", err);
-    setPaypalError("An error occurred with PayPal. Please try again.");
-  };
+    console.error("PayPal error:", err)
+    onPaymentError(err.message || "Payment failed");
+  }
 
-  useEffect(() => {
-    console.log(total);
-    console.log(currency);
-  }, []);
+  const onInit = () => {
+    setPaypalLoading(false);
+  }
 
   return (
-    <div>
-      {isProcessing && (
-        <div className="mb-4 text-center">
-          <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900 mr-2"></div>
-          <span>Processing your payment...</span>
+    <PayPalScriptProvider options={paypalOptions}>
+      {paypalLoading && (
+        <div className="flex items-center justify-center py-4">
+          <Loader2 className="h-6 w-6 animate-spin text-blue-500" />
         </div>
       )}
-
-      {paypalError && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded text-sm">
-          {paypalError}
-        </div>
-      )}
-
-      <PayPalScriptProvider
-        options={{
-          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
-          currency: currency,
-          intent: "capture",
-        }}
-      >
+      <div className={paypalLoading ? "opacity-0" : "opacity-100"}>
         <PayPalButtons
+          style={{
+            layout: "vertical",
+            color: "blue",
+            shape: "rect",
+            label: "paypal",
+            height: 48,
+          }}
           createOrder={createOrder}
           onApprove={onApprove}
           onError={onError}
-          style={{ layout: "vertical" }}
-          disabled={disabled || isProcessing}
+          onInit={onInit}
+          disabled={disabled}
         />
-      </PayPalScriptProvider>
-    </div>
-  );
+      </div>
+      
+      {disabled && (
+        <Button
+          className="w-full h-12 bg-gray-400 cursor-not-allowed"
+          disabled
+        >
+          Complete required fields above
+        </Button>
+      )}
+    </PayPalScriptProvider>
+  )
 }
