@@ -69,8 +69,8 @@ export default function PaymentDialog({
 
   // Get current country info for payment method determination
   const currentCountryInfo = useMemo(() => {
-    return PAWAPAY_SUPPORTED_COUNTRIES.find(country => 
-      formData.country.toLowerCase().includes(country.name.toLowerCase()) || 
+    return PAWAPAY_SUPPORTED_COUNTRIES.find(country =>
+      formData.country.toLowerCase().includes(country.name.toLowerCase()) ||
       formData.country === country.code
     );
   }, [formData.country]);
@@ -78,7 +78,7 @@ export default function PaymentDialog({
   // Determine available payment methods
   const availablePaymentMethods = useMemo(() => {
     const methods: Array<{ value: "mobile" | "paypal"; label: string; icon: React.ElementType; description: string }> = [];
-    
+
     // Mobile Money - only for PawaPay supported countries with XAF currency
     if (currentCountryInfo && formData.currency === "XAF") {
       methods.push({
@@ -88,7 +88,7 @@ export default function PaymentDialog({
         description: `Pay with ${currentCountryInfo.mobileOperators.join(" or ")}`
       });
     }
-    
+
     // PayPal - available for all currencies, but optimized for USD/EUR
     methods.push({
       value: "paypal",
@@ -96,7 +96,7 @@ export default function PaymentDialog({
       icon: CreditCard,
       description: "Secure payment with any card"
     });
-    
+
     return methods;
   }, [currentCountryInfo, formData.currency]);
 
@@ -128,7 +128,7 @@ export default function PaymentDialog({
   const total = useMemo(() => {
     const safeUnits = Math.max(1, Math.floor(Number(units) || 1));
     const baseAmount = amount * safeUnits;
-    
+
     const conversionRate = CONVERSION_RATES[formData.currency as keyof typeof CONVERSION_RATES] || 1;
     return baseAmount * conversionRate;
   }, [amount, units, formData.currency]);
@@ -163,13 +163,13 @@ export default function PaymentDialog({
     formData.currency.trim().length > 0 &&
     formData.profession.trim().length > 0 &&
     formData.agreeTerms &&
-    (formData.paymentMethod !== "mobile" || 
-     (formData.phoneNumber && formData.phoneNumber.trim().length > 0 && formData.mobileOperator));
+    (formData.paymentMethod !== "mobile" ||
+      (formData.phoneNumber && formData.phoneNumber.trim().length > 0 && formData.mobileOperator));
 
   const handleChange =
     (key: keyof FormDataState) =>
-    (value: string | boolean | undefined) =>
-      setFormData((s) => ({ ...s, [key]: value as any }));
+      (value: string | boolean | undefined) =>
+        setFormData((s) => ({ ...s, [key]: value as any }));
 
   // Set loading state
   const setLoadingState = (isActive: boolean, step: LoadingState["step"] = null, message: string = "") => {
@@ -180,16 +180,16 @@ export default function PaymentDialog({
   const createUserAccount = async (userData: any) => {
     try {
       setLoadingState(true, "account_creation", "Creating your account...");
-      
+
       // Create user in Firebase Auth with provided password
       const userCredential = await createUserWithEmailAndPassword(
-        auth, 
-        userData.email, 
+        auth,
+        userData.email,
         userData.password
       );
-      
+
       const firebaseUser = userCredential.user;
-      
+
       // Prepare user data for Firestore
       const userFirestoreData = {
         id: firebaseUser.uid,
@@ -229,16 +229,16 @@ export default function PaymentDialog({
 
       // Add user to Firestore
       const result = await setToCollection("users", firebaseUser.uid, userFirestoreData);
-      
+
       if (!result) {
         throw new Error("Failed to create user profile in database");
       }
 
       setLoadingState(true, "complete", "Account created successfully!");
-      
+
       // Success
       toast.success("Account created successfully! You can now log in with your credentials.");
-      
+
       // Close the dialog after a delay to show success message
       setTimeout(() => {
         setOpen(false);
@@ -265,7 +265,7 @@ export default function PaymentDialog({
 
     } catch (error: any) {
       console.error("Error creating user account:", error);
-      
+
       // Handle specific error cases
       if (error.code === 'auth/email-already-in-use') {
         throw new Error("This email is already registered. Please use a different email or try logging in.");
@@ -325,39 +325,103 @@ export default function PaymentDialog({
     }
 
     setLoadingState(true, "payment", "Initiating payment...");
-    
+
     try {
       // Generate deposit ID
       const generateDepositId = () => uuidv4();
       const depositId = generateDepositId();
-      
+
       // Create transaction record in Firebase first
       await createTransactionRecord(depositId, "SUBMITTED");
 
-      // Prepare payload according to your expected structure
+      const getCorrespondent = (countryCode: string, mobileOperator: string) => {
+        const operatorMap: { [key: string]: { [key: string]: string } } = {
+          "CMR": {
+            "MTN": "MTN_MOMO_CMR",
+            "ORANGE": "ORANGE_CMR"
+          },
+          "GHA": {
+            "MTN": "MTN_MOMO_GHA",
+            "VODAFONE": "VODAFONE_GHA",
+            "AIRTELTIGO": "AIRTELTIGO_GHA"
+          },
+          "KEN": {
+            "MPESA": "MPESA_KEN",
+            "AIRTEL": "AIRTEL_KEN"
+          },
+          "NGA": {
+            "MTN": "MTN_NGA",
+            "AIRTEL": "AIRTEL_NGA",
+            "GLO": "GLO_NGA",
+            "9MOBILE": "9MOBILE_NGA"
+          },
+          "UGA": {
+            "MTN": "MTN_MOMO_UGA",
+            "AIRTEL": "AIRTEL_UGA"
+          },
+          "TZA": {
+            "VODACOM": "VODACOM_TZA",
+            "AIRTEL": "AIRTEL_TZA",
+            "TIGO": "TIGO_TZA"
+          },
+          "RWA": {
+            "MTN": "MTN_MOMO_RWA",
+            "AIRTEL": "AIRTEL_RWA"
+          },
+          "ZMB": {
+            "MTN": "MTN_MOMO_ZMB",
+            "AIRTEL": "AIRTEL_ZMB"
+          }
+        };
+
+        return operatorMap[countryCode]?.[mobileOperator] || mobileOperator;
+      };
+
+      const getCountryCurrency = (countryCode: string) => {
+        const country = PAWAPAY_SUPPORTED_COUNTRIES.find(c => c.code === countryCode);
+        return country?.currency || "USD";
+      };
+
+      const formatPhoneNumber = (countryCode: string, phoneNumber: string) => {
+        // Remove all non-digit characters
+        const cleanNumber = phoneNumber.replace(/\D/g, '');
+
+        // If the number already starts with country code, return as is
+        if (cleanNumber.startsWith(countryCode)) {
+          return cleanNumber;
+        }
+
+        // Otherwise, add country code
+        return `${countryCode}${cleanNumber}`;
+      };
+
       const payload = {
         depositId,
         amount: "1",
-        currency: "XAF",
-        correspondent: formData.mobileOperator === "MTN" ? "MTN_MOMO_CMR" : "ORANGE_CMR",
-        payer: { 
-          address: { 
-            value: `${getCountryCode(formData.country)}${formData.phoneNumber!.replace(/\D/g, '')}` 
-          }, 
-          type: "MSISDN" 
+        currency: getCountryCurrency(formData.country),
+        payer: {
+          type: "MMO",
+          accountDetails: {
+            phoneNumber: formatPhoneNumber(
+              getCountryCode(formData.country),
+              formData.phoneNumber!
+            ),
+            provider: getCorrespondent(formData.country, formData?.mobileOperator!)
+          }
         },
-        customerTimestamp: new Date().toISOString(),
-        statementDescription: `${getProductDescription(type)}`,
-        country: formData.country,
+        // customerTimestamp: new Date().toISOString(),
+        // statementDescription: `${getProductDescription(type)}`.substring(0, 22), // Ensure max 22 chars
         preAuthorisationCode: "PMxQYqfDx",
-        metadata: [
-          { fieldName: "productType", fieldValue: type },
-          { fieldName: "customerId", fieldValue: user?.email || formData.email, isPII: true },
-          { fieldName: "customerName", fieldValue: formData.name, isPII: true },
-          { fieldName: "customerEmail", fieldValue: formData.email, isPII: true },
-          { fieldName: "units", fieldValue: units.toString() },
-          { fieldName: "paymentMethod", fieldValue: formData.paymentMethod },
-        ],
+        // metadata: [
+        //   { fieldName: "product_type", fieldValue: type }, // Changed to underscore
+        //   { fieldName: "customer_id", fieldValue: user?.email || formData.email, isPII: true }, // Changed to underscore
+        //   { fieldName: "customer_name", fieldValue: formData.name, isPII: true }, // Changed to underscore
+        //   { fieldName: "customer_email", fieldValue: formData.email, isPII: true }, // Changed to underscore
+        //   { fieldName: "product_units", fieldValue: units.toString() }, // Made more specific
+        //   { fieldName: "payment_method", fieldValue: formData.paymentMethod }, // Changed to underscore
+        //   { fieldName: "customer_country", fieldValue: formData.country }, // Made more specific
+        //   { fieldName: "mobile_operator", fieldValue: formData.mobileOperator }, // Changed to underscore
+        // ],
       };
 
       setLoadingState(true, "payment", "Processing payment...");
@@ -367,6 +431,8 @@ export default function PaymentDialog({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
+      console.log("Api response : ", res)
 
       const data = await res.json();
       if (!res.ok) {
@@ -390,14 +456,14 @@ export default function PaymentDialog({
       }
 
       setDepositId(depositId);
-      
+
       // Start polling for transaction status
       startTransactionPolling(depositId);
 
     } catch (err: any) {
-      console.error("Payment error:", err);
+      console.log("Payment error:", err);
       setLoadingState(false, null, "");
-      toast.error(err?.message ?? "Unexpected error during payment initialization");
+      toast.error("Unexpected error during payment initialization");
     }
   };
 
@@ -416,7 +482,7 @@ export default function PaymentDialog({
       }
 
       attempts++;
-      
+
       try {
         setLoadingState(true, "payment", "Waiting for payment confirmation...");
 
@@ -425,16 +491,16 @@ export default function PaymentDialog({
 
         if (res.ok && Array.isArray(data) && data.length > 0) {
           const transaction = data[0];
-          
+
           if (transaction.status === "COMPLETED" || transaction.status === "FAILED") {
             clearInterval(intervalId);
-            
+
             // Update transaction record in Firebase
             await updateTransactionStatus(depositId, transaction.status, transaction);
-            
+
             if (transaction.status === "COMPLETED") {
               setLoadingState(true, "account_creation", "Payment completed! Creating your account...");
-              
+
               // Create user account after successful payment
               try {
                 await createUserAccount({
@@ -452,12 +518,12 @@ export default function PaymentDialog({
                   depositId: depositId,
                   type: type
                 });
-                
+
               } catch (error: any) {
                 setLoadingState(false, null, "");
                 toast.error(`Payment successful but account creation failed: ${error.message}`);
               }
-              
+
             } else {
               setLoadingState(false, null, "");
               toast.error("Payment failed. Please try again.");
@@ -547,7 +613,7 @@ export default function PaymentDialog({
               }
             }
           `}</style>
-          
+
           {/* Header - Mobile Optimized */}
           <DialogHeader className="space-y-3 sm:space-y-4 pb-4 sm:pb-6 border-b border-slate-200 px-4 sm:px-8 pt-4 sm:pt-8 sticky top-0 bg-white z-10">
             <div className="flex items-center justify-center">

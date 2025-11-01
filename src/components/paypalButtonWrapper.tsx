@@ -37,7 +37,7 @@ export default function PaypalButtonWrapper({
 
   const paypalOptions = {
     clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
-    currency: currency,
+    currency: "USD",
     intent: "capture",
   }
 
@@ -143,13 +143,10 @@ export default function PaypalButtonWrapper({
           description: description,
           amount: {
             value: total.toFixed(2),
-            currency_code: currency,
+            currency_code: "USD",
           },
         },
       ],
-      application_context: {
-        shipping_preference: "NO_SHIPPING",
-      },
     })
   }
 

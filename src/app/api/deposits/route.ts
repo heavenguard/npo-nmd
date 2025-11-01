@@ -34,6 +34,10 @@ export async function POST(req: NextRequest) {
             redirect: "follow",
         });
 
+         return NextResponse.json(
+                { status: response.status, statusText: `PAWAPAY SERVER ERROR: ${response.statusText}` }
+            );
+
         const data = await response.json();
 
         if (!response.ok) {
@@ -45,11 +49,12 @@ export async function POST(req: NextRequest) {
         }
 
         return NextResponse.json(data, { status: 200 });
-    } catch (error) {
+    } catch (error: any) {
         console.error("Server Error:", error);
         return NextResponse.json(
             { error: "Internal Server Error", details: error instanceof Error ? error.message : String(error) },
-            { status: 500 }
+            { status: 500, statusText: error.message || "Internal Server Error" }
         );
+        
     }
 }

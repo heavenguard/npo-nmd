@@ -77,7 +77,7 @@ export default function TermsAndPayment({
         )}
 
         {/* PayPal Integration */}
-        {(currency === "USD" || currency === "EUR") && paymentMethod === "paypal" && (
+        {(currency === "USD" || currency === "EUR" || currency === "XAF") && paymentMethod === "paypal" && (
           <div className="space-y-2 sm:space-y-3">
             <div className="text-center text-xs sm:text-sm text-slate-600 font-medium">
               Pay securely with PayPal
